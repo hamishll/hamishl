@@ -86,7 +86,7 @@
 /**
  * iPhone width
  **/
-@media (max-width:720px) {
+@media (max-width:667px) {
 
   html {
     font-size: 1.2em;
