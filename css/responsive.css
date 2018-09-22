@@ -111,12 +111,12 @@
     /*padding-left: 1.5em;*/
     opacity: 1;
   }
-  .main {
+  .main_home {
     font-size: 0.4em;
   }
   .card {
     margin: 1em;
-    font-size: 1em;
+    font-size: 1.25em;
   }
 
   .content {

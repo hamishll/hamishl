@@ -6,6 +6,7 @@ title: Home
 <!--<div class="title">
 	hamishl
 </div>-->
+<div class="main_home">
 {% assign items = site.books | sort: 'score' | reverse %}
 {% for item in items %}
 <a class="ind" href="{{ item.url }}">
@@ -19,6 +20,7 @@ title: Home
     	</div>
   	</div>
 </a>
+</div>
 <style>
 	#sidebar-button {
 		display: none;
