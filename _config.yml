@@ -1,0 +1,7 @@
+name: Flex
+markdown: kramdown
+highlighter: rouge
+
+collections:
+  books:
+    output: true

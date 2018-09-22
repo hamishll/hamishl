@@ -1,0 +1,91 @@
+@media (max-width:1309px) {
+  #cover-photo {
+    max-width: 95%;
+  }
+
+  .header {
+    /*padding-top: 3.45em;*/
+  }
+
+  .footer {
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width:1090px) {
+  #logo {
+    max-width: 100px;
+  }
+
+  #title {
+    font-size: 2.75em;
+    line-height: 35px;
+  }
+
+  .header {
+    /*padding-top: 3.85em;*/
+  }
+
+
+  .sidebar {
+    transition: 1s;
+    /*padding-left: 1.25em;*/
+    max-width: 20em;
+    min-width: 13em;
+  }
+
+  .content {
+    padding-right: 3em;
+  }
+
+  .footer {
+    font-size: 0.85em;
+  }
+}
+
+/**
+ * iPhone width
+ **/
+@media (max-width:720px) {
+  #logo {
+    max-width: 75px;
+  }
+
+  #cover-photo-container {
+    text-align: center;
+  }
+
+  #title {
+    font-size: 2.5em;
+  }
+
+  .sidebar {
+    transition: 1s;
+    margin-left: -100%;
+    z-index: 3;
+    width: 30%;
+    /*padding-left: 1.5em;*/
+    opacity: 1;
+  }
+
+  .content {
+    z-index: 1;
+    padding-right: 2em;
+    padding-left: 1.5em;
+  }
+
+  #sidebar-button {
+    display: block;
+    z-index: 0;
+  }
+}
+
+/*****************************************************************************/
+/*
+/* Sidebar responsive animations
+/*
+/*****************************************************************************/
+
+.slideIn {
+  margin-left: 0%;
+}
