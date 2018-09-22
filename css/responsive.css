@@ -89,7 +89,7 @@
 @media (max-width:667px) {
 
   html {
-    font-size: 0.7em;
+    font-size: 0.55em;
     transition: 1s;
   }
   #logo {
