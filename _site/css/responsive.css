@@ -89,7 +89,6 @@
 @media (max-width:667px) {
 
   html {
-    font-size: 0.55em;
     transition: 1s;
   }
   #logo {
@@ -111,6 +110,9 @@
     width: 30%;
     /*padding-left: 1.5em;*/
     opacity: 1;
+  }
+  .card {
+    font-size: 0.60em;
   }
 
   .content {
