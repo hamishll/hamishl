@@ -115,7 +115,8 @@
     font-size: 0.4em;
   }
   .card {
-    margin: 0em;
+    margin: 1em;
+    font-size: 1em;
   }
 
   .content {
