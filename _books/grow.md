@@ -4,6 +4,7 @@ title: Grow
 author: Jim Stengel
 date:   2017-08-08 12:00:00
 topic: business
+score: 7
 ---
 
 ### In a nutshell

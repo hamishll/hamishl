@@ -2,14 +2,21 @@
 layout: default
 title: Home
 ---
-<div class="homebg"></div>
-<!--
-{% assign items = site.books | sort: 'topic' %}
+<!--<div class="homebg"></div>-->
+<!--<div class="title">
+	hamishl
+</div>-->
+{% assign items = site.books | sort: 'score' | reverse %}
 {% for item in items %}
-  <a class="ind" href="{{ item.url }}">
+<a class="ind" href="{{ item.url }}">
   	<div class="card {{ item.topic }}">
-    	<h2 class="card-title">{{ item.title }}</h2>
-    	<div class="card-text">{{ item.author }}</div>
+  		<div class="cover cover-{{ item.topic }}"></div>
+  		<div class="padding">
+    		<h2 class="card-title">{{ item.title }}</h2>
+    		<div class="card-text">{{ item.author }}</div>
+    		<div class="card-topic"><a class="{{ item.topic }}">{{ item.topic }}</a></div>
+    		<div class="score">{{ item.score }}</div>
+    	</div>
   	</div>
-  </a>
-{% endfor %}-->
+</a>
+{% endfor %}

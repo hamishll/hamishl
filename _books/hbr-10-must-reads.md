@@ -5,6 +5,7 @@ author: HBR
 cover: null.png
 date:   2017-01-01 12:00:00
 topic: business
+score: 6
 ---
 
 # What is Strategy? (Michael Porter)

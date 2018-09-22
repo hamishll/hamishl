@@ -4,6 +4,7 @@ title: I Will Teach You To Be Rich
 author: Ramit Sethi
 date:   2017-01-01 12:00:00
 topic: finance
+score: 7
 ---
 
 # In a nutshell

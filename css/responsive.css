@@ -1,16 +1,19 @@
+/*
 @media (max-width:1309px) {
   #cover-photo {
     max-width: 95%;
   }
 
   .header {
-    /*padding-top: 3.45em;*/
+    /*padding-top: 3.45em;
   }
 
   .footer {
     font-size: 0.85em;
   }
 }
+
+
 
 @media (max-width:1090px) {
   #logo {
@@ -23,13 +26,13 @@
   }
 
   .header {
-    /*padding-top: 3.85em;*/
+    /*padding-top: 3.85em;
   }
 
 
   .sidebar {
     transition: 1s;
-    /*padding-left: 1.25em;*/
+    /*padding-left: 1.25em;
     max-width: 20em;
     min-width: 13em;
   }
@@ -46,7 +49,7 @@
 /**
  * iPhone width
  **/
-@media (max-width:720px) {
+@media (max-width:4000px) {
   #logo {
     max-width: 75px;
   }
@@ -76,6 +79,7 @@
 
   #sidebar-button {
     display: block;
+    float: left;
     z-index: 0;
   }
 }

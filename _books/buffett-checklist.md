@@ -6,6 +6,7 @@ cover: null.png
 date:   2017-01-01 12:00:00
 categories: posts
 topic: finance
+score: 7
 ---
 
 1.  Is the business simple and understandable?
