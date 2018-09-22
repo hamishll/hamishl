@@ -5,7 +5,7 @@ author: Travis Bradberry, Jean Greaves
 cover: null.png
 date:   2017-07-19 12:00:00
 topic: people
-score: 7
+score: 5
 ---
 
 1.	Defining emotional intelligence

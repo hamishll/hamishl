@@ -11,10 +11,7 @@ score: 10
 # In a nutshell
 
 {:.nutshell}
-...
-
-*This summary is mainly based on Siver's excellent summary*
-
+TBC
 
 
 
