@@ -114,6 +114,9 @@
   .main {
     font-size: 0.4em;
   }
+  .card {
+    margin: 0em;
+  }
 
   .content {
     z-index: 1;
