@@ -5,7 +5,7 @@ author: William Irvine
 date:   2017-08-01 12:00:00
 categories: posts
 topic: mindset
-size: wide
+size: 
 score: 10
 ---
 

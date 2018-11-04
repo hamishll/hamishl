@@ -495,7 +495,7 @@ a.post-title:hover {
 /*
 /*****************************************************************************/
 .card, 
-.card-sizer {
+.grid-sizer {
   font-size: 0.85em;
   width: 18em;
   height: 27em;
@@ -547,19 +547,6 @@ a.ind {
 }
 
 
-/* 5 columns, percentage width */
-.grid-item,
-.grid-sizer {
-  width: 20%;
-}
-
-.grid-item {
-  float: left;
-  height: 100px;
-  background: #0D8;
-  border: 2px solid #333;
-  border-color: hsla(0, 0%, 0%, 0.7);
-}
 
 .wide { width: 40em; }
 .tall { height: 400px; }
