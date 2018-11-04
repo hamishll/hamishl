@@ -6,6 +6,7 @@ cover: null.png
 date:   2017-01-01 12:00:00
 categories: posts
 topic: business
+score: 5
 ---
 
 # Three keys to influencing people

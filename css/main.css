@@ -82,12 +82,15 @@ a:hover {
 }
 .title {
   padding: 0em;
-  width: 200px;
+  width: 195px;
   margin: auto auto 1.75em auto;
   height: 60px;
   font-size: 1.4em;
-  background-image: url(../images/logo.png), url(../images/4.jpg);
-  background-size: 250px, 250px;
+  /*background-image: url(../images/logo.png), url(../images/4.jpg);
+  background-size: 195px, 195px;*/
+  background: #000;
+  background-image: url(../images/logo.png);
+  background-size: 195px;
   background-repeat: no-repeat, no-repeat;
   background-position: center, center;
 }
@@ -346,7 +349,7 @@ ol.nutshell li {
 }
 
 p.nutshell {
-  line-height: 1.25em;
+  line-height: 1.5em;
   background: var(--Grey);
   padding: 1em;
   color: var(--Navy);
@@ -491,7 +494,8 @@ a.post-title:hover {
 /* Index
 /*
 /*****************************************************************************/
-.card {
+.card, 
+.card-sizer {
   font-size: 0.85em;
   width: 18em;
   height: 27em;
@@ -529,7 +533,42 @@ a.post-title:hover {
 a.ind {
   color: #666;
 }
+/* ---- isotope ---- */
 
+.grid {
+  border: 1px solid #fff;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+
+/* 5 columns, percentage width */
+.grid-item,
+.grid-sizer {
+  width: 20%;
+}
+
+.grid-item {
+  float: left;
+  height: 100px;
+  background: #0D8;
+  border: 2px solid #333;
+  border-color: hsla(0, 0%, 0%, 0.7);
+}
+
+.wide { width: 40em; }
+.tall { height: 400px; }
+
+
+.element-item > * {
+  margin: 0;
+  padding: 0;
+}
 .card.business {
   border: 1px solid var(--Orange);
 }
@@ -544,6 +583,12 @@ a.ind {
 }
 .card.health {
   border: 1px solid purple;
+}
+.card.story {
+  border: 1px solid var(--DarkBlue);
+}
+.card.post.card-title {
+  font-family: 'Playfair Display', serif;
 }
 
 .cover-business {
@@ -566,3 +611,59 @@ a.ind {
   background: purple;
   opacity: 0.2;
 }
+.cover-story {
+  background: var(--DarkBlue);
+  opacity: 0.2;
+}
+
+
+/* ---- button ---- */
+
+.button {
+  display: inline-block;
+  background: #fff;
+  padding: 0.2em 0.1em;
+  margin: 0.5em 1.0em;
+  border: none;
+  border-radius: 7px;
+  color: #aaa;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: #000;
+}
+
+.button:active,
+.button.is-checked {
+  border-bottom: 3px solid #000;
+  color: #000;
+}
+
+.button:active {
+}
+
+/* ---- button-group ---- */
+
+.button-group {
+  margin-bottom: 20px;
+  height: 40px;
+}
+
+.button-group:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.button-group .button {
+  float: left;
+  border-radius: 0;
+}
+/*
+.button-group .button:first-child { border-radius: 0.5em 0 0 0.5em; }
+.button-group .button:last-child { border-radius: 0 0.5em 0.5em 0; }
+*/
