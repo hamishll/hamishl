@@ -12,10 +12,6 @@ score: 8
 # In a nutshell
 
 {:.nutshell}
-TBC
-
-Norwegian Wood
---
 Big theme of loss, grief, hopelessness, and hope. Both Naoko and Midori encounter loss but approach it in different ways (that’s not to say their losses are comparable or equal)
 On a more positive note, it’s a story of working out what you want and wrestling with decisions on what kind of love you want (deep slow Vs passionate), and how selfish/hedonistic one should be in trying to pursue happiness
 
