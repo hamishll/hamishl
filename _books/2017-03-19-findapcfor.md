@@ -6,6 +6,7 @@ date:   2017-03-19 12:00:00
 categories: posts
 topic: story
 size: wide
+score: 5
 ---
 
 ## Introduction

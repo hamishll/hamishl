@@ -6,6 +6,9 @@
 var $grid = $('.grid').isotope({
   itemSelector: '.card',
   layoutMode: 'masonry',
+  masonry: {
+    isFitWidth: true
+  },
   getSortData: {
     title: '.card-title',
     author: '.card-text',

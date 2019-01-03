@@ -20,6 +20,26 @@
 
 /*****************************************************************************/
 /*
+/* MATERIAL DESIGN
+/*
+/*****************************************************************************/
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+/*****************************************************************************/
+/*
 /* Common
 /*
 /*****************************************************************************/
@@ -33,6 +53,7 @@ html, body {
   height: 100%;
   width: 100%;
   -webkit-font-smoothing: antialiased;
+  text-align: center;
 }
 
 body {
@@ -82,20 +103,10 @@ a:hover {
 }
 .title {
   padding: 0em;
-  width: 195px;
+  width: auto;
   margin: auto auto 1.75em auto;
+  text-align: center;
   height: 60px;
-  font-size: 1.4em;
-  /*background-image: url(../images/logo.png), url(../images/4.jpg);
-  background-size: 195px, 195px;*/
-  background: #000;
-  background-image: url(../images/logo.png);
-  background-size: 195px;
-  background-repeat: no-repeat, no-repeat;
-  background-position: center, center;
-}
-.title:hover {
-  background-image: url(../images/logo.png), url(../images/marble2.gif);
 }
 
 .posts a {
@@ -497,12 +508,14 @@ a.post-title:hover {
 .card, 
 .grid-sizer {
   font-size: 0.85em;
+  text-align: left;
   width: 18em;
   height: 27em;
-  float: left;
+  display:inline-block;
   margin: 2em;
   position: relative;
-  /*box-shadow: 0px 0px 10px #ccc;*/
+  border-radius: 3px;
+  /*box-shadow: 0px 0px 15px #eee;*/
 }
 .cover {
   width: auto;
@@ -531,12 +544,14 @@ a.post-title:hover {
 }
 
 a.ind {
-  color: #666;
+  color: #444;
 }
 /* ---- isotope ---- */
 
 .grid {
   border: 1px solid #fff;
+  display:inline-block;
+  width:100%;
 }
 
 /* clear fix */
@@ -574,6 +589,9 @@ a.ind {
 .card.story {
   border: 1px solid var(--DarkBlue);
 }
+.card.fiction {
+  border: 1px solid #aaa;
+}
 .card.post.card-title {
   font-family: 'Playfair Display', serif;
 }
@@ -602,6 +620,9 @@ a.ind {
   background: var(--DarkBlue);
   opacity: 0.2;
 }
+.cover-fiction {
+  background: var(--Grey);
+}
 
 
 /* ---- button ---- */
@@ -609,15 +630,16 @@ a.ind {
 .button {
   display: inline-block;
   background: #fff;
-  padding: 0.2em 0.1em;
-  margin: 0.5em 1.0em;
+  padding: 0.1em 0.1em;
+  margin: 0.5em 0.5em;
   border: none;
   border-radius: 7px;
   color: #aaa;
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: bold;
   cursor: pointer;
+  border-bottom: 3px solid #fff;
 }
 
 .button:hover {
@@ -636,14 +658,30 @@ a.ind {
 /* ---- button-group ---- */
 
 .button-group {
+  height: 40px;
+  display:inline-block;
+  width: 40%;
+  max-width: 20em;
+  text-align: center;
+  /*border: 1px solid #f00;*/
+}
+.button-id {
+  text-align: center;
   margin-bottom: 20px;
   height: 40px;
+  display:inline-block;
+  width: 18%;
+  /*border: 1px solid #f00;*/
+}
+.button-id:hover {
+  color: var(--Pink);
 }
 
 .button-group:after {
   content: '';
   display: block;
   clear: both;
+/*  border: 1px solid #000;*/
 }
 
 .button-group .button {
@@ -654,3 +692,5 @@ a.ind {
 .button-group .button:first-child { border-radius: 0.5em 0 0 0.5em; }
 .button-group .button:last-child { border-radius: 0 0.5em 0.5em 0; }
 */
+
+
