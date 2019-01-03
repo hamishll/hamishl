@@ -4,9 +4,9 @@ title: findapcfor.me
 cover: cover_findapcforme.png
 date:   2017-03-19 12:00:00
 categories: posts
-topic: story
+topic: posts
 size: wide
-score: 5
+score: 6
 ---
 
 ## Introduction

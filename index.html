@@ -13,7 +13,8 @@ title: Home
     <button class="button" data-filter=".people">People</button>
     <button class="button" data-filter=".finance">Finance</button>
     <button class="button" data-filter=".business">Business</button>
-    <button class="button" data-filter=".story">Posts</button>
+    <button class="button" data-filter=".fiction">Fiction</button>
+    <button class="button" data-filter=".posts">Posts</button>
     <!--<button class="button" data-filter="ium">name ends with &ndash;ium</button>-->
   </div>
   
@@ -21,7 +22,7 @@ title: Home
     <a href="/"><i class="material-icons md-48">bookmark_border</i></a>
   </div>
   
-  <div id="sorts" class="button-group">  <button class="button is-checked" data-sort-by="score">Score</button>
+  <div id="sorts" class="button-group" style="text-align:right">  <button class="button is-checked" data-sort-by="score">Score</button>
     <button class="button" data-sort-by="title">Title</button>
     <button class="button" data-sort-by="author">Author</button>
     <button class="button" data-sort-by="topic">Topic</button>
@@ -34,7 +35,7 @@ title: Home
 {% for item in items %}
   	<div class="card {{ item.topic }} {{ item.size }}">
   		<a class="ind" href="{{ item.url }}">
-  			<div class="cover cover-{{ item.topic }}"></div>
+  			<div class="cover cover-{{ item.topic }}"><img src="/images/{{ item.cover }}"></div>
   		<div class="padding">
     		<h2 class="card-title">{{ item.title }}</h2>
     		<p class="card-text">{{ item.author }}</p>

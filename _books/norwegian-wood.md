@@ -2,6 +2,7 @@
 layout: post
 title: Norwegian Wood
 author: Haruki Murakami
+cover: null.png
 date:   2018-12-22 12:00:00
 categories: posts
 topic: fiction

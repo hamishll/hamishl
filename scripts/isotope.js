@@ -7,7 +7,8 @@ var $grid = $('.grid').isotope({
   itemSelector: '.card',
   layoutMode: 'masonry',
   masonry: {
-    isFitWidth: true
+    isFitWidth: true,
+    columnWidth: '.grid-sizer',
   },
   getSortData: {
     title: '.card-title',

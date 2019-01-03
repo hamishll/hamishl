@@ -2,6 +2,7 @@
 layout: post
 title: Grow
 author: Jim Stengel
+cover: null.png
 date:   2017-08-08 12:00:00
 topic: business
 score: 7
