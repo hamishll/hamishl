@@ -1,24 +1,23 @@
-@media (max-width:1090px) {
-  #logo {
-    max-width: 100px;
-  }
+/**
+ * iPad width
+ **/
+ @media (max-width:768px) {
 
-  #title {
-    font-size: 2.75em;
-    line-height: 35px;
-  }
-
-  .header {
-    /*padding-top: 3.85em;*/
-  }
-
-
-  .sidebar {
+  html {
+    font-size:0.75em;  }
+/*  .sidebar {
     transition: 1s;
     padding-left: 1.25em;
     max-width: 20em;
     min-width: 13em;
+  }*/
+  .button-group {
+    font-size: 1rem;
   }
+  .card {
+    margin: 1.5em;
+  }
+  .wide { width: 39em; }
 
 /*  .content {
     padding-right: 3em;
@@ -69,15 +68,20 @@
 /**
  * iPhone width
  **/
-@media (max-width:667px) {
+@media (max-width:375px) {
 
   html {
     transition: 1s;
-    font-size:1.2em;
+    font-size:0.75em;
   }
   #logo {
     max-width: 75px;
   }
+  .button-group {
+    width: 100%;
+}
+.button-group:first-child { text-align: center; }
+.button-group:last-child { text-align: center; }
 
   #cover-photo-container {
     text-align: center;
@@ -97,13 +101,13 @@
   }
 /*  .main_home {
     font-size: 0.375em;
-  }
+  }*/
   .card {
     margin: 1em;
-    font-size: 1em;
   }
+  .wide { width: 38em; }
 
-  .content {
+/*  .content {
     z-index: 1;
     padding-right: 2em;
     padding-left: 1.5em;
