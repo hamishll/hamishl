@@ -29,7 +29,7 @@
 }
 
 /**
- * iPhone width
+ * Full width
  **/
 @media (max-width:4000px) {
   #logo {
@@ -79,6 +79,7 @@
   }
   .button-group {
     width: 100%;
+    font-size: 1.25rem;
 }
 .button-group:first-child { text-align: center; }
 .button-group:last-child { text-align: center; }

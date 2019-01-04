@@ -649,7 +649,7 @@ a.ind {
   display: inline-block;
   background: #fff;
   padding: 0.1em 0.1em;
-  margin: 0.5em 0.5em;
+  margin: 0em 0.5em 0.5em 0.5em;
   border: none;
   border-radius: 7px;
   color: #aaa;
@@ -679,6 +679,7 @@ a.ind {
 /*  height: 60px;*/
   display:inline-block;
   width: 42%;
+  margin-top: 0.5em;
   /*max-width: 20em;*/
   text-align: center;
   /*border: 1px solid #f00;*/
