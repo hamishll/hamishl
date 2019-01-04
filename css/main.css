@@ -519,7 +519,7 @@ a.post-title:hover {
   border-radius: 3px;
   /*box-shadow: 0px 0px 15px #eee;*/
 /*  box-shadow: 0 8px 16px 0 rgba(34,50,84,.06),inset 0 0 0 1px rgba(112,123,140,.15);*/
-  transition: 0.2s;
+  transition: 0s;
 
 }
 .grid-sizer {
