@@ -5,8 +5,8 @@ cover: cover_matsci.png
 date:   2017-02-18 12:00:00
 categories: posts
 topic: posts
-size: 
-score: 4
+size: wide
+score: 3
 ---
 
 ## Introduction
