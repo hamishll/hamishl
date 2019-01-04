@@ -404,24 +404,28 @@ table {
 .sidebar,
 .content {
   vertical-align: top;
-  height: 100%;
-  -webkit-overflow-scrolling: touch;
+  height: auto;
+/*  -webkit-overflow-scrolling: touch;*/
   overflow-y: auto;
   overflow-x: hidden;
   text-align: left;
 }
 
 .sidebar {
-  width: 25%;
+  width: 60%;
   background: #fcfcfc;
   float: left;
-  max-width: 22em;
+  max-width: 30em;
   font-size: 0.75rem;
+  padding-top: 50px;
   /*padding-left: 0.75em;
   padding-right: 1.25em;*/
   border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   transition: 0.25s;
   opacity: 1;
+  position: absolute;
+  z-index: 3;
 }
 .sidebar:hover {
   opacity: 1;
@@ -432,6 +436,7 @@ table {
   padding-left: 3.5em;
   margin: auto;
   max-width: 750px;
+  display: inline-block;
 }
 
 .header {
@@ -472,7 +477,7 @@ a.post-title:hover {
   display: none;
   padding: 15px 15px 12px 15px;
   /*border-bottom: 1px solid rgb(246,246,246);*/
-  z-index: 0;
+  z-index: 4;
 }
 
 #sidebar-button:active,
