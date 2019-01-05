@@ -80,8 +80,11 @@
     transition: 1s;
     font-size:0.75em;
   }
-  #logo {
-    max-width: 75px;
+  .logo {
+    padding-top: 1.5em;
+  }
+  .navbar {
+    height: 7.5em;
   }
   .button-group {
     width: 100%;

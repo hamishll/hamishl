@@ -100,8 +100,9 @@ a:hover, a:active {
 /* Home
 /*
 /*****************************************************************************/
-#logo {
-  max-width: 128px;
+.logo {
+  padding-top: 2.75em;
+  z-index: 4;
 }
 
 
@@ -434,7 +435,7 @@ table {
 
 .content {
   padding-left: 3.5em;
-  margin: auto;
+  margin: 2.5em auto auto auto;
   max-width: 750px;
   display: inline-block;
 }
@@ -684,7 +685,7 @@ a.ind {
 /*  height: 60px;*/
   display:inline-block;
   width: 42%;
-  margin-top: 0.5em;
+  /*margin-top: 0.5em;*/
   /*max-width: 20em;*/
   text-align: center;
   /*border: 1px solid #f00;*/

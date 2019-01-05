@@ -29,7 +29,7 @@ and change course if necessary.
 -   Put the above four items into a clear, concise sentence describing
     each part
 -   Read the statement aloud twice daily, in the morning and at night
--   **My statement:** *I want to have £1,000,000 by age 30, through
+-   **Example statement:** *I want to have £1,000,000 by age 30, through
     saving money and investing in tech businesses. I’ll develop
     understanding in this area and find investment opportunities through
     my job.*
