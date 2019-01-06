@@ -13,9 +13,7 @@ score: 10
 # In a nutshell
 
 {:.nutshell}
-TBC
-
-
+If you expect bad things to happen, then you won't be so sad when they do. Conversely, if you expect good fortune you will be disappointed when it is not achieved. <br/> <br/>  We are unhappy because we are insatiable, and typically lose interest in the things we achieve, giving rise to even greater desires. <br/>  <br/> So, the easiest way to be happy is to want the things we already have. If we imagine for a moment that we have lost the things we value then we will appreciate them more. We should periodically pause and consider that we may lose things; that we won't live forever. Similarly, we are living in a dream world compared to our ancestors - let us not take that for granted. If an optimism is thankful for a glass half-full, than a Stoic is not only thankful for the water, but for the glass itself!  <br/> <br/> There will be a last time you see falling snow, smell popcorn, feel the warmth of a child asleep in your arms. Recognising this will help you make the most of these moments, with an intensity that would otherwise be absent; you can feel **joy**.
 
 
 # The common mistakes of how we look at life
@@ -24,16 +22,6 @@ If you lack a grand goal in life, you lack a coherent philosophy of life. Don't 
 
 Consider what things you might pursue that are the most valuable to you. Find delight in what you have and overcome your insatiability.
 
-
-# The Stoic's method
-
-If you expect bad things to happen, then you won't be so sad when they do. Conversely, if you expect good fortune you will be disappointed when it is not achieved.
-
-We are unhappy because we are insatiable, and typically lose interest in the things we achieve, giving rise to even greater desires.
-
-So, the easiest way to be happy is to want the things we already have. If we imagine for a moment that we have lost the things we value then we will appreciate them more. We should periodically pause and consider that we may lose things; that we won't live forever. Similarly, we are living in a dream world compared to our ancestors - let us not take that for granted. If an optimism is thankful for a glass half-full, than a Stoic is not only thankful for the water, but for the glass itself!
-
-There will be a last time you see falling snow, smell popcorn, feel the warmth of a child asleep in your arms. Recognising this will help you make the most of these moments, with an intensity that would otherwise be absent.
 
 
 # The difference between contemplation and worry
@@ -54,7 +42,7 @@ The key is to value things that are truly important, not those that are superfic
 Don't focus on changing the world, but just doing what you can to help.
 
 {:.star}
-The first step to living a good life is to teach yourself how to make your happiness depends as little as possible on your external circumstances.
+**The first step to living a good life is to teach yourself how to make your happiness depends as little as possible on your external circumstances.**
 
 
 

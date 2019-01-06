@@ -608,6 +608,9 @@ a.ind {
 .card.fiction {
   border: 1px solid #aaa;
 }
+.card.draft {
+  border: 1px dashed #aaa;
+}
 .card.post.card-title {
   font-family: 'Playfair Display', serif;
 }
