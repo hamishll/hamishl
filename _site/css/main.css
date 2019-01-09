@@ -12,6 +12,7 @@
   --LightGreen: rgb(236, 251, 228);
   --Grey: rgb(245, 245, 245);
   --Red: rgb(220, 60, 130);
+  --DarkYellow: rgb(242, 185, 89);
   --CardOpacity: 0.3;
 }
 
@@ -606,7 +607,7 @@ a.ind {
   border: 1px solid var(--DarkBlue);
 }
 .card.fiction {
-  border: 1px solid #aaa;
+  border: 1px solid var(--DarkYellow);
 }
 .card.draft {
   border: 1px dashed #aaa;
@@ -640,7 +641,7 @@ a.ind {
   opacity: var(--CardOpacity);
 }
 .cover-fiction {
-  background: var(--Grey);
+  background: var(--Yellow);
   opacity: var(--CardOpacity);
 }
 
