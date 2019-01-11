@@ -3,77 +3,46 @@
   <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>hamishl - {{ page.title }}</title>
+      <title>+ {{ page.title }} +</title>
       <meta name="viewport" content="width=device-width">
+
+      <!-- ICONS -->
       <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
       <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
       <meta name="apple-mobile-web-app-capable" content="yes">
       <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-      <!-- Syntax highlighting CSS -->
+      <!-- CSS -->
       <link rel="stylesheet" href="/css/syntax.css">
-
-      <!-- Custom CSS  -->
       <link rel="stylesheet" href="/css/main.css">
-
-      <!-- Responsive CSS -->
       <link rel="stylesheet" href="/css/responsive.css">
 
       <!-- Google Fonts -->
-       <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:400,600,700" rel="stylesheet">
-       <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600,700" rel="stylesheet"> 
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 
-       <!-- jQuery and Isotope -->
+      <!-- jQuery and Isotope -->
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
        <script src="/scripts/isotope.pkgd.min.js"></script>
        <script src="/scripts/isotope.js"></script>
+
   </head>
   <body>
 
     <div class="site">
-      <!-- Sidebar -->
-      <div class="sidebar" id="sidebar">
-        <!--<div class="header">
-          <a href="/">Home</a>
-        </div>-->
-        <div class="posts">
-
-          <ul class="posts-list">
-            {% assign items = site.books | sort: 'topic' | reverse %}
-            {% for item in items %}
-              <li class="post-link {{ item.starred }}">
-                <a class="post-title {{ item.topic }}" href="{{ item.url }}">
-                  {{ item.title }} <!--- <i>{{item.author}}</i>-->
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-
-        </div>
-        <div class="footer">
-          <span id="footer-links">
-            <a href="" target="_blank" class="footer-link">About</a> <span class="separator">&bull;</span>
-            <a href="http://linkedin.com/in/hamishleith" target="_blank" class="footer-link">LinkedIn</a> <span class="separator">&bull;</span>
-            <a href="http://github.com/hamishll" target="_blank" class="footer-link">GitHub</a>
-          </span>
-        </div>
-      </div>
+      
       <div class="navbar">
-        <div id="sidebar-button">
-          <img width="20px" src="/images/menu.svg">
-        </div>
         <div class="logo">
           <a href="/"><i class="material-icons md-48">&#xE867;</i></a>
         </div>
       </div>
+
       <div class="main">
       <!-- Main Content -->
         {{ content }}
       </div>
 
     </div>
-    <script src="/scripts/responsive.js" type="text/javascript"></script>
   </body>
 </html>

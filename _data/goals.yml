@@ -1,0 +1,28 @@
+- category: health
+  goal: Be stronger, sleep better, slow down and take more care
+  priority: 1
+
+- category: project
+  goal: Build out web projects, including using Firebase
+  priority: 4
+
+- category: love
+  goal: Fall in love again
+  priority: 3
+
+- category: learning
+  goal: Read...
+  priority: 2
+
+- category: friends
+  goal: Reconnect with old friends and nurture new ones
+  priority: 5
+
+- category: work
+  goal: Transition to a ROM Architect
+  priority: 6
+
+- category: finance
+  goal: Simplify, automate and save £12k in 2019
+  priority: 7
+
