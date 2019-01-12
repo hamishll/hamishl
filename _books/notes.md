@@ -1,5 +1,12 @@
 ---
 title: Blue Prism Professional Developer - Exam Notes
+layout: post
+cover: null.png
+date:   2017-08-01 12:00:00
+categories: posts
+topic: business
+size: 
+score: 1
 ---
 
 # Best Practice
