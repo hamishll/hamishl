@@ -7,7 +7,7 @@ date:   2017-01-01 12:00:00
 categories: posts
 topic: people
 starred: true
-score: 10
+score: 9
 ---
 
 # In a nutshell

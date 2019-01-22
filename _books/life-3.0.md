@@ -7,7 +7,7 @@ date:   2019-01-01 12:00:00
 categories: posts
 topic: draft
 size: 
-score: 9
+score: 8
 ---
 
 # In a nutshell

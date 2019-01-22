@@ -3,8 +3,8 @@ layout: post
 title: Stumbling on Happiness
 author: Daniel Gilbert
 cover: null.png
-date:   2018-11-04 12:00:00
-topic: mindset
+date:   2019-02-04 12:00:00
+topic: draft
 size: 
 score: 8
 ---
