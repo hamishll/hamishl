@@ -22,3 +22,12 @@ Text
 
 2.	Lacking a feeling of control can be a source of worry
 
+
+3.	Presentism
+	- We determine value by comparison of one thing with another
+	- There is more than one kind of comparison we can make in any given instance
+	- Therefore, we may value something more highly when making a different kind of comparison
+	- This technique is used by sales people: 
+		- giving you an array of choices so you compare them instead of comparing whether you benefit from having the item
+		- showing you extremely bad, or extremely overpriced options, so the others seem great value by comparison
+	- We fear loss more than gains - A majority of people would turn down a 85%/15% chance bet at doubling/losing their life savings
