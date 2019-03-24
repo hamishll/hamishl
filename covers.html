@@ -1,0 +1,58 @@
+---
+layout: default
+title: Home
+---
+<!--<div class="homebg"></div>-->
+<!--<div class="title">
+	hamishl
+</div>-->
+<div class="title">
+  <div id="filters" class="button-group">  
+    <button class="button is-checked" data-filter="*">All</button>
+    <button class="button" data-filter=".mindset">Mindset</button>
+    <button class="button" data-filter=".people">People</button>
+    <button class="button" data-filter=".finance">Finance</button>
+    <button class="button" data-filter=".business">Business</button>
+    <button class="button" data-filter=".fiction">Fiction</button>
+    <button class="button" data-filter=".posts">Posts</button>
+    <!--<button class="button" data-filter="ium">name ends with &ndash;ium</button>-->
+  </div>
+  
+  <div class="button-id">
+    <!-- <a href="/"><i class="material-icons md-48">&#xE867;</i></a> -->
+  </div>
+  
+  <div id="sorts" class="button-group">  <button class="button is-checked" data-sort-by="score">Score</button>
+    <button class="button" data-sort-by="title">Title</button>
+    <button class="button" data-sort-by="author">Author</button>
+    <button class="button" data-sort-by="topic">Topic</button>
+  </div>
+</div>
+
+<div class="grid">
+<div class="grid-sizer"></div>
+{% assign items = site.books | sort: 'score' | reverse %}
+{% for item in items %}
+  	<div class="card {{ item.topic }} {{ item.size }}">
+  		<a class="ind" href="{{ item.url }}">
+  			<div class="cover">
+            <img src="/images/covers/{{ item.title }}.jpg" style="width:100%; height:100%">
+            <div class="cover-{{ item.topic }}"></div>
+        </div>
+  		<div class="padding">
+    		<h2 class="card-title">{{ item.title }}</h2>
+    		<p class="card-text">{{ item.author }}</p>
+    		<p class="card-topic"><a class="{{ item.topic }}">{{ item.topic }}</a></p>
+    		<p class="score">{{ item.score }}</p>
+    	</div>
+    	</a>
+  	</div>
+
+{% endfor %}
+</div>
+
+<style>
+	#sidebar-button {
+		display: none;
+	}
+</style>
