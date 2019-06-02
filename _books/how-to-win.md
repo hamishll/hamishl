@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to win friends and influence people
+title: How to Win Friends and Influence People
 author: Dale Carnegie
 cover: null.png
 date:   2017-01-01 12:00:00

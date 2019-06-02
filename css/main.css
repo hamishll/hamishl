@@ -106,7 +106,6 @@ a:hover, a:active {
   z-index: 4;
 }
 
-
 .posts a {
   color: #444;
 }
@@ -136,7 +135,7 @@ a:hover, a:active {
 }
 .main {
   max-width: 1300px;
-  margin: auto;
+  margin: auto auto auto auto;
   height: auto;
 }
 
@@ -566,9 +565,10 @@ a.ind {
 /* ---- isotope ---- */
 
 .grid {
-  border: 1px solid #fff;
+  border: 0px solid #fff;
   display:inline-block;
   width:100%;
+  padding-top: 4em;
 }
 
 /* clear fix */
@@ -723,5 +723,3 @@ a.ind {
 .button-group .button:first-child { border-radius: 0.5em 0 0 0.5em; }
 .button-group .button:last-child { border-radius: 0 0.5em 0.5em 0; }
 */
-
-
