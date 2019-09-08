@@ -10,10 +10,10 @@ score: 11
 ---
 
 # Virtualisation
-1. Hypervisors 
-    - type I: good because runs directly on hardware (VMWare vSphere)
+1. Hypervisors (ESX)
+    - type I: good because runs directly on hardware (VMWare vSphere, XenServer, MS Hyper-V, KVM)
     - type II: guests share resources (VMware Fusion, VirtualBox)
-    - ESX 3.5 is incompatible with Windows 7
+    - **ESX 3.5 is incompatible with Windows 7**
     - RAM should not be shared
     - vCPU not necessarily as high-performing as pCPU
     - Use VMWare High Availability (HA) or equivalent
@@ -57,12 +57,15 @@ score: 11
         - ***Login Agent only support on XenDesktop 7.6+***
         - ***Processes can hang using XenDesktop, as Citrix uses "hooking" which can cause deadlocks***, resolve by changing registry
 
-3. Hosted Shared Desktop (HSD) or Presentation Virtualisation [Citrix XenApp]
+3. Hosted Shared Desktop (HSD) or Presentation Virtualisation [Microsoft RDSH and Citrix XenApp]
     - `IC !, RR No, LA No`
+    - **xenapp good for rr ? --> NO**
+    - Q: microsoft virtualizaion together with xenapp what are the caracteristic
+    - Q: which virtualizations need always surface automation  A: Hosted Shared 
     - User presented with desktop and "published" applications
     - resources are shared between all users
     - **applications streamed, which limits automation techniques to Surface Automation**
-    - Q: which virtualizations need always surface automation  A: Hosted Shared Desktop / Presentation Virtualisation
+    Desktop / Presentation Virtualisation
     - not suitable for Runtime Resource or Login Agent
     - IC can't be published application
     - *Characteristics:*
@@ -70,25 +73,25 @@ score: 11
         - ***System resources are shared***
         - *Sessions are not persistent*
 
-4. Application Virtualisation and Layering [Citrix XenApp, VMWare App Volumes]
+4. Application Virtualisation and Layering [Citrix XenApp, VMWare App Volumes, Thinapp]
     - `IC !, RR !, LA !`
+    - Application Layering where the applications are no longer isolated from each other (unlike 3.)
     - applications streamed to user
     - decoupling application from underlying OS and any dependencies on registry and file system
     - care taken to check if application behaves same way as if installed on local machine, it might not!
-    - Application Layering where the applications are no longer isolated from eah other
-    - Consider how user customeisations required for a process will be delivered
     - *Characteristics:*
-        - *Application is isolated from core image of VM, generally coupled with non-persistent VM*
+        - *Application / User personalisation is isolated from core image of VM, generally coupled with non-persistent VM*
         - *Application and UEM generally delivered via separate technologies*
+    - Consider how developers will share resources
+    - **Consider how RR will be started after a reboot - generally you would have to make these applications part of th base OS image**
+    - Consider how user customisations required for a process will be delivered
 
 
     
- - what are esx and desktop providers  
- - Minimal citrix esx version and problem with login agent
- - microsoft virtualizaion together with xenapp what are the caracteristic
+ - Minimal citrix esx version and problem with login agent --> 3.5
  - learn exactly virtualization name provider with vdi persisten and not and characteristic
  - what happen when using virtualization hsd /presentatoin and when using layering
- - xenapp good for rr ? --> NO
+
 
 
 # ---------------------------------------------------------------------------
@@ -108,7 +111,7 @@ score: 11
 
 1. TCP
     - used to give instructions (which is followed by WCF communication between RR and AS)
-    - can be secured with certificates, ensuring common name matches
+    - can be secured with certificates, ensuring common name matches (or appropriate wildcard)
     - uses *Origin Authentication* and/or *Session Authentication* which generates a single-use token
 
 2. WCF
@@ -117,9 +120,16 @@ score: 11
     - App Server and RR must be configured to `Use Secure Connection`
     - Legacy installations can use .NET remoting instead of WCF, where security is handled by Microsoft's SSPI
     - Types:
-        - WCF: SOAP with Message Encryption and Windows Authentication
-        - WCF: SOAP with Transport Encryption and Windows Authentication
-        - ...
+        - WCF: SOAP with Message Encryption and Windows Authentication (encypts, supports SSO and /user)
+        - WCF: SOAP with Transport Encryption and Windows Authentication (requires certificate!)
+        - WCF: SOAP with Transport Encryption (only supports /user, requires certificate!)
+        - .NET Remoting Secure (both /user and SSO)
+        - WCF Insecure (not recommeded)
+        - Cheatsheet:
+        - `Windows Authentication allows SSO`
+        - `Encyption means encryption`
+        - `Transport encryption requires certificate`
+    
 
 1. Default ports:
     - App Server listens for TCP traffic on 8199
@@ -137,7 +147,7 @@ score: 11
 1. Short name used by default, but can also use FQDN (fully qualified domain name). Options:
     - Register and communicate using machine (short) name 
     - Register using machine (short) name, communicate using FQDN
-    - Register and communicate using FEQN
+    - Register and communicate using FQDN
 
 # Encryption schema 
  - study in detail - where can be the key saved - app server use it - recommended setup  
@@ -151,8 +161,8 @@ score: 11
  - To require certificates for DB, use `TrustServerCertificate=true, Encrypt=true`
  - Certificates setup in login agent in config file?
  - when to exactly use ssl
- - I have to tell to what file when connecting using ssl  --> Thumbprint?
- - ipsx ? secure ip 
+ - I have to tell to what file when connecting using ssl  --> **Thumbprint?**
+ - ipsx ? secure ip --> **Yeah you can**
 
 # ---------------------------------------------------------------------------
 
@@ -181,15 +191,16 @@ score: 11
 3. Associate each Blue Prism role with each AD Security Group
  - eg: Devs, Testers, Release Managers, Controllers
 
+## Questions: 
 
- - what happen with rr outside of active directory
- - active directory provide data or communication encryption? by default?
- - domain controller and forest AD = rr will be able to connect ? -> yes but not authenticate
+ - **what happen with rr outside of active directory --> can't connect unless provide /user or /sso?**
+ - active directory provide data or communication encryption? by default? **Yes**
+ - **domain controller and forest AD, will RR be able to connect ? -> yes but not authenticate**
 
 
 # SSO
  - what happen to communications when using sso  --> Encrypted?
- - what give to Blue Prism when using sso?
+ - what give to Blue Prism when using sso? **/sso**
 
 # ---------------------------------------------------------------------------
 
@@ -254,6 +265,36 @@ score: 11
     - when a user authenticates it disconnects other users
 
 # Load Balancing
+
+1. Health Monitoring
+    - **Simple Monitoring** - pinging the host
+    - **Active Monitoring** - HTTP(s) endpoint that publishes the health of the service `https://bpserver001:8199/bpserver`
+    - **Passive Monitoring** - occurs as part of a client request, checking health based on # connection attempts within a time period. Receiving a bad response marks as unavailable
+
+2. Load Balancing Algorithms
+    - **Round Robin** (allocates cyclically)
+    - **Weighted Round Robin** (if server A has more capacity, you can allow it to take on higher proportion of connections)
+    - **Least Connection** (will allocate based on least **current** connections)
+    - **Weighted Least Connection** (if server A has more capacity, you can allow it to take on higher proportion of connections)
+    - **Random**
+
+3. Types of Load Balancing
+    - **Layer 4**: acts upon TCP, IP, UDP, FTP
+    - **Layer 7**: acts upon application protocols such as HTTP - more advanced features
+
+4. Other stuff
+    - Stickiness can be used to ensure resources stay connected to the same server
+    - WCF is like internet traffic - the channel doesn't have to be held open, and the sessions are persisted on the app server instead
+    - SSL Certificate on app server should be applicable to the Load Balancer
+
+5. Load Balancing HTTPS Connections
+    - SSL Passthrough = supported (no decryption at the LB)
+    - SSL Termination = supported (connection terminated at LB, decrypted, re-encrypted and new connection establised)
+    - SSL Offboarding = not supported (same as termination with no decrpytion)
+
+6. Pooling
+    - Single pool gives flexibility
+    - Multiple pools allow maintenance to be more separated and offers more redundancy, however risk 
 
 # App Server and Login Agent
  - app server and login agent config file
