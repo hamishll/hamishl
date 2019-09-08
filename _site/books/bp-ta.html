@@ -318,6 +318,10 @@
     <ul>
       <li>type I: good because runs directly on hardware (VMWare vSphere)</li>
       <li>type II: guests share resources (VMware Fusion, VirtualBox)</li>
+      <li>ESX 3.5 is incompatible with Windows 7</li>
+      <li>RAM should not be shared</li>
+      <li>vCPU not necessarily as high-performing as pCPU</li>
+      <li>Use VMWare High Availability (HA) or equivalent</li>
     </ul>
   </li>
   <li>Suitability for virtualisation of each component
@@ -354,6 +358,7 @@
 <ol>
   <li>Persistent VDI / HVD [Citrix XenDesktop (persistent), VMWare Horizon View (dedicated)]
     <ul>
+      <li><code class="highlighter-rouge">IC Yes, RR, Yes, LA  !</code></li>
       <li>image persistent and user settings retained</li>
       <li>Most suitable choice for RR and IC however consider patching and maintenance overhead</li>
       <li><em>Characteristics:</em>
@@ -367,6 +372,7 @@
   </li>
   <li>Non-Persistent VDI / HVD [Citrix XenDesktop (non-persistent), VMWare Horizon View (floating)]
     <ul>
+      <li><code class="highlighter-rouge">IC !, RR !, LA !</code></li>
       <li>VM loaded from master image on each boot, usually coupled with a UEM</li>
       <li>Consider how to maintain config changes, refresh of image may cause issues</li>
       <li><em>Characteristics:</em>
@@ -375,12 +381,15 @@
           <li><strong><em>User is not guaranteed to be allocated same VM each time</em></strong></li>
           <li><em>User Personalisation is lost unless coupled with UEM</em></li>
           <li><em>Use of Login Agent is required</em></li>
+          <li><strong><em>Login Agent only support on XenDesktop 7.6+</em></strong></li>
+          <li><strong><em>Processes can hang using XenDesktop, as Citrix uses “hooking” which can cause deadlocks</em></strong>, resolve by changing registry</li>
         </ul>
       </li>
     </ul>
   </li>
   <li>Hosted Shared Desktop (HSD) or Presentation Virtualisation [Citrix XenApp]
     <ul>
+      <li><code class="highlighter-rouge">IC !, RR No, LA No</code></li>
       <li>User presented with desktop and “published” applications</li>
       <li>resources are shared between all users</li>
       <li><strong>applications streamed, which limits automation techniques to Surface Automation</strong></li>
@@ -398,7 +407,7 @@
   </li>
   <li>Application Virtualisation and Layering [Citrix XenApp, VMWare App Volumes]
     <ul>
-      <li>Not suitable for RR or Login Agent</li>
+      <li><code class="highlighter-rouge">IC !, RR !, LA !</code></li>
       <li>applications streamed to user</li>
       <li>decoupling application from underlying OS and any dependencies on registry and file system</li>
       <li>care taken to check if application behaves same way as if installed on local machine, it might not!</li>
@@ -442,7 +451,8 @@
   <li>TCP
     <ul>
       <li>used to give instructions (which is followed by WCF communication between RR and AS)</li>
-      <li>can be secured with certificates</li>
+      <li>can be secured with certificates, ensuring common name matches</li>
+      <li>uses <em>Origin Authentication</em> and/or <em>Session Authentication</em> which generates a single-use token</li>
     </ul>
   </li>
   <li>WCF
@@ -480,10 +490,22 @@
   <li>characteristics connections which use remote</li>
 </ul>
 
+<h1 id="name-resolution">Name Resolution</h1>
+<ol>
+  <li>Short name used by default, but can also use FQDN (fully qualified domain name). Options:
+    <ul>
+      <li>Register and communicate using machine (short) name</li>
+      <li>Register using machine (short) name, communicate using FQDN</li>
+      <li>Register and communicate using FEQN</li>
+    </ul>
+  </li>
+</ol>
+
 <h1 id="encryption-schema">Encryption schema</h1>
 <ul>
-  <li>study in detail - where can be the key saved - app server use it - recommended setup </li>
-  <li>When Using FQDN (fully qualified domain name) or short name </li>
+  <li>
+    <p>study in detail - where can be the key saved - app server use it - recommended setup </p>
+  </li>
   <li>encryption key and config file uses</li>
   <li>encryption schema when, how is used and where can be saved?</li>
   <li>all table about encryption and sso and port  </li>
@@ -569,7 +591,8 @@
   </li>
   <li>Roles
     <ul>
-      <li>All blue prism roles prefixed with “bpa_”, eg: bpa_ExecuteSP_DataSource_bpSystem</li>
+      <li>Requires <code class="highlighter-rouge">datareader</code> and <code class="highlighter-rouge">datawriter</code></li>
+      <li>All blue prism permissions prefixed with “bpa_”, eg: <code class="highlighter-rouge">bpa_ExecuteSP_DataSource_bpSystem</code></li>
       <li>Creating, Configuring and Upgrading database permissions are not defined by blue prism. The following roles are required by your DBA, with <code class="highlighter-rouge">sysadmin</code> or:</li>
       <li><code class="highlighter-rouge">dbowner</code> and <code class="highlighter-rouge">dbcreator</code> = Create Database</li>
       <li><code class="highlighter-rouge">dbowner</code> = Configure Database</li>
@@ -584,7 +607,7 @@
   <li>Communications
     <ul>
       <li><strong>Database should be near to App Server as latency is critical due to volume of operations</strong></li>
-      <li>latency allowed where? 
+      <li>High latency allowed to and from Runtime Resources, owever this would reduce performance if performing frequent read/writes
    </li>
     </ul>
   </li>
@@ -632,7 +655,7 @@
 
 <h1 id="-3">—————————————————————————</h1>
 
-<h1 id="remote-access-tools">Remote Access Tools</h1>
+<h1 id="remote-access-tools-rdp">Remote Access Tools (RDP)</h1>
 <ol>
   <li>Not suitable as:
     <ul>
@@ -668,17 +691,81 @@
       <li>sslcert: {Thumbprint}</li>
       <li>user: {username}, {password}</li>
       <li>sso</li>
-      <li>Add RR to Startup so handover occurs once logged in</li>
+      <li>Add RR to Startup so handover occurs once logged in, or use Windows Task Scheduler</li>
       <li>Retrieve credential <em>Windows Logoi: HOSTNAME</em></li>
       <li>Trigger Login Agent in schedules</li>
     </ul>
   </li>
 </ol>
 
-<h1 id="unclassified">Unclassified</h1>
+<h1 id="credential-manager">Credential Manager</h1>
+
+<ol>
+  <li>Recommendations for environment:
+    <ul>
+      <li>encryption configured with a Key</li>
+      <li>Configure app servers to store the Key within separate files and restrict access to this file to the logged in service account</li>
+      <li>Recommend storing Key on app server, not database</li>
+      <li>All clients connect via an app server</li>
+      <li>Use SSO</li>
+      <li>Encrypt between app server and database with certificates</li>
+      <li>Recommend encryption occurs between client and app server, not app server to database</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="disaster-recovery">Disaster Recovery</h1>
+<ol>
+  <li>A
+    <ul>
+      <li>Each app server must be configured with identical encryption schemes</li>
+      <li>Any cases being worked at time of failure will be marked as exception</li>
+      <li>Must be up-to-date replication of database through a heartbeat to maintain state of cases</li>
+      <li>Active/Passive (Site A/B): network names of RRs must match for both Site A and Site B</li>
+      <li>Active/Active (Site A/B): ensure app server at Site B has low latency</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="hardware">Hardware</h1>
+
+<ol>
+  <li>Virtualisation Host (example, 12 runtime resources)
+    <ul>
+      <li>1x Intel Xeon Quad Core</li>
+      <li>32GB RAM</li>
+      <li>70GB OS</li>
+      <li>420GB SDD</li>
+      <li>2x 1GB network card</li>
+      <li>Hypervisor (VMware ESX, Citrix XenDesktop)</li>
+    </ul>
+  </li>
+  <li>Interactive Clients and Runtime Resources
+    <ul>
+      <li>Intel processor</li>
+      <li>2B RAM</li>
+      <li>10GB+ space</li>
+      <li>Windows 7 SP1</li>
+      <li>Windows Server 2008</li>
+      <li>Windows Installer 3.1</li>
+      <li><strong>.NET Framework 4.7</strong></li>
+      <li>Multiple runtime resources can run on one machine, provided they use different ports</li>
+    </ul>
+  </li>
+  <li>App Server
+    <ul>
+      <li>Intel Duo Core</li>
+      <li>4GB RAM</li>
+      <li>20GB+ space</li>
+      <li>Windows Server 2008</li>
+      <li>.NET Framework 4.7</li>
+      <li>x64 installs run in 32-bit mode</li>
+    </ul>
+  </li>
+  <li></li>
+</ol>
 
 <ul>
-  <li>minimun requeriments hardware (minumun + Blue Prism) … 2GB RAM for RR and IC, 4GB RAM for App Server</li>
   <li>snmp trap when to use and together with what?</li>
 </ul>
 

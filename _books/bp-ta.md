@@ -13,6 +13,10 @@ score: 11
 1. Hypervisors 
     - type I: good because runs directly on hardware (VMWare vSphere)
     - type II: guests share resources (VMware Fusion, VirtualBox)
+    - ESX 3.5 is incompatible with Windows 7
+    - RAM should not be shared
+    - vCPU not necessarily as high-performing as pCPU
+    - Use VMWare High Availability (HA) or equivalent
 2. Suitability for virtualisation of each component
     - Database: NO!
     - App Server: Yes!
@@ -33,6 +37,7 @@ score: 11
 ## Virtualisation Choices
 
 1. Persistent VDI / HVD [Citrix XenDesktop (persistent), VMWare Horizon View (dedicated)] 
+    - `IC Yes, RR, Yes, LA  !`
     - image persistent and user settings retained
     - Most suitable choice for RR and IC however consider patching and maintenance overhead
     - *Characteristics:*
@@ -41,6 +46,7 @@ score: 11
         - *User personalisation settings retained*
 
 2. Non-Persistent VDI / HVD [Citrix XenDesktop (non-persistent), VMWare Horizon View (floating)]
+    - `IC !, RR !, LA !`
     - VM loaded from master image on each boot, usually coupled with a UEM
     - Consider how to maintain config changes, refresh of image may cause issues
     - *Characteristics:*
@@ -48,8 +54,11 @@ score: 11
         - ***User is not guaranteed to be allocated same VM each time***
         - *User Personalisation is lost unless coupled with UEM*
         - *Use of Login Agent is required*
+        - ***Login Agent only support on XenDesktop 7.6+***
+        - ***Processes can hang using XenDesktop, as Citrix uses "hooking" which can cause deadlocks***, resolve by changing registry
 
 3. Hosted Shared Desktop (HSD) or Presentation Virtualisation [Citrix XenApp]
+    - `IC !, RR No, LA No`
     - User presented with desktop and "published" applications
     - resources are shared between all users
     - **applications streamed, which limits automation techniques to Surface Automation**
@@ -62,7 +71,7 @@ score: 11
         - *Sessions are not persistent*
 
 4. Application Virtualisation and Layering [Citrix XenApp, VMWare App Volumes]
-    - Not suitable for RR or Login Agent
+    - `IC !, RR !, LA !`
     - applications streamed to user
     - decoupling application from underlying OS and any dependencies on registry and file system
     - care taken to check if application behaves same way as if installed on local machine, it might not!
