@@ -99,7 +99,8 @@ score: 11
 
 1. TCP
     - used to give instructions (which is followed by WCF communication between RR and AS)
-    - can be secured with certificates
+    - can be secured with certificates, ensuring common name matches
+    - uses *Origin Authentication* and/or *Session Authentication* which generates a single-use token
 
 2. WCF
     - used for operating communications, such as seeing status and retrieving process to be ran
@@ -123,9 +124,15 @@ score: 11
  - how to design network and connectivity and remote control
  - characteristics connections which use remote
 
+# Name Resolution 
+1. Short name used by default, but can also use FQDN (fully qualified domain name). Options:
+    - Register and communicate using machine (short) name 
+    - Register using machine (short) name, communicate using FQDN
+    - Register and communicate using FEQN
+
 # Encryption schema 
  - study in detail - where can be the key saved - app server use it - recommended setup  
- - When Using FQDN (fully qualified domain name) or short name 
+
  - encryption key and config file uses
  - encryption schema when, how is used and where can be saved?
  - all table about encryption and sso and port  
@@ -187,7 +194,8 @@ score: 11
     - Turn on auto-growth
 
 2. Roles
-    - All blue prism roles prefixed with "bpa_", eg: bpa_ExecuteSP_DataSource_bpSystem
+    - Requires `datareader` and `datawriter`
+    - All blue prism permissions prefixed with "bpa_", eg: `bpa_ExecuteSP_DataSource_bpSystem`
     - Creating, Configuring and Upgrading database permissions are not defined by blue prism. The following roles are required by your DBA, with `sysadmin` or:
     - `dbowner` and `dbcreator` = Create Database
     - `dbowner` = Configure Database
@@ -198,7 +206,7 @@ score: 11
 
 1. Communications
  - **Database should be near to App Server as latency is critical due to volume of operations**
- - latency allowed where? 
+ - High latency allowed to and from Runtime Resources, owever this would reduce performance if performing frequent read/writes
    
 
  
@@ -231,7 +239,7 @@ score: 11
 
 # ---------------------------------------------------------------------------
 
-# Remote Access Tools
+# Remote Access Tools (RDP)
 1. Not suitable as:
     - the OS is aware it is being connected to, which can interrupt operations
     - when a user authenticates it disconnects other users
@@ -257,14 +265,64 @@ score: 11
 -      sslcert: {Thumbprint}
 -      user: {username}, {password}
 -      sso
- - Add RR to Startup so handover occurs once logged in
+ - Add RR to Startup so handover occurs once logged in, or use Windows Task Scheduler
  - Retrieve credential *Windows Logoi: HOSTNAME*
  - Trigger Login Agent in schedules
 
-# Unclassified
+# Credential Manager
 
- - minimun requeriments hardware (minumun + Blue Prism) ... 2GB RAM for RR and IC, 4GB RAM for App Server
+1. Recommendations for environment:
+    - encryption configured with a Key
+    - Configure app servers to store the Key within separate files and restrict access to this file to the logged in service account 
+    - Recommend storing Key on app server, not database
+    - All clients connect via an app server
+    - Use SSO
+    - Encrypt between app server and database with certificates
+    - Recommend encryption occurs between client and app server, not app server to database
+
+# Disaster Recovery
+1. A
+    - Each app server must be configured with identical encryption schemes
+    - Any cases being worked at time of failure will be marked as exception
+    - Must be up-to-date replication of database through a heartbeat to maintain state of cases
+    - Active/Passive (Site A/B): network names of RRs must match for both Site A and Site B
+    - Active/Active (Site A/B): ensure app server at Site B has low latency
+
+# Hardware
+
+1. Virtualisation Host (example, 12 runtime resources)
+    - 1x Intel Xeon Quad Core
+    - 32GB RAM
+    - 70GB OS
+    - 420GB SDD
+    - 2x 1GB network card
+    - Hypervisor (VMware ESX, Citrix XenDesktop)
+
+2. Interactive Clients and Runtime Resources
+    - Intel processor
+    - 2B RAM
+    - 10GB+ space
+    - Windows 7 SP1
+    - Windows Server 2008
+    - Windows Installer 3.1
+    - **.NET Framework 4.7**
+    - Multiple runtime resources can run on one machine, provided they use different ports
+
+3. App Server
+    - Intel Duo Core
+    - 4GB RAM
+    - 20GB+ space
+    - Windows Server 2008
+    - .NET Framework 4.7
+    - x64 installs run in 32-bit mode
+
+4. 
+
+
+
  - snmp trap when to use and together with what?
+
+
 
 
 # Per guide pages:
