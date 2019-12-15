@@ -215,11 +215,13 @@ a:active {
   color: var(--Navy);
   margin-bottom: 0.35em;
   margin-top: 0;
-  font-size: 3em;
+  font-size: 3.5em;
   line-height: 40px;
   /*text-transform: uppercase;*/
 }
-
+#heading {
+  font-size: 3.5em;
+}
 .post {
   width: 100%;
   clear: both;
@@ -229,8 +231,8 @@ a:active {
 
 h1 {
   font-family: "Gelasio", sans-serif;
-  font-size: 3.5em;
-  margin: 1em 0;
+  font-size: 2.25em;
+  margin: 1.5em 0 0.5em 0;
 }
 
 .post h2 {
@@ -659,7 +661,7 @@ a.ind {
 }
 .cover-posts {
   background: var(--DarkBlue);
-  opacity: var(--CardOpacity);
+  opacity: 1;
 }
 .cover-fiction {
   background: var(--Yellow);

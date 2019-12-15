@@ -2,7 +2,7 @@
 layout: post
 title: findapcfor.me
 cover: cover_findapcforme.png
-author: Hamish
+author:
 date: 2017-03-19 12:00:00
 topic: posts
 size: wide

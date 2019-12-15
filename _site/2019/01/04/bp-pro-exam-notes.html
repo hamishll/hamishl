@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>hamishl - Blue Prism Professional Dev - Exam Notes</title>
+    <title>hamishl - Blue Prism Prof. Dev</title>
     <meta name="viewport" content="width=device-width" />
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
@@ -326,12 +326,13 @@
         <!-- Main Content -->
         <div class="content" id="home">
   <div id="post-info">
+    <br /><br />
     <div id="cover-photo-container">
-      <img id="cover-photo" src="/images/null.png">
+      
     </div>
     <div id="info-container">
-      <h1 id="title">Blue Prism Professional Dev - Exam Notes</h1>
-      <h2 id="author">Hamish Leith</h2>
+      <h1 id="title">Blue Prism Prof. Dev</h1>
+      <h2 id="author"></h2>
       <!--<span id="date">04 Jan 2019</span>-->
     </div>
   </div>
@@ -340,9 +341,7 @@
     <h1 id="best-practice">Best Practice</h1>
 
 <ol>
-  <li>
-    <p>Objects</p>
-
+  <li>Objects
     <ul>
       <li>Naming convention: <em>{App Name} - {Screen Name}</em></li>
       <li>You can never have too many objects, only too few. Advantages: - App Modeller is smaller and less prone to error - A running process consumes only the actions it requires - Many developers can work concurrently - Changes to object layer have less downstream risk</li>
@@ -350,8 +349,7 @@
       <li>Exposure - background: multiple instances of that object can run - foreground: only one instance of that object can run, and can run at same time as other background objects - exclusive: only this instance of object can run, and no others</li>
     </ul>
   </li>
-  <li>
-    <p>Processes</p>
+  <li>Processes
     <ul>
       <li>Naming convention: <em>01 - Create Queue</em> (number if called chronologically</li>
       <li>Page Design: - use sub-pages, with retry loops - add Stop? decision between queue items - have a main page exception block - check for concurrent exceptions (++count if same as previous) - use environment variables and work queue tags - <em>use the process templates!</em></li>
@@ -362,34 +360,27 @@
 <h1 id="java-automation">Java Automation</h1>
 
 <ol>
-  <li>
-    <p>Getting started</p>
-
+  <li>Getting started
     <ul>
       <li>JAB is required to access Java’s Accessibility API</li>
       <li>You may need to launch java apps from command line and attach after</li>
       <li>Restarting Java apps, and restarting the resource PC may reduce errors as this resets Java’s leaky memory issues</li>
     </ul>
   </li>
-  <li>
-    <p>Application Wizard parameters</p>
-
+  <li>Application Wizard parameters
     <ul>
       <li><strong>descendtree</strong> makes BP search the whole application model, not just visible elements - <em>use if spied elements are causing crashes</em></li>
       <li><strong>ignorenotshowing</strong> makes BP search only for visible elements</li>
       <li>enter these in plain text, with a comma between <strong>descendtree,ignorenotshowing</strong></li>
     </ul>
   </li>
-  <li>
-    <p>Interfacing</p>
-
+  <li>Interfacing
     <ul>
       <li>Wait stages require the app model to be traversed which is resource-hungry. Avoid: - Overly-long waits, as they will be continually checking for element - Multiple-condition waits - Spy pop-ups in Win32 instead</li>
       <li>Application Navigator can be used to view the whole model</li>
     </ul>
   </li>
-  <li>
-    <p>App Model Attributes</p>
+  <li>App Model Attributes
     <ul>
       <li><strong>Match Index</strong>: matches the Nth instance of an element</li>
       <li><strong>AncestorCount</strong>: search of tree stops when about to descend deeper than the ancestor count</li>
@@ -402,9 +393,7 @@
 <h1 id="web-services">Web Services</h1>
 
 <ol>
-  <li>
-    <p>Objects and Processes can be exposed as web services using WSDL</p>
-
+  <li>Objects and Processes can be exposed as web services using WSDL
     <ul>
       <li>can be encrpyted using certificates</li>
       <li>a proxy can route requests for you to different machines</li>
@@ -413,9 +402,7 @@
   <li>
     <p>Accessible from http://[machinename]:<port>/ws/</port></p>
   </li>
-  <li>
-    <p>BP can also consume web services through SOAP</p>
-  </li>
+  <li>BP can also consume web services through SOAP</li>
 </ol>
 
 <h1 id="mainframe-automation">Mainframe Automation</h1>
@@ -438,9 +425,7 @@
 <h1 id="exception-handling">Exception Handling</h1>
 
 <ol>
-  <li>
-    <p>General:</p>
-
+  <li>General:
     <ul>
       <li>Types: system, business, (validation, login, system unavailable)</li>
       <li>Use a multi-calc after recover to store ExceptionType() and ExceptionDetail() to a data item</li>
@@ -449,24 +434,19 @@
       <li><strong>if an exception isn’t recovered before another is thrown, this next exception will be unrecoveable - always recover-resume</strong></li>
     </ul>
   </li>
-  <li>
-    <p>Preserving details</p>
-
+  <li>Preserving details
     <ul>
       <li><strong>when checked</strong>, the exception <strong>‘re-releases’</strong> the exception <em>as though it had never been recovered</em></li>
       <li><strong>when unchecked</strong>, a new exception is generated</li>
     </ul>
   </li>
-  <li>
-    <p>Business Objects</p>
-
+  <li>Business Objects
     <ul>
       <li>(apparently) if an attach fails it can be reasonably assumed that an application isn’t running</li>
       <li>you could use a multi-condition wait to determine whether an exception is a system issue, data validation or privilege-based - rather than just throwing a generic exception, we could pass as an output data item</li>
     </ul>
   </li>
-  <li>
-    <p>Queue Items</p>
+  <li>Queue Items
     <ul>
       <li>the Mark Exception action has inputs <strong>Retry</strong> and <strong>Keep Locked</strong>, which can be used to retry cases</li>
     </ul>
@@ -491,18 +471,14 @@
       </li>
     </ul>
   </li>
-  <li>
-    <p>Status:</p>
-
+  <li>Status:
     <ul>
       <li>can be set when using <em>Add to Queue</em></li>
       <li>can be updated with the action <em>Update Status</em></li>
       <li>can be retrieved as output to <em>Get Next Item</em></li>
     </ul>
   </li>
-  <li>
-    <p>Priority:</p>
-
+  <li>Priority:
     <ul>
       <li>can be set when using <em>Add to Queue</em></li>
       <li>can be updated with the action <em>Set Priority</em></li>
@@ -512,23 +488,19 @@
   <li>
     <p>Work queues are <strong>not encrypted by default</strong>, but can be encrypted</p>
   </li>
-  <li>
-    <p>Deferring or Multiple Queues?</p>
-
+  <li>Deferring or Multiple Queues?
     <ul>
       <li>Defer if separation period is just a few minutes</li>
       <li>Use second queue if separation period is longer (days etc)</li>
     </ul>
   </li>
-  <li>
-    <p>Parent/child queues</p>
+  <li>Parent/child queues
     <ul>
       <li>you need a <strong>relationship key</strong> (parent’s ID) on each child</li>
     </ul>
   </li>
+  <li>Loading from a workflow system, use env locks to either: - lock and load all cases - lock an individual item and load it</li>
 </ol>
-
-<p>7 Loading from a workflow system, use env locks to either: - lock and load all cases - lock an individual item and load it</p>
 
   </div>
   

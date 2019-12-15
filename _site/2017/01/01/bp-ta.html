@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>hamishl - Blue Prism Technical Architect</title>
+    <title>hamishl - Blue Prism Architect</title>
     <meta name="viewport" content="width=device-width" />
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
@@ -326,12 +326,13 @@
         <!-- Main Content -->
         <div class="content" id="home">
   <div id="post-info">
+    <br /><br />
     <div id="cover-photo-container">
-      <img id="cover-photo" src="/images/null.png">
+      
     </div>
     <div id="info-container">
-      <h1 id="title">Blue Prism Technical Architect</h1>
-      <h2 id="author">Hamish Leith</h2>
+      <h1 id="title">Blue Prism Architect</h1>
+      <h2 id="author"></h2>
       <!--<span id="date">01 Jan 2017</span>-->
     </div>
   </div>
@@ -365,9 +366,7 @@
       <li>Control: virtualising allows you to scale up flexibly</li>
     </ul>
   </li>
-  <li>
-    <p>Interactive Clients</p>
-
+  <li>Interactive Clients
     <ul>
       <li>Consistency: virtualisation ensures common build which negates environment differences</li>
       <li>Control: virtualising allows you to scale up flexibly</li>
@@ -384,9 +383,7 @@
 <h2 id="virtualisation-choices">Virtualisation Choices</h2>
 
 <ol>
-  <li>
-    <p>Persistent VDI / HVD [Citrix XenDesktop (persistent), VMWare Horizon View (dedicated)]</p>
-
+  <li>Persistent VDI / HVD [Citrix XenDesktop (persistent), VMWare Horizon View (dedicated)]
     <ul>
       <li><code class="highlighter-rouge">IC Yes, RR, Yes, LA !</code></li>
       <li>image persistent and user settings retained</li>
@@ -400,9 +397,7 @@
       </li>
     </ul>
   </li>
-  <li>
-    <p>Non-Persistent VDI / HVD [Citrix XenDesktop (non-persistent), VMWare Horizon View (floating)]</p>
-
+  <li>Non-Persistent VDI / HVD [Citrix XenDesktop (non-persistent), VMWare Horizon View (floating)]
     <ul>
       <li><code class="highlighter-rouge">IC !, RR !, LA !</code></li>
       <li>VM loaded from master image on each boot, usually coupled with a UEM</li>
@@ -419,9 +414,7 @@
       </li>
     </ul>
   </li>
-  <li>
-    <p>Hosted Shared Desktop (HSD) or Presentation Virtualisation [Microsoft RDSH and Citrix XenApp]</p>
-
+  <li>Hosted Shared Desktop (HSD) or Presentation Virtualisation [Microsoft RDSH and Citrix XenApp]
     <ul>
       <li><code class="highlighter-rouge">IC !, RR No, LA No</code></li>
       <li><strong>xenapp good for rr ? –&gt; NO</strong></li>
@@ -442,8 +435,7 @@ Desktop / Presentation Virtualisation</li>
       </li>
     </ul>
   </li>
-  <li>
-    <p>Application Virtualisation and Layering [Citrix XenApp, VMWare App Volumes, Thinapp]</p>
+  <li>Application Virtualisation and Layering [Citrix XenApp, VMWare App Volumes, Thinapp]
     <ul>
       <li><code class="highlighter-rouge">IC !, RR !, LA !</code></li>
       <li>Application Layering where the applications are no longer isolated from each other (unlike 3.)</li>
@@ -486,18 +478,14 @@ Desktop / Presentation Virtualisation</li>
 -->
 
 <ol>
-  <li>
-    <p>TCP</p>
-
+  <li>TCP
     <ul>
       <li>used to give instructions (which is followed by WCF communication between RR and AS)</li>
       <li>can be secured with certificates, ensuring common name matches (or appropriate wildcard)</li>
       <li>uses <em>Origin Authentication</em> and/or <em>Session Authentication</em> which generates a single-use token</li>
     </ul>
   </li>
-  <li>
-    <p>WCF</p>
-
+  <li>WCF
     <ul>
       <li>used for operating communications, such as seeing status and retrieving process to be ran</li>
       <li>encrypted natively, security dependent on AD</li>
@@ -521,13 +509,12 @@ Desktop / Presentation Virtualisation</li>
 </ol>
 
 <p>1) Default ports:</p>
-
 <ul>
   <li>App Server listens for TCP traffic on 8199</li>
   <li>Runtime Resource listens for TCP traffic on 8181</li>
 </ul>
 
-<p>1) Enforcing certificates and authentication</p>
+<p>2) Enforcing certificates and authentication</p>
 <ul>
   <li>Enforce certificates by selecting <code class="highlighter-rouge">Require secure inbound instructional connections</code></li>
   <li>
@@ -578,52 +565,43 @@ Desktop / Presentation Virtualisation</li>
 <h1 id="active-directory">Active Directory</h1>
 
 <ol>
-  <li>Benefits</li>
+  <li>Benefits
+    <ul>
+      <li>A common AD network allows native encryption of Blue Prism communications</li>
+      <li>Access rights can be managed centrally across groups of users</li>
+      <li>User access can be configured to use SSO</li>
+    </ul>
+  </li>
+  <li>Benefits of AD for Runtime Resources
+    <ul>
+      <li>Enforces security policies</li>
+      <li>Enfocres GPO policies</li>
+      <li>Provides auditability</li>
+      <li>Simplifies access</li>
+    </ul>
+  </li>
 </ol>
-
-<ul>
-  <li>A common AD network allows native encryption of Blue Prism communications</li>
-  <li>Access rights can be managed centrally across groups of users</li>
-  <li>User access can be configured to use SSO</li>
-</ul>
-
-<ol>
-  <li>Benefits of AD for Runtime Resources</li>
-</ol>
-
-<ul>
-  <li>Enforces security policies</li>
-  <li>Enfocres GPO policies</li>
-  <li>Provides auditability</li>
-  <li>Simplifies access</li>
-</ul>
 
 <h2 id="process-for-ad">Process for AD</h2>
 
 <ol>
-  <li>Select to use AD authentication when creating your database through the wizard</li>
+  <li>Select to use AD authentication when creating your database through the wizard
+    <ul>
+      <li>You will need to select the Domain to be used</li>
+      <li>You will need to select the Security Groups to be used</li>
+    </ul>
+  </li>
+  <li>Configure the AD Security Groups
+    <ul>
+      <li>eg: Devs, Testers, Release Managers, Controllers</li>
+    </ul>
+  </li>
+  <li>Associate each Blue Prism role with each AD Security Group
+    <ul>
+      <li>eg: Devs, Testers, Release Managers, Controllers</li>
+    </ul>
+  </li>
 </ol>
-
-<ul>
-  <li>You will need to select the Domain to be used</li>
-  <li>You will need to select the Security Groups to be used</li>
-</ul>
-
-<ol>
-  <li>Configure the AD Security Groups</li>
-</ol>
-
-<ul>
-  <li>eg: Devs, Testers, Release Managers, Controllers</li>
-</ul>
-
-<ol>
-  <li>Associate each Blue Prism role with each AD Security Group</li>
-</ol>
-
-<ul>
-  <li>eg: Devs, Testers, Release Managers, Controllers</li>
-</ul>
 
 <h2 id="questions">Questions:</h2>
 
@@ -645,9 +623,7 @@ Desktop / Presentation Virtualisation</li>
 <h1 id="provisioning-a-database">Provisioning a Database</h1>
 
 <ol>
-  <li>
-    <p>Guidance</p>
-
+  <li>Guidance
     <ul>
       <li>Set appropriate initial file sizes</li>
       <li>Set appropriate growth limits</li>
@@ -656,9 +632,7 @@ Desktop / Presentation Virtualisation</li>
       <li>Turn on auto-growth</li>
     </ul>
   </li>
-  <li>
-    <p>Roles</p>
-
+  <li>Roles
     <ul>
       <li>Requires <code class="highlighter-rouge">datareader</code> and <code class="highlighter-rouge">datawriter</code></li>
       <li>All blue prism permissions prefixed with “bpa_”, eg: <code class="highlighter-rouge">bpa_ExecuteSP_DataSource_bpSystem</code></li>
@@ -668,44 +642,34 @@ Desktop / Presentation Virtualisation</li>
       <li><code class="highlighter-rouge">dbowner</code> = Upgrade Database</li>
     </ul>
   </li>
-  <li>
-    <p>Virtualisation</p>
-
+  <li>Virtualisation
     <ul>
       <li>Typically not appropriate, as resources are usually contended for</li>
     </ul>
   </li>
-  <li>
-    <p>Communications</p>
+  <li>Communications
+    <ul>
+      <li><strong>Database should be near to App Server as latency is critical due to volume of operations</strong></li>
+      <li>High latency allowed to and from Runtime Resources, owever this would reduce performance if performing frequent read/writes</li>
+    </ul>
   </li>
 </ol>
-
-<ul>
-  <li><strong>Database should be near to App Server as latency is critical due to volume of operations</strong></li>
-  <li>High latency allowed to and from Runtime Resources, owever this would reduce performance if performing frequent read/writes</li>
-</ul>
 
 <h1 id="maintaining-a-database">Maintaining a Database</h1>
 
 <ol>
-  <li>
-    <p>Avoid Shrink Operations</p>
-
+  <li>Avoid Shrink Operations
     <ul>
       <li>as may cause fragmentation</li>
     </ul>
   </li>
-  <li>
-    <p>Backups</p>
-
+  <li>Backups
     <ul>
       <li>Blue Prism supports both <em>Simple</em> and <em>Full</em> SQL recovery</li>
       <li>If using <em>Full</em>, take regular transaction log backups to provide free space within the log files</li>
     </ul>
   </li>
-  <li>
-    <p>General Maintenance should be used to manage:</p>
-
+  <li>General Maintenance should be used to manage:
     <ul>
       <li>available disk space</li>
       <li>disk fragmentation which may reduce performance, use <strong>ALTER INDEX</strong> to rebuild</li>
@@ -716,8 +680,7 @@ Desktop / Presentation Virtualisation</li>
       <li>ensure statistics up-to-date by turning on <strong>Auto Create Statistics</strong> and <strong>Auto Update Statistics</strong></li>
     </ul>
   </li>
-  <li>
-    <p>In-product maintenance</p>
+  <li>In-product maintenance
     <ul>
       <li>Archiving can be scheduled within product</li>
       <li>Command line can be used instead:
@@ -747,18 +710,14 @@ Desktop / Presentation Virtualisation</li>
 <h1 id="load-balancing">Load Balancing</h1>
 
 <ol>
-  <li>
-    <p>Health Monitoring</p>
-
+  <li>Health Monitoring
     <ul>
       <li><strong>Simple Monitoring</strong> - pinging the host</li>
       <li><strong>Active Monitoring</strong> - HTTP(s) endpoint that publishes the health of the service <code class="highlighter-rouge">https://bpserver001:8199/bpserver</code></li>
       <li><strong>Passive Monitoring</strong> - occurs as part of a client request, checking health based on # connection attempts within a time period. Receiving a bad response marks as unavailable</li>
     </ul>
   </li>
-  <li>
-    <p>Load Balancing Algorithms</p>
-
+  <li>Load Balancing Algorithms
     <ul>
       <li><strong>Round Robin</strong> (allocates cyclically)</li>
       <li><strong>Weighted Round Robin</strong> (if server A has more capacity, you can allow it to take on higher proportion of connections)</li>
@@ -767,34 +726,27 @@ Desktop / Presentation Virtualisation</li>
       <li><strong>Random</strong></li>
     </ul>
   </li>
-  <li>
-    <p>Types of Load Balancing</p>
-
+  <li>Types of Load Balancing
     <ul>
       <li><strong>Layer 4</strong>: acts upon TCP, IP, UDP, FTP</li>
       <li><strong>Layer 7</strong>: acts upon application protocols such as HTTP - more advanced features</li>
     </ul>
   </li>
-  <li>
-    <p>Other stuff</p>
-
+  <li>Other stuff
     <ul>
       <li>Stickiness can be used to ensure resources stay connected to the same server</li>
       <li>WCF is like internet traffic - the channel doesn’t have to be held open, and the sessions are persisted on the app server instead</li>
       <li>SSL Certificate on app server should be applicable to the Load Balancer</li>
     </ul>
   </li>
-  <li>
-    <p>Load Balancing HTTPS Connections</p>
-
+  <li>Load Balancing HTTPS Connections
     <ul>
       <li>SSL Passthrough = supported (no decryption at the LB)</li>
       <li>SSL Termination = supported (connection terminated at LB, decrypted, re-encrypted and new connection establised)</li>
       <li>SSL Offboarding = not supported (same as termination with no decrpytion)</li>
     </ul>
   </li>
-  <li>
-    <p>Pooling</p>
+  <li>Pooling
     <ul>
       <li>Single pool gives flexibility</li>
       <li>Multiple pools allow maintenance to be more separated and offers more redundancy, however risk</li>
@@ -803,7 +755,6 @@ Desktop / Presentation Virtualisation</li>
 </ol>
 
 <h1 id="app-server-and-login-agent">App Server and Login Agent</h1>
-
 <ul>
   <li>app server and login agent config file</li>
 </ul>
@@ -811,31 +762,28 @@ Desktop / Presentation Virtualisation</li>
 <h1 id="login-agent">Login Agent</h1>
 
 <ol>
-  <li>Mandatory Security Policies</li>
+  <li>Mandatory Security Policies
+    <ul>
+      <li>Do not require CTRL + ALT + DEL</li>
+      <li>Do not require accepting on-screen message</li>
+      <li>Do not require a lock screen</li>
+    </ul>
+  </li>
+  <li>Installation
+    <ul>
+      <li>Specify Connection Name, i.e. ‘BluePrism-Production’</li>
+      <li>Require SSO or User arguments if anonymous logins are disabled</li>
+      <li>Config file can have arguments:</li>
+      <li>port: 8181</li>
+      <li>sslcert: {Thumbprint}</li>
+      <li>user: {username}, {password}</li>
+      <li>sso</li>
+      <li>Add RR to Startup so handover occurs once logged in, or use Windows Task Scheduler</li>
+      <li>Retrieve credential <em>Windows Logoi: HOSTNAME</em></li>
+      <li>Trigger Login Agent in schedules</li>
+    </ul>
+  </li>
 </ol>
-
-<ul>
-  <li>Do not require CTRL + ALT + DEL</li>
-  <li>Do not require accepting on-screen message</li>
-  <li>Do not require a lock screen</li>
-</ul>
-
-<ol>
-  <li>Installation</li>
-</ol>
-
-<ul>
-  <li>Specify Connection Name, i.e. ‘BluePrism-Production’</li>
-  <li>Require SSO or User arguments if anonymous logins are disabled</li>
-  <li>Config file can have arguments:</li>
-  <li>port: 8181</li>
-  <li>sslcert: {Thumbprint}</li>
-  <li>user: {username}, {password}</li>
-  <li>sso</li>
-  <li>Add RR to Startup so handover occurs once logged in, or use Windows Task Scheduler</li>
-  <li>Retrieve credential <em>Windows Logoi: HOSTNAME</em></li>
-  <li>Trigger Login Agent in schedules</li>
-</ul>
 
 <h1 id="credential-manager">Credential Manager</h1>
 
@@ -870,9 +818,7 @@ Desktop / Presentation Virtualisation</li>
 <h1 id="hardware">Hardware</h1>
 
 <ol>
-  <li>
-    <p>Virtualisation Host (example, 12 runtime resources)</p>
-
+  <li>Virtualisation Host (example, 12 runtime resources)
     <ul>
       <li>1x Intel Xeon Quad Core</li>
       <li>32GB RAM</li>
@@ -882,9 +828,7 @@ Desktop / Presentation Virtualisation</li>
       <li>Hypervisor (VMware ESX, Citrix XenDesktop)</li>
     </ul>
   </li>
-  <li>
-    <p>Interactive Clients and Runtime Resources</p>
-
+  <li>Interactive Clients and Runtime Resources
     <ul>
       <li>Intel processor</li>
       <li>2B RAM</li>
@@ -896,9 +840,7 @@ Desktop / Presentation Virtualisation</li>
       <li>Multiple runtime resources can run on one machine, provided they use different ports</li>
     </ul>
   </li>
-  <li>
-    <p>App Server</p>
-
+  <li>App Server
     <ul>
       <li>Intel Duo Core</li>
       <li>4GB RAM</li>

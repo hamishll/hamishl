@@ -8,8 +8,8 @@ title: Home
 	hamishl
 </div>-->
 
-<div class="title" style="text-align:left;margin-left:2em">
-  <h1>About</h1>
+<div style="text-align:left;margin-left:2em">
+  <h1 id="heading">About</h1>
   <p>
     This site is where I collect notes from books I've read, lessons I've
     learnt, and generally record my philosophy of life.
@@ -18,8 +18,8 @@ title: Home
   <p>IBMer currently working between London, UK and Pune, India.</p>
 </div>
 
-<div class="title" style="text-align:left;margin-left:2em">
-  <h1>Book Notes</h1>
+<div style="text-align:left;margin-left:2em">
+  <h1 id="heading">Book Notes</h1>
 </div>
 
 <div class="title">
@@ -70,7 +70,7 @@ title: Home
 </div>
 
 <div class="title" style="text-align:left;margin-left:2em">
-  <h1>Posts</h1>
+  <h1 id="heading">Posts</h1>
 </div>
 
 <div class="grid2">
@@ -80,15 +80,15 @@ title: Home
   <div class="card {{ item.topic }} {{ item.size }}">
     <a class="ind" href="{{ item.url }}">
       <div class="cover cover-{{ item.topic }}">
-        <img src="/images/{{ item.cover }}" />
+          {% if item.cover != "null.png" %}
+        <img src="/images/{{ item.cover }}" style="width:100%" />
+        {% endif %}
       </div>
       <div class="padding">
         <h2 class="card-title">{{ item.title }}</h2>
-        <p class="card-text">{{ item.author }}</p>
         <p class="card-topic">
           <a class="{{ item.topic }}">{{ item.topic }}</a>
         </p>
-        <p class="score">{{ item.score }}</p>
       </div>
     </a>
   </div>

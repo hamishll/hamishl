@@ -1,18 +1,17 @@
 ---
-title: Blue Prism Professional Dev - Exam Notes
+title: Blue Prism Prof. Dev
 layout: post
-author: Hamish Leith
+author: 
 cover: null.png
 date: 2019-01-04 12:00:00
 topic: posts
 size:
-score: 10
+score: 0
 ---
 
 # Best Practice
 
 1. Objects
-
    - Naming convention: _{App Name} - {Screen Name}_
    - You can never have too many objects, only too few. Advantages: - App Modeller is smaller and less prone to error - A running process consumes only the actions it requires - Many developers can work concurrently - Changes to object layer have less downstream risk
    - Stage design: - Always begin with element wait stage, tHis should always throw exception on timeout - Perform action - Wait for change; don't use arbitrary waits - Do not call published actions within the action - Do not make business decisions in the object - Provide descriptions to inputs/outputs, this improves quality of the automatically generated documentation - Store globals on the **Initialise** page - App Model naming convention: \*{Element Type} - {Element Name} - Delete customer confidential, and environment specific attributes
@@ -25,19 +24,16 @@ score: 10
 # Java Automation
 
 1. Getting started
-
    - JAB is required to access Java's Accessibility API
    - You may need to launch java apps from command line and attach after
    - Restarting Java apps, and restarting the resource PC may reduce errors as this resets Java's leaky memory issues
 
 2. Application Wizard parameters
-
    - **descendtree** makes BP search the whole application model, not just visible elements - _use if spied elements are causing crashes_
    - **ignorenotshowing** makes BP search only for visible elements
    - enter these in plain text, with a comma between **descendtree,ignorenotshowing**
 
 3. Interfacing
-
    - Wait stages require the app model to be traversed which is resource-hungry. Avoid: - Overly-long waits, as they will be continually checking for element - Multiple-condition waits - Spy pop-ups in Win32 instead
    - Application Navigator can be used to view the whole model
 
@@ -50,7 +46,6 @@ score: 10
 # Web Services
 
 1. Objects and Processes can be exposed as web services using WSDL
-
    - can be encrpyted using certificates
    - a proxy can route requests for you to different machines
 
@@ -71,7 +66,6 @@ score: 10
 # Exception Handling
 
 1. General:
-
    - Types: system, business, (validation, login, system unavailable)
    - Use a multi-calc after recover to store ExceptionType() and ExceptionDetail() to a data item
    - Minimal exception handling should be in the object layer
@@ -79,12 +73,10 @@ score: 10
    - **if an exception isn't recovered before another is thrown, this next exception will be unrecoveable - always recover-resume**
 
 2. Preserving details
-
    - **when checked**, the exception **'re-releases'** the exception _as though it had never been recovered_
    - **when unchecked**, a new exception is generated
 
 3. Business Objects
-
    - (apparently) if an attach fails it can be reasonably assumed that an application isn't running
    - you could use a multi-condition wait to determine whether an exception is a system issue, data validation or privilege-based - rather than just throwing a generic exception, we could pass as an output data item
 
@@ -98,13 +90,11 @@ score: 10
    - - - ? \* ;
 
 2. Status:
-
    - can be set when using _Add to Queue_
    - can be updated with the action _Update Status_
    - can be retrieved as output to _Get Next Item_
 
 3. Priority:
-
    - can be set when using _Add to Queue_
    - can be updated with the action _Set Priority_
    - Priority **1** is highest
@@ -112,11 +102,10 @@ score: 10
 4. Work queues are **not encrypted by default**, but can be encrypted
 
 5. Deferring or Multiple Queues?
-
    - Defer if separation period is just a few minutes
    - Use second queue if separation period is longer (days etc)
 
 6. Parent/child queues
    - you need a **relationship key** (parent's ID) on each child
 
-7 Loading from a workflow system, use env locks to either: - lock and load all cases - lock an individual item and load it
+7. Loading from a workflow system, use env locks to either: - lock and load all cases - lock an individual item and load it
