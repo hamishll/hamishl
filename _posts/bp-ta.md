@@ -1,12 +1,12 @@
 ---
 layout: post
 title: Blue Prism Technical Architect
-author: Exam Notes
+author: Hamish Leith
 cover: null.png
 date:   2017-01-01 12:00:00
-topic: business
+topic: posts
 starred: false
-score: 11
+score: 0
 ---
 
 # Virtualisation

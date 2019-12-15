@@ -16,8 +16,8 @@
   --CardOpacity: 0.3;
 }
 
-::-webkit-scrollbar { 
-    display: none; 
+::-webkit-scrollbar {
+  display: none;
 }
 
 /*****************************************************************************/
@@ -27,18 +27,34 @@
 /*****************************************************************************/
 
 /* Rules for sizing the icon. */
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
 
 /* Rules for using icons as black on a light background. */
-.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
-.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
 
 /* Rules for using icons as white on a dark background. */
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
 
 /*****************************************************************************/
 /*
@@ -51,7 +67,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   -webkit-font-smoothing: antialiased;
@@ -60,8 +77,8 @@ html, body {
 
 body {
   color: var(--Navy);
-  background-color: #FFF;
-  font-family: 'Open Sans', Arial, sans-serif;
+  background-color: #fff;
+  font-family: "Open Sans", Arial, sans-serif;
   font-weight: 400;
   font-size: 0.85em;
   /*overflow: hidden;*/
@@ -76,7 +93,8 @@ a img {
   outline: none;
 }
 
-a:hover, a:active {
+a:hover,
+a:active {
   color: var(--Pink);
   transition: 0.2s;
 }
@@ -165,7 +183,7 @@ a:hover, a:active {
   text-align: center;
 }
 .clear {
-  clear:both;
+  clear: both;
 }
 
 /*****************************************************************************/
@@ -210,9 +228,9 @@ a:hover, a:active {
 }
 
 h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.75em;
-  margin: 2em 0 0.75em 0;
+  font-family: "Gelasio", sans-serif;
+  font-size: 3.5em;
+  margin: 1em 0;
 }
 
 .post h2 {
@@ -222,17 +240,17 @@ h1 {
 }
 
 .post h3 {
-  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-family: "Open Sans", "Arial", sans-serif;
   font-size: 1.2em;
   background: var(--Navy);
   padding: 0.5em;
   margin-bottom: 0;
-  color: #FFF;
+  color: #fff;
 }
 
 .post a,
 #about a {
-  border-bottom: 1px solid #8085C1;
+  border-bottom: 1px solid #8085c1;
 }
 
 .post a:hover {
@@ -243,18 +261,19 @@ h1 {
 .post pre {
   border: 1px solid #ddd;
   background-color: #eef;
-  padding: 0 .4em;
+  padding: 0 0.4em;
 }
 
 .post p {
-  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-family: "Source Sans Pro", Arial, sans-serif;
   font-size: 1em;
   margin-bottom: 1.45em;
   text-align: left;
   line-height: 1.25em;
 }
 
-.post ul, .post ol {
+.post ul,
+.post ol {
   margin-left: 2.35em;
   margin-bottom: 1.25em;
 }
@@ -262,7 +281,7 @@ h1 {
 .post code {
   border: 1px solid #ddd;
   background-color: #eef;
-  padding: 0 .2em;
+  padding: 0 0.2em;
 }
 
 .post pre code {
@@ -273,7 +292,7 @@ h1 {
 .post pre.terminal {
   border: 1px solid #000;
   background-color: #333;
-  color: #FFF;
+  color: #fff;
 }
 
 .post pre.terminal code {
@@ -288,7 +307,6 @@ h1 {
 
 .post ol {
   margin-left: 0;
-
 }
 
 .post ul {
@@ -331,20 +349,21 @@ h1 {
 }
 
 ol li ul li.star {
-  list-style-image: url('/images/star_black.svg');
+  list-style-image: url("/images/star_black.svg");
   font-weight: 600;
 }
 
 #in-a-nutshell {
-  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-family: "Open Sans", "Arial", sans-serif;
   font-size: 1.2em;
   background: var(--Navy);
   padding: 0.5em;
   margin-bottom: 0;
-  color: #FFF;
+  color: #fff;
 }
 
-ul.nutshell, ol.nutshell {
+ul.nutshell,
+ol.nutshell {
   background: var(--Grey);
   padding: 1em;
   color: var(--Navy);
@@ -380,7 +399,7 @@ a.health {
   color: purple;
 }
 .true {
-  background-image: url('/images/star.svg');
+  background-image: url("/images/star.svg");
   background-repeat: no-repeat;
   background-position: left;
   background-size: 0.85em;
@@ -388,7 +407,7 @@ a.health {
 .homebg {
   width: 100%;
   height: 100%;
-  background-image: url('/images/book.svg');
+  background-image: url("/images/book.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 24em;
@@ -406,7 +425,7 @@ table {
 .content {
   vertical-align: top;
   height: auto;
-/*  -webkit-overflow-scrolling: touch;*/
+  /*  -webkit-overflow-scrolling: touch;*/
   overflow-y: auto;
   overflow-x: hidden;
   text-align: left;
@@ -432,7 +451,6 @@ table {
   opacity: 1;
 }
 
-
 .content {
   padding-left: 3.5em;
   margin: 2.5em auto auto auto;
@@ -441,7 +459,7 @@ table {
 }
 
 .header {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 2em;
   padding: 1.75rem 0 0.5rem 1rem;
   font-weight: 700;
@@ -514,14 +532,14 @@ a.post-title:hover {
   text-align: left;
   width: 18em;
   height: 27em;
-  display:inline-block;
+  display: inline-block;
   margin: 2em;
   position: relative;
   border-radius: 3px;
   /*box-shadow: 0px 0px 15px #eee;*/
-  box-shadow: 0 8px 16px 0 rgba(34,50,84,.06),inset 0 0 0 1px rgba(112,123,140,.15);
+  box-shadow: 0 8px 16px 0 rgba(34, 50, 84, 0.06),
+    inset 0 0 0 1px rgba(112, 123, 140, 0.15);
   transition: 0s;
-
 }
 .grid-sizer {
   width: 18em;
@@ -529,8 +547,10 @@ a.post-title:hover {
   display: none;
   position: relative;
 }
-.card:hover, .card:active {
-    box-shadow: 0 8px 16px 0 rgba(34,50,84,.20),inset 0 0 0 1px rgba(112,123,140,.55);
+.card:hover,
+.card:active {
+  box-shadow: 0 8px 16px 0 rgba(34, 50, 84, 0.2),
+    inset 0 0 0 1px rgba(112, 123, 140, 0.55);
 }
 .cover {
   width: auto;
@@ -566,23 +586,24 @@ a.ind {
 
 .grid {
   border: 0px solid #fff;
-  display:inline-block;
-  width:100%;
-  padding-top: 4em;
+  display: inline-block;
+  width: 100%;
+  padding-top: 0em;
 }
 
 /* clear fix */
 .grid:after {
-  content: '';
+  content: "";
   display: block;
   clear: both;
 }
 
-
-
-.wide { width: 40em; }
-.tall { height: 400px; }
-
+.wide {
+  width: 40em;
+}
+.tall {
+  height: 400px;
+}
 
 .element-item > * {
   margin: 0;
@@ -613,7 +634,7 @@ a.ind {
   border: 1px dashed #aaa;
 }
 .card.post.card-title {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
 .cover-business {
@@ -645,7 +666,6 @@ a.ind {
   opacity: var(--CardOpacity);
 }
 
-
 /* ---- button ---- */
 .title {
   padding: 0em;
@@ -653,7 +673,7 @@ a.ind {
   margin: auto 1.5em 1.5em 1.5em;
   text-align: center;
   vertical-align: middle;
-/*  height: 60px;*/
+  /*  height: 60px;*/
 }
 .button {
   display: inline-block;
@@ -686,21 +706,25 @@ a.ind {
 /* ---- button-group ---- */
 
 .button-group {
-/*  height: 60px;*/
-  display:inline-block;
+  /*  height: 60px;*/
+  display: inline-block;
   width: 42%;
   /*margin-top: 0.5em;*/
   /*max-width: 20em;*/
   text-align: center;
   /*border: 1px solid #f00;*/
 }
-.button-group:first-child { text-align: left; }
-.button-group:last-child { text-align: right; }
+.button-group:first-child {
+  text-align: left;
+}
+.button-group:last-child {
+  text-align: right;
+}
 
 .button-id {
   text-align: center;
-/*  height: 40px;*/
-  display:inline-block;
+  /*  height: 40px;*/
+  display: inline-block;
   width: 14%;
   /*border: 1px solid #f00;*/
 }
@@ -709,14 +733,14 @@ a.ind {
 }
 
 .button-group:after {
-  content: '';
+  content: "";
   display: block;
   clear: both;
-/*  border: 1px solid #000;*/
+  /*  border: 1px solid #000;*/
 }
 
 .button-group .button {
-  display:inline-block;
+  display: inline-block;
   border-radius: 0;
 }
 /*
