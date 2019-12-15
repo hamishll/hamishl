@@ -330,168 +330,214 @@
 	<div class="content" id="home">
   <div id="post-info">
     <div id="cover-photo-container">
-      <img id="cover-photo" src="/images/cover_findapcforme.png">
+      <img id="cover-photo" src="/images/null.png">
     </div>
     <div id="info-container">
-      <h1 id="title">findapcfor.me</h1>
-      <h2 id="author">Hamish</h2>
-      <!--<span id="date">19 Mar 2017</span>-->
+      <h1 id="title">Blue Prism Professional Dev - Exam Notes</h1>
+      <h2 id="author">Hamish Leith</h2>
+      <!--<span id="date">04 Jan 2019</span>-->
     </div>
   </div>
 
   <div class="post">
-    <h2 id="introduction">Introduction</h2>
+    <h1 id="best-practice">Best Practice</h1>
 
-<p><a href="http://findapcfor.me">findapcfor.me</a> is a web app for finding available computers at The University of Manchester. It uses AJAX alongside the Google Maps API in order to map…</p>
+<ol>
+  <li>
+    <p>Objects</p>
 
-<p>The university tracks the status of PC clusters in an XML table, hosted <a href="http://www.itservices.manchester.ac.uk/clusteravailability/avail.php">here</a>. Each location is described something like this:</p>
+    <ul>
+      <li>Naming convention: <em>{App Name} - {Screen Name}</em></li>
+      <li>You can never have too many objects, only too few. Advantages: - App Modeller is smaller and less prone to error - A running process consumes only the actions it requires - Many developers can work concurrently - Changes to object layer have less downstream risk</li>
+      <li>Stage design: - Always begin with element wait stage, tHis should always throw exception on timeout - Perform action - Wait for change; don’t use arbitrary waits - Do not call published actions within the action - Do not make business decisions in the object - Provide descriptions to inputs/outputs, this improves quality of the automatically generated documentation - Store globals on the <strong>Initialise</strong> page - App Model naming convention: *{Element Type} - {Element Name} - Delete customer confidential, and environment specific attributes</li>
+      <li>Exposure - background: multiple instances of that object can run - foreground: only one instance of that object can run, and can run at same time as other background objects - exclusive: only this instance of object can run, and no others</li>
+    </ul>
+  </li>
+  <li>
+    <p>Processes</p>
+    <ul>
+      <li>Naming convention: <em>01 - Create Queue</em> (number if called chronologically</li>
+      <li>Page Design: - use sub-pages, with retry loops - add Stop? decision between queue items - have a main page exception block - check for concurrent exceptions (++count if same as previous) - use environment variables and work queue tags - <em>use the process templates!</em></li>
+    </ul>
+  </li>
+</ol>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;PLPlace&gt;</span>
-   <span class="nt">&lt;name&gt;</span>AGLC Floor -1<span class="nt">&lt;/name&gt;</span>
-   <span class="nt">&lt;description</span> <span class="nt">/&gt;</span>
-   <span class="nt">&lt;open&gt;</span>true<span class="nt">&lt;/open&gt;</span>
-   <span class="nt">&lt;latitude&gt;</span>53.464630<span class="nt">&lt;/latitude&gt;</span>
-   <span class="nt">&lt;longitude&gt;</span>-2.233479<span class="nt">&lt;/longitude&gt;</span>
-   ...
-   <span class="nt">&lt;locationCode&gt;</span>010AA<span class="nt">&lt;/locationCode&gt;</span>
-   <span class="nt">&lt;locationName&gt;</span>Alan Gilbert Learning Commons<span class="nt">&lt;/locationName&gt;</span>
-   <span class="nt">&lt;availability&gt;</span>29 seats taken, 31 seats available<span class="nt">&lt;/availability&gt;</span>
-<span class="nt">&lt;/PLPlace&gt;</span></code></pre></figure>
+<h1 id="java-automation">Java Automation</h1>
 
-<h2 id="pulling-the-xml-document-ajax">Pulling the XML document (AJAX)</h2>
+<ol>
+  <li>
+    <p>Getting started</p>
 
-<p>We’ll use AJAX to request this file. Below is a basic function to achieve this:</p>
+    <ul>
+      <li>JAB is required to access Java’s Accessibility API</li>
+      <li>You may need to launch java apps from command line and attach after</li>
+      <li>Restarting Java apps, and restarting the resource PC may reduce errors as this resets Java’s leaky memory issues</li>
+    </ul>
+  </li>
+  <li>
+    <p>Application Wizard parameters</p>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">downloadUrl</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">ActiveXObject</span> <span class="p">?</span>
-         <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s1">'Microsoft.XMLHTTP'</span><span class="p">)</span> <span class="p">:</span>
-         <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">;</span>
-     
-    <span class="nx">request</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">//request.onreadystatechange = doNothing;</span>
-            <span class="nx">callback</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">request</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
-     
-    <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="p">}</span></code></pre></figure>
+    <ul>
+      <li><strong>descendtree</strong> makes BP search the whole application model, not just visible elements - <em>use if spied elements are causing crashes</em></li>
+      <li><strong>ignorenotshowing</strong> makes BP search only for visible elements</li>
+      <li>enter these in plain text, with a comma between <strong>descendtree,ignorenotshowing</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Interfacing</p>
 
-<p><br /><br />
-We can then call each row in the table by refering to the DOM and using the getElementsByTagName method. For example:</p>
+    <ul>
+      <li>Wait stages require the app model to be traversed which is resource-hungry. Avoid: - Overly-long waits, as they will be continually checking for element - Multiple-condition waits - Spy pop-ups in Win32 instead</li>
+      <li>Application Navigator can be used to view the whole model</li>
+    </ul>
+  </li>
+  <li>
+    <p>App Model Attributes</p>
+    <ul>
+      <li><strong>Match Index</strong>: matches the Nth instance of an element</li>
+      <li><strong>AncestorCount</strong>: search of tree stops when about to descend deeper than the ancestor count</li>
+      <li><strong>Showing</strong>: element and all its parents are visible (although may be occluded)</li>
+      <li><em>The following can significantly improve performance: - descendtree - match index - match reverse - ancestorcount</em></li>
+    </ul>
+  </li>
+</ol>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// store the elements for each place</span>
-<span class="nx">markers</span> <span class="o">=</span> <span class="nx">xml</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"PLPlace"</span><span class="p">);</span>
+<h1 id="web-services">Web Services</h1>
 
-<span class="c1">// loop through each location (and plot markers)</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">markers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">markers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"name"</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">;</span>
-	<span class="p">...</span>
-	<span class="c1">// rest of the code</span>
-<span class="p">}</span></code></pre></figure>
+<ol>
+  <li>
+    <p>Objects and Processes can be exposed as web services using WSDL</p>
 
-<h2 id="initialising-our-google-map">Initialising our google map</h2>
+    <ul>
+      <li>can be encrpyted using certificates</li>
+      <li>a proxy can route requests for you to different machines</li>
+    </ul>
+  </li>
+  <li>
+    <p>Accessible from http://[machinename]:<port>/ws/</port></p>
+  </li>
+  <li>
+    <p>BP can also consume web services through SOAP</p>
+  </li>
+</ol>
 
-<p>Let’s create a new map with coordinates centered on University Place:</p>
+<h1 id="mainframe-automation">Mainframe Automation</h1>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nb">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'map'</span><span class="p">),</span> <span class="p">{</span>
-    <span class="na">zoom</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
-    <span class="na">center</span><span class="p">:</span> <span class="p">{</span><span class="na">lat</span><span class="p">:</span> <span class="mf">53.469369</span><span class="p">,</span> <span class="na">lng</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.233706</span><span class="p">}</span></code></pre></figure>
+<ol>
+  <li>
+    <p>You must specify a session identifier when starting or attaching to a mainframe session</p>
+  </li>
+  <li>
+    <p>It’s not always possible to tell how long a field is, so spy to the right of the screen and trim later</p>
+  </li>
+  <li>
+    <p>IBM keywords: [enter], [delete], [pf1]</p>
+  </li>
+  <li>
+    <p>Powerterm Attatchmate: @E, @D, @1</p>
+  </li>
+</ol>
 
-<h2 id="styling-markers-based-on-availability">Styling markers based on availability</h2>
+<h1 id="exception-handling">Exception Handling</h1>
 
-<p>What we want to achieve is a gradient that goes from green, to yellow, to red as availability decreases. We’ll set a threshold value of 50, above which markers will simply appear green as there is plenty of space.</p>
+<ol>
+  <li>
+    <p>General:</p>
 
-<p>Navigating through this colour space isn’t as simple as a linear descent. In RGB values:</p>
+    <ul>
+      <li>Types: system, business, (validation, login, system unavailable)</li>
+      <li>Use a multi-calc after recover to store ExceptionType() and ExceptionDetail() to a data item</li>
+      <li>Minimal exception handling should be in the object layer</li>
+      <li>Use Retry Limits (be careful about ending up with 3x3x3 retries if you do this on object, sub-page, and page layers – you could use an input parameter to the page to dictate number of retries)</li>
+      <li><strong>if an exception isn’t recovered before another is thrown, this next exception will be unrecoveable - always recover-resume</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Preserving details</p>
 
-<ul>
-  <li>Green = 0 , 255 , 0</li>
-  <li>Yellow = 255, 255, 0</li>
-  <li>Red = 255, 0, 0</li>
-</ul>
+    <ul>
+      <li><strong>when checked</strong>, the exception <strong>‘re-releases’</strong> the exception <em>as though it had never been recovered</em></li>
+      <li><strong>when unchecked</strong>, a new exception is generated</li>
+    </ul>
+  </li>
+  <li>
+    <p>Business Objects</p>
 
-<p>So first we’ll increase the red values, until we’re halfway below our threshold, and then decrease the green values after this point:</p>
+    <ul>
+      <li>(apparently) if an attach fails it can be reasonably assumed that an application isn’t running</li>
+      <li>you could use a multi-condition wait to determine whether an exception is a system issue, data validation or privilege-based - rather than just throwing a generic exception, we could pass as an output data item</li>
+    </ul>
+  </li>
+  <li>
+    <p>Queue Items</p>
+    <ul>
+      <li>the Mark Exception action has inputs <strong>Retry</strong> and <strong>Keep Locked</strong>, which can be used to retry cases</li>
+    </ul>
+  </li>
+</ol>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">dangerZone</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">free</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">dangerZone</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">rCol</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
-    <span class="nx">gCol</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mi">200</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">free</span><span class="o">/</span><span class="nx">dangerZone</span><span class="p">));</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">free</span> <span class="o">&lt;</span> <span class="nx">dangerZone</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">rCol</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mi">255</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="nx">free</span> <span class="o">-</span> <span class="nx">dangerZone</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nx">dangerZone</span><span class="o">/</span><span class="mi">2</span><span class="p">)));</span>
-    <span class="nx">gCol</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="nx">rCol</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="nx">gCol</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">markerColor</span> <span class="o">=</span> <span class="nx">rgbToHex</span><span class="p">(</span><span class="nx">rCol</span><span class="p">,</span> <span class="nx">gCol</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span></code></pre></figure>
+<h1 id="work-queues">Work Queues</h1>
 
-<p><br />
-The rgbToHex function at the end converts this RGB value to a hex (which is the color format used by the google maps API).</p>
+<ol>
+  <li>
+    <p>Syntax:</p>
 
-<h2 id="determining-marker-size">Determining marker size</h2>
+    <ul>
+      <li>
+        <ul>
+          <li>
+            <ul>
+              <li>? * ;</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Status:</p>
 
-<p>We’ll set the scale of the marker to be a proportion of the max number of computers, which is 182 in the George Begg cluster.</p>
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Update Status</em></li>
+      <li>can be retrieved as output to <em>Get Next Item</em></li>
+    </ul>
+  </li>
+  <li>
+    <p>Priority:</p>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">circle</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">path</span><span class="p">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">SymbolPath</span><span class="p">.</span><span class="nx">CIRCLE</span><span class="p">,</span>
-  <span class="na">fillColor</span><span class="p">:</span> <span class="nx">markerColor</span><span class="p">,</span>
-  <span class="na">fillOpacity</span><span class="p">:</span> <span class="p">.</span><span class="mi">8</span><span class="p">,</span>
-  <span class="na">scale</span><span class="p">:</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">30</span><span class="o">*</span><span class="p">(</span><span class="nx">free</span><span class="o">/</span><span class="nx">maxSpaces</span><span class="p">),</span>
-  <span class="na">strokeColor</span><span class="p">:</span> <span class="s1">'white'</span><span class="p">,</span>
-  <span class="na">strokeWeight</span><span class="p">:</span> <span class="mf">1.5</span>
-<span class="p">};</span></code></pre></figure>
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Set Priority</em></li>
+      <li>Priority <strong>1</strong> is highest</li>
+    </ul>
+  </li>
+  <li>
+    <p>Work queues are <strong>not encrypted by default</strong>, but can be encrypted</p>
+  </li>
+  <li>
+    <p>Deferring or Multiple Queues?</p>
 
-<h2 id="getting-coordinates">Getting coordinates</h2>
+    <ul>
+      <li>Defer if separation period is just a few minutes</li>
+      <li>Use second queue if separation period is longer (days etc)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Parent/child queues</p>
+    <ul>
+      <li>you need a <strong>relationship key</strong> (parent’s ID) on each child</li>
+    </ul>
+  </li>
+</ol>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"> <span class="kd">var</span> <span class="nx">point</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span>
-    <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">markers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"latitude"</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">)</span> <span class="o">+</span> <span class="nx">deltax</span><span class="p">,</span>
-    <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">markers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"longitude"</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">)</span> <span class="o">+</span> <span class="nx">deltay</span><span class="p">);</span></code></pre></figure>
-
-<h2 id="placing-markers-and-infoboxes">Placing markers and infoboxes</h2>
-
-<p>The google maps API have two objects for displaying content - markers and info boxes. We’ll format them as such:</p>
-
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="s2">"&lt;div class='infowindow'&gt;&lt;b&gt;"</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">"&lt;/b&gt;&lt;br/&gt;"</span> <span class="o">+</span> <span class="nx">address</span>  <span class="o">+</span> <span class="s2">"&lt;/b&gt;&lt;br/&gt;"</span> <span class="o">+</span> <span class="nx">availability</span> <span class="o">+</span> <span class="s1">'&lt;br/&gt;&lt;/div&gt;'</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
-  <span class="na">map</span><span class="p">:</span> <span class="nx">map</span><span class="p">,</span>
-  <span class="na">position</span><span class="p">:</span> <span class="nx">point</span><span class="p">,</span>
-  <span class="na">icon</span><span class="p">:</span> <span class="nx">circle</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">:</span> <span class="nx">name</span><span class="p">,</span>
-  <span class="na">label</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">text</span><span class="p">:</span> <span class="nx">free</span><span class="p">,</span>
-    <span class="na">color</span><span class="p">:</span> <span class="s1">'white'</span><span class="p">,</span>
-  <span class="p">},</span>
-  <span class="c1">// clusters with greater availability have a higher zIndex</span>
-  <span class="na">zIndex</span><span class="p">:</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">free</span><span class="p">),</span>
-<span class="p">});</span></code></pre></figure>
-
-<h2 id="pushing-objects-to-the-map">Pushing objects to the map</h2>
-
-<p>We’ll push the markers to the map as such:</p>
-
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">map</span><span class="p">.</span><span class="nx">markers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">marker</span><span class="p">);</span></code></pre></figure>
-
-<p><br />
-HTML boxes are a little trickier, as we need to listen for interaction through clicking. We’ll use the following function:</p>
-
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">bindInfoWindow</span><span class="p">(</span><span class="nx">marker</span><span class="p">,</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">infoWindow</span><span class="p">,</span> <span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">marker</span><span class="p">,</span> <span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">infoWindow</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
-    <span class="nx">infoWindow</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">marker</span><span class="p">);</span>
-  <span class="p">});</span>
-<span class="p">}</span></code></pre></figure>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Check out the code on GitHub:
-<a href="http://github.com/hamishll/findapcfor.me">findapcfor.me on GitHub</a></p>
+<p>7 Loading from a workflow system, use env locks to either: - lock and load all cases - lock an individual item and load it</p>
 
   </div>
   
   <div class="colophon">
     <p>
-      <span id="pub-date">Published on 19 Mar 2017</span> <span class="separator"><!--&bull;--></span>
+      <span id="pub-date">Published on 04 Jan 2019</span> <span class="separator"><!--&bull;--></span>
       <!--<span id="social">Find me on <a href="http://github.com/hamishll">GitHub</a>!</span>-->
     </p>
   </div>
@@ -501,168 +547,865 @@ HTML boxes are a little trickier, as we need to listen for interaction through c
 	<div class="content" id="home">
   <div id="post-info">
     <div id="cover-photo-container">
-      <img id="cover-photo" src="/images/cover_findapcforme.png">
+      <img id="cover-photo" src="/images/null.png">
     </div>
     <div id="info-container">
-      <h1 id="title">findapcfor.me</h1>
-      <h2 id="author">Hamish</h2>
-      <!--<span id="date">19 Mar 2017</span>-->
+      <h1 id="title">Blue Prism Professional Dev - Exam Notes</h1>
+      <h2 id="author">Hamish Leith</h2>
+      <!--<span id="date">04 Jan 2019</span>-->
     </div>
   </div>
 
   <div class="post">
-    <h2 id="introduction">Introduction</h2>
+    <h1 id="best-practice">Best Practice</h1>
 
-<p><a href="http://findapcfor.me">findapcfor.me</a> is a web app for finding available computers at The University of Manchester. It uses AJAX alongside the Google Maps API in order to map…</p>
+<ol>
+  <li>
+    <p>Objects</p>
 
-<p>The university tracks the status of PC clusters in an XML table, hosted <a href="http://www.itservices.manchester.ac.uk/clusteravailability/avail.php">here</a>. Each location is described something like this:</p>
+    <ul>
+      <li>Naming convention: <em>{App Name} - {Screen Name}</em></li>
+      <li>You can never have too many objects, only too few. Advantages: - App Modeller is smaller and less prone to error - A running process consumes only the actions it requires - Many developers can work concurrently - Changes to object layer have less downstream risk</li>
+      <li>Stage design: - Always begin with element wait stage, tHis should always throw exception on timeout - Perform action - Wait for change; don’t use arbitrary waits - Do not call published actions within the action - Do not make business decisions in the object - Provide descriptions to inputs/outputs, this improves quality of the automatically generated documentation - Store globals on the <strong>Initialise</strong> page - App Model naming convention: *{Element Type} - {Element Name} - Delete customer confidential, and environment specific attributes</li>
+      <li>Exposure - background: multiple instances of that object can run - foreground: only one instance of that object can run, and can run at same time as other background objects - exclusive: only this instance of object can run, and no others</li>
+    </ul>
+  </li>
+  <li>
+    <p>Processes</p>
+    <ul>
+      <li>Naming convention: <em>01 - Create Queue</em> (number if called chronologically</li>
+      <li>Page Design: - use sub-pages, with retry loops - add Stop? decision between queue items - have a main page exception block - check for concurrent exceptions (++count if same as previous) - use environment variables and work queue tags - <em>use the process templates!</em></li>
+    </ul>
+  </li>
+</ol>
 
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;PLPlace&gt;</span>
-   <span class="nt">&lt;name&gt;</span>AGLC Floor -1<span class="nt">&lt;/name&gt;</span>
-   <span class="nt">&lt;description</span> <span class="nt">/&gt;</span>
-   <span class="nt">&lt;open&gt;</span>true<span class="nt">&lt;/open&gt;</span>
-   <span class="nt">&lt;latitude&gt;</span>53.464630<span class="nt">&lt;/latitude&gt;</span>
-   <span class="nt">&lt;longitude&gt;</span>-2.233479<span class="nt">&lt;/longitude&gt;</span>
-   ...
-   <span class="nt">&lt;locationCode&gt;</span>010AA<span class="nt">&lt;/locationCode&gt;</span>
-   <span class="nt">&lt;locationName&gt;</span>Alan Gilbert Learning Commons<span class="nt">&lt;/locationName&gt;</span>
-   <span class="nt">&lt;availability&gt;</span>29 seats taken, 31 seats available<span class="nt">&lt;/availability&gt;</span>
-<span class="nt">&lt;/PLPlace&gt;</span></code></pre></figure>
+<h1 id="java-automation">Java Automation</h1>
 
-<h2 id="pulling-the-xml-document-ajax">Pulling the XML document (AJAX)</h2>
+<ol>
+  <li>
+    <p>Getting started</p>
 
-<p>We’ll use AJAX to request this file. Below is a basic function to achieve this:</p>
+    <ul>
+      <li>JAB is required to access Java’s Accessibility API</li>
+      <li>You may need to launch java apps from command line and attach after</li>
+      <li>Restarting Java apps, and restarting the resource PC may reduce errors as this resets Java’s leaky memory issues</li>
+    </ul>
+  </li>
+  <li>
+    <p>Application Wizard parameters</p>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">downloadUrl</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">ActiveXObject</span> <span class="p">?</span>
-         <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s1">'Microsoft.XMLHTTP'</span><span class="p">)</span> <span class="p">:</span>
-         <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">;</span>
-     
-    <span class="nx">request</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">//request.onreadystatechange = doNothing;</span>
-            <span class="nx">callback</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">request</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
-     
-    <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="p">}</span></code></pre></figure>
+    <ul>
+      <li><strong>descendtree</strong> makes BP search the whole application model, not just visible elements - <em>use if spied elements are causing crashes</em></li>
+      <li><strong>ignorenotshowing</strong> makes BP search only for visible elements</li>
+      <li>enter these in plain text, with a comma between <strong>descendtree,ignorenotshowing</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Interfacing</p>
 
-<p><br /><br />
-We can then call each row in the table by refering to the DOM and using the getElementsByTagName method. For example:</p>
+    <ul>
+      <li>Wait stages require the app model to be traversed which is resource-hungry. Avoid: - Overly-long waits, as they will be continually checking for element - Multiple-condition waits - Spy pop-ups in Win32 instead</li>
+      <li>Application Navigator can be used to view the whole model</li>
+    </ul>
+  </li>
+  <li>
+    <p>App Model Attributes</p>
+    <ul>
+      <li><strong>Match Index</strong>: matches the Nth instance of an element</li>
+      <li><strong>AncestorCount</strong>: search of tree stops when about to descend deeper than the ancestor count</li>
+      <li><strong>Showing</strong>: element and all its parents are visible (although may be occluded)</li>
+      <li><em>The following can significantly improve performance: - descendtree - match index - match reverse - ancestorcount</em></li>
+    </ul>
+  </li>
+</ol>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// store the elements for each place</span>
-<span class="nx">markers</span> <span class="o">=</span> <span class="nx">xml</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"PLPlace"</span><span class="p">);</span>
+<h1 id="web-services">Web Services</h1>
 
-<span class="c1">// loop through each location (and plot markers)</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">markers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">markers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"name"</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">;</span>
-	<span class="p">...</span>
-	<span class="c1">// rest of the code</span>
-<span class="p">}</span></code></pre></figure>
+<ol>
+  <li>
+    <p>Objects and Processes can be exposed as web services using WSDL</p>
 
-<h2 id="initialising-our-google-map">Initialising our google map</h2>
+    <ul>
+      <li>can be encrpyted using certificates</li>
+      <li>a proxy can route requests for you to different machines</li>
+    </ul>
+  </li>
+  <li>
+    <p>Accessible from http://[machinename]:<port>/ws/</port></p>
+  </li>
+  <li>
+    <p>BP can also consume web services through SOAP</p>
+  </li>
+</ol>
 
-<p>Let’s create a new map with coordinates centered on University Place:</p>
+<h1 id="mainframe-automation">Mainframe Automation</h1>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nb">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'map'</span><span class="p">),</span> <span class="p">{</span>
-    <span class="na">zoom</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
-    <span class="na">center</span><span class="p">:</span> <span class="p">{</span><span class="na">lat</span><span class="p">:</span> <span class="mf">53.469369</span><span class="p">,</span> <span class="na">lng</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.233706</span><span class="p">}</span></code></pre></figure>
+<ol>
+  <li>
+    <p>You must specify a session identifier when starting or attaching to a mainframe session</p>
+  </li>
+  <li>
+    <p>It’s not always possible to tell how long a field is, so spy to the right of the screen and trim later</p>
+  </li>
+  <li>
+    <p>IBM keywords: [enter], [delete], [pf1]</p>
+  </li>
+  <li>
+    <p>Powerterm Attatchmate: @E, @D, @1</p>
+  </li>
+</ol>
 
-<h2 id="styling-markers-based-on-availability">Styling markers based on availability</h2>
+<h1 id="exception-handling">Exception Handling</h1>
 
-<p>What we want to achieve is a gradient that goes from green, to yellow, to red as availability decreases. We’ll set a threshold value of 50, above which markers will simply appear green as there is plenty of space.</p>
+<ol>
+  <li>
+    <p>General:</p>
 
-<p>Navigating through this colour space isn’t as simple as a linear descent. In RGB values:</p>
+    <ul>
+      <li>Types: system, business, (validation, login, system unavailable)</li>
+      <li>Use a multi-calc after recover to store ExceptionType() and ExceptionDetail() to a data item</li>
+      <li>Minimal exception handling should be in the object layer</li>
+      <li>Use Retry Limits (be careful about ending up with 3x3x3 retries if you do this on object, sub-page, and page layers – you could use an input parameter to the page to dictate number of retries)</li>
+      <li><strong>if an exception isn’t recovered before another is thrown, this next exception will be unrecoveable - always recover-resume</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Preserving details</p>
 
-<ul>
-  <li>Green = 0 , 255 , 0</li>
-  <li>Yellow = 255, 255, 0</li>
-  <li>Red = 255, 0, 0</li>
-</ul>
+    <ul>
+      <li><strong>when checked</strong>, the exception <strong>‘re-releases’</strong> the exception <em>as though it had never been recovered</em></li>
+      <li><strong>when unchecked</strong>, a new exception is generated</li>
+    </ul>
+  </li>
+  <li>
+    <p>Business Objects</p>
 
-<p>So first we’ll increase the red values, until we’re halfway below our threshold, and then decrease the green values after this point:</p>
+    <ul>
+      <li>(apparently) if an attach fails it can be reasonably assumed that an application isn’t running</li>
+      <li>you could use a multi-condition wait to determine whether an exception is a system issue, data validation or privilege-based - rather than just throwing a generic exception, we could pass as an output data item</li>
+    </ul>
+  </li>
+  <li>
+    <p>Queue Items</p>
+    <ul>
+      <li>the Mark Exception action has inputs <strong>Retry</strong> and <strong>Keep Locked</strong>, which can be used to retry cases</li>
+    </ul>
+  </li>
+</ol>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">dangerZone</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">free</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">dangerZone</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">rCol</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
-    <span class="nx">gCol</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mi">200</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">free</span><span class="o">/</span><span class="nx">dangerZone</span><span class="p">));</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">free</span> <span class="o">&lt;</span> <span class="nx">dangerZone</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">rCol</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mi">255</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="nx">free</span> <span class="o">-</span> <span class="nx">dangerZone</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nx">dangerZone</span><span class="o">/</span><span class="mi">2</span><span class="p">)));</span>
-    <span class="nx">gCol</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="nx">rCol</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="nx">gCol</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">markerColor</span> <span class="o">=</span> <span class="nx">rgbToHex</span><span class="p">(</span><span class="nx">rCol</span><span class="p">,</span> <span class="nx">gCol</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span></code></pre></figure>
+<h1 id="work-queues">Work Queues</h1>
 
-<p><br />
-The rgbToHex function at the end converts this RGB value to a hex (which is the color format used by the google maps API).</p>
+<ol>
+  <li>
+    <p>Syntax:</p>
 
-<h2 id="determining-marker-size">Determining marker size</h2>
+    <ul>
+      <li>
+        <ul>
+          <li>
+            <ul>
+              <li>? * ;</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Status:</p>
 
-<p>We’ll set the scale of the marker to be a proportion of the max number of computers, which is 182 in the George Begg cluster.</p>
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Update Status</em></li>
+      <li>can be retrieved as output to <em>Get Next Item</em></li>
+    </ul>
+  </li>
+  <li>
+    <p>Priority:</p>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">circle</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">path</span><span class="p">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">SymbolPath</span><span class="p">.</span><span class="nx">CIRCLE</span><span class="p">,</span>
-  <span class="na">fillColor</span><span class="p">:</span> <span class="nx">markerColor</span><span class="p">,</span>
-  <span class="na">fillOpacity</span><span class="p">:</span> <span class="p">.</span><span class="mi">8</span><span class="p">,</span>
-  <span class="na">scale</span><span class="p">:</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">30</span><span class="o">*</span><span class="p">(</span><span class="nx">free</span><span class="o">/</span><span class="nx">maxSpaces</span><span class="p">),</span>
-  <span class="na">strokeColor</span><span class="p">:</span> <span class="s1">'white'</span><span class="p">,</span>
-  <span class="na">strokeWeight</span><span class="p">:</span> <span class="mf">1.5</span>
-<span class="p">};</span></code></pre></figure>
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Set Priority</em></li>
+      <li>Priority <strong>1</strong> is highest</li>
+    </ul>
+  </li>
+  <li>
+    <p>Work queues are <strong>not encrypted by default</strong>, but can be encrypted</p>
+  </li>
+  <li>
+    <p>Deferring or Multiple Queues?</p>
 
-<h2 id="getting-coordinates">Getting coordinates</h2>
+    <ul>
+      <li>Defer if separation period is just a few minutes</li>
+      <li>Use second queue if separation period is longer (days etc)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Parent/child queues</p>
+    <ul>
+      <li>you need a <strong>relationship key</strong> (parent’s ID) on each child</li>
+    </ul>
+  </li>
+</ol>
 
-<figure class="highlight"><pre><code class="language-js" data-lang="js"> <span class="kd">var</span> <span class="nx">point</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span>
-    <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">markers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"latitude"</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">)</span> <span class="o">+</span> <span class="nx">deltax</span><span class="p">,</span>
-    <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">markers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"longitude"</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">)</span> <span class="o">+</span> <span class="nx">deltay</span><span class="p">);</span></code></pre></figure>
-
-<h2 id="placing-markers-and-infoboxes">Placing markers and infoboxes</h2>
-
-<p>The google maps API have two objects for displaying content - markers and info boxes. We’ll format them as such:</p>
-
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="s2">"&lt;div class='infowindow'&gt;&lt;b&gt;"</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">"&lt;/b&gt;&lt;br/&gt;"</span> <span class="o">+</span> <span class="nx">address</span>  <span class="o">+</span> <span class="s2">"&lt;/b&gt;&lt;br/&gt;"</span> <span class="o">+</span> <span class="nx">availability</span> <span class="o">+</span> <span class="s1">'&lt;br/&gt;&lt;/div&gt;'</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
-  <span class="na">map</span><span class="p">:</span> <span class="nx">map</span><span class="p">,</span>
-  <span class="na">position</span><span class="p">:</span> <span class="nx">point</span><span class="p">,</span>
-  <span class="na">icon</span><span class="p">:</span> <span class="nx">circle</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">:</span> <span class="nx">name</span><span class="p">,</span>
-  <span class="na">label</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">text</span><span class="p">:</span> <span class="nx">free</span><span class="p">,</span>
-    <span class="na">color</span><span class="p">:</span> <span class="s1">'white'</span><span class="p">,</span>
-  <span class="p">},</span>
-  <span class="c1">// clusters with greater availability have a higher zIndex</span>
-  <span class="na">zIndex</span><span class="p">:</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">free</span><span class="p">),</span>
-<span class="p">});</span></code></pre></figure>
-
-<h2 id="pushing-objects-to-the-map">Pushing objects to the map</h2>
-
-<p>We’ll push the markers to the map as such:</p>
-
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">map</span><span class="p">.</span><span class="nx">markers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">marker</span><span class="p">);</span></code></pre></figure>
-
-<p><br />
-HTML boxes are a little trickier, as we need to listen for interaction through clicking. We’ll use the following function:</p>
-
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">bindInfoWindow</span><span class="p">(</span><span class="nx">marker</span><span class="p">,</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">infoWindow</span><span class="p">,</span> <span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">marker</span><span class="p">,</span> <span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">infoWindow</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
-    <span class="nx">infoWindow</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">marker</span><span class="p">);</span>
-  <span class="p">});</span>
-<span class="p">}</span></code></pre></figure>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Check out the code on GitHub:
-<a href="http://github.com/hamishll/findapcfor.me">findapcfor.me on GitHub</a></p>
+<p>7 Loading from a workflow system, use env locks to either: - lock and load all cases - lock an individual item and load it</p>
 
   </div>
   
   <div class="colophon">
     <p>
-      <span id="pub-date">Published on 19 Mar 2017</span> <span class="separator"><!--&bull;--></span>
+      <span id="pub-date">Published on 04 Jan 2019</span> <span class="separator"><!--&bull;--></span>
+      <!--<span id="social">Find me on <a href="http://github.com/hamishll">GitHub</a>!</span>-->
+    </p>
+  </div>
+</div>
+
+
+	<div class="content" id="home">
+  <div id="post-info">
+    <div id="cover-photo-container">
+      <img id="cover-photo" src="/images/null.png">
+    </div>
+    <div id="info-container">
+      <h1 id="title">Blue Prism Professional Dev - Exam Notes</h1>
+      <h2 id="author">Hamish Leith</h2>
+      <!--<span id="date">04 Jan 2019</span>-->
+    </div>
+  </div>
+
+  <div class="post">
+    <h1 id="best-practice">Best Practice</h1>
+
+<ol>
+  <li>
+    <p>Objects</p>
+
+    <ul>
+      <li>Naming convention: <em>{App Name} - {Screen Name}</em></li>
+      <li>You can never have too many objects, only too few. Advantages: - App Modeller is smaller and less prone to error - A running process consumes only the actions it requires - Many developers can work concurrently - Changes to object layer have less downstream risk</li>
+      <li>Stage design: - Always begin with element wait stage, tHis should always throw exception on timeout - Perform action - Wait for change; don’t use arbitrary waits - Do not call published actions within the action - Do not make business decisions in the object - Provide descriptions to inputs/outputs, this improves quality of the automatically generated documentation - Store globals on the <strong>Initialise</strong> page - App Model naming convention: *{Element Type} - {Element Name} - Delete customer confidential, and environment specific attributes</li>
+      <li>Exposure - background: multiple instances of that object can run - foreground: only one instance of that object can run, and can run at same time as other background objects - exclusive: only this instance of object can run, and no others</li>
+    </ul>
+  </li>
+  <li>
+    <p>Processes</p>
+    <ul>
+      <li>Naming convention: <em>01 - Create Queue</em> (number if called chronologically</li>
+      <li>Page Design: - use sub-pages, with retry loops - add Stop? decision between queue items - have a main page exception block - check for concurrent exceptions (++count if same as previous) - use environment variables and work queue tags - <em>use the process templates!</em></li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="java-automation">Java Automation</h1>
+
+<ol>
+  <li>
+    <p>Getting started</p>
+
+    <ul>
+      <li>JAB is required to access Java’s Accessibility API</li>
+      <li>You may need to launch java apps from command line and attach after</li>
+      <li>Restarting Java apps, and restarting the resource PC may reduce errors as this resets Java’s leaky memory issues</li>
+    </ul>
+  </li>
+  <li>
+    <p>Application Wizard parameters</p>
+
+    <ul>
+      <li><strong>descendtree</strong> makes BP search the whole application model, not just visible elements - <em>use if spied elements are causing crashes</em></li>
+      <li><strong>ignorenotshowing</strong> makes BP search only for visible elements</li>
+      <li>enter these in plain text, with a comma between <strong>descendtree,ignorenotshowing</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Interfacing</p>
+
+    <ul>
+      <li>Wait stages require the app model to be traversed which is resource-hungry. Avoid: - Overly-long waits, as they will be continually checking for element - Multiple-condition waits - Spy pop-ups in Win32 instead</li>
+      <li>Application Navigator can be used to view the whole model</li>
+    </ul>
+  </li>
+  <li>
+    <p>App Model Attributes</p>
+    <ul>
+      <li><strong>Match Index</strong>: matches the Nth instance of an element</li>
+      <li><strong>AncestorCount</strong>: search of tree stops when about to descend deeper than the ancestor count</li>
+      <li><strong>Showing</strong>: element and all its parents are visible (although may be occluded)</li>
+      <li><em>The following can significantly improve performance: - descendtree - match index - match reverse - ancestorcount</em></li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="web-services">Web Services</h1>
+
+<ol>
+  <li>
+    <p>Objects and Processes can be exposed as web services using WSDL</p>
+
+    <ul>
+      <li>can be encrpyted using certificates</li>
+      <li>a proxy can route requests for you to different machines</li>
+    </ul>
+  </li>
+  <li>
+    <p>Accessible from http://[machinename]:<port>/ws/</port></p>
+  </li>
+  <li>
+    <p>BP can also consume web services through SOAP</p>
+  </li>
+</ol>
+
+<h1 id="mainframe-automation">Mainframe Automation</h1>
+
+<ol>
+  <li>
+    <p>You must specify a session identifier when starting or attaching to a mainframe session</p>
+  </li>
+  <li>
+    <p>It’s not always possible to tell how long a field is, so spy to the right of the screen and trim later</p>
+  </li>
+  <li>
+    <p>IBM keywords: [enter], [delete], [pf1]</p>
+  </li>
+  <li>
+    <p>Powerterm Attatchmate: @E, @D, @1</p>
+  </li>
+</ol>
+
+<h1 id="exception-handling">Exception Handling</h1>
+
+<ol>
+  <li>
+    <p>General:</p>
+
+    <ul>
+      <li>Types: system, business, (validation, login, system unavailable)</li>
+      <li>Use a multi-calc after recover to store ExceptionType() and ExceptionDetail() to a data item</li>
+      <li>Minimal exception handling should be in the object layer</li>
+      <li>Use Retry Limits (be careful about ending up with 3x3x3 retries if you do this on object, sub-page, and page layers – you could use an input parameter to the page to dictate number of retries)</li>
+      <li><strong>if an exception isn’t recovered before another is thrown, this next exception will be unrecoveable - always recover-resume</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Preserving details</p>
+
+    <ul>
+      <li><strong>when checked</strong>, the exception <strong>‘re-releases’</strong> the exception <em>as though it had never been recovered</em></li>
+      <li><strong>when unchecked</strong>, a new exception is generated</li>
+    </ul>
+  </li>
+  <li>
+    <p>Business Objects</p>
+
+    <ul>
+      <li>(apparently) if an attach fails it can be reasonably assumed that an application isn’t running</li>
+      <li>you could use a multi-condition wait to determine whether an exception is a system issue, data validation or privilege-based - rather than just throwing a generic exception, we could pass as an output data item</li>
+    </ul>
+  </li>
+  <li>
+    <p>Queue Items</p>
+    <ul>
+      <li>the Mark Exception action has inputs <strong>Retry</strong> and <strong>Keep Locked</strong>, which can be used to retry cases</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="work-queues">Work Queues</h1>
+
+<ol>
+  <li>
+    <p>Syntax:</p>
+
+    <ul>
+      <li>
+        <ul>
+          <li>
+            <ul>
+              <li>? * ;</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Status:</p>
+
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Update Status</em></li>
+      <li>can be retrieved as output to <em>Get Next Item</em></li>
+    </ul>
+  </li>
+  <li>
+    <p>Priority:</p>
+
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Set Priority</em></li>
+      <li>Priority <strong>1</strong> is highest</li>
+    </ul>
+  </li>
+  <li>
+    <p>Work queues are <strong>not encrypted by default</strong>, but can be encrypted</p>
+  </li>
+  <li>
+    <p>Deferring or Multiple Queues?</p>
+
+    <ul>
+      <li>Defer if separation period is just a few minutes</li>
+      <li>Use second queue if separation period is longer (days etc)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Parent/child queues</p>
+    <ul>
+      <li>you need a <strong>relationship key</strong> (parent’s ID) on each child</li>
+    </ul>
+  </li>
+</ol>
+
+<p>7 Loading from a workflow system, use env locks to either: - lock and load all cases - lock an individual item and load it</p>
+
+  </div>
+  
+  <div class="colophon">
+    <p>
+      <span id="pub-date">Published on 04 Jan 2019</span> <span class="separator"><!--&bull;--></span>
+      <!--<span id="social">Find me on <a href="http://github.com/hamishll">GitHub</a>!</span>-->
+    </p>
+  </div>
+</div>
+
+
+	<div class="content" id="home">
+  <div id="post-info">
+    <div id="cover-photo-container">
+      <img id="cover-photo" src="/images/null.png">
+    </div>
+    <div id="info-container">
+      <h1 id="title">Blue Prism Professional Dev - Exam Notes</h1>
+      <h2 id="author">Hamish Leith</h2>
+      <!--<span id="date">04 Jan 2019</span>-->
+    </div>
+  </div>
+
+  <div class="post">
+    <h1 id="best-practice">Best Practice</h1>
+
+<ol>
+  <li>
+    <p>Objects</p>
+
+    <ul>
+      <li>Naming convention: <em>{App Name} - {Screen Name}</em></li>
+      <li>You can never have too many objects, only too few. Advantages: - App Modeller is smaller and less prone to error - A running process consumes only the actions it requires - Many developers can work concurrently - Changes to object layer have less downstream risk</li>
+      <li>Stage design: - Always begin with element wait stage, tHis should always throw exception on timeout - Perform action - Wait for change; don’t use arbitrary waits - Do not call published actions within the action - Do not make business decisions in the object - Provide descriptions to inputs/outputs, this improves quality of the automatically generated documentation - Store globals on the <strong>Initialise</strong> page - App Model naming convention: *{Element Type} - {Element Name} - Delete customer confidential, and environment specific attributes</li>
+      <li>Exposure - background: multiple instances of that object can run - foreground: only one instance of that object can run, and can run at same time as other background objects - exclusive: only this instance of object can run, and no others</li>
+    </ul>
+  </li>
+  <li>
+    <p>Processes</p>
+    <ul>
+      <li>Naming convention: <em>01 - Create Queue</em> (number if called chronologically</li>
+      <li>Page Design: - use sub-pages, with retry loops - add Stop? decision between queue items - have a main page exception block - check for concurrent exceptions (++count if same as previous) - use environment variables and work queue tags - <em>use the process templates!</em></li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="java-automation">Java Automation</h1>
+
+<ol>
+  <li>
+    <p>Getting started</p>
+
+    <ul>
+      <li>JAB is required to access Java’s Accessibility API</li>
+      <li>You may need to launch java apps from command line and attach after</li>
+      <li>Restarting Java apps, and restarting the resource PC may reduce errors as this resets Java’s leaky memory issues</li>
+    </ul>
+  </li>
+  <li>
+    <p>Application Wizard parameters</p>
+
+    <ul>
+      <li><strong>descendtree</strong> makes BP search the whole application model, not just visible elements - <em>use if spied elements are causing crashes</em></li>
+      <li><strong>ignorenotshowing</strong> makes BP search only for visible elements</li>
+      <li>enter these in plain text, with a comma between <strong>descendtree,ignorenotshowing</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Interfacing</p>
+
+    <ul>
+      <li>Wait stages require the app model to be traversed which is resource-hungry. Avoid: - Overly-long waits, as they will be continually checking for element - Multiple-condition waits - Spy pop-ups in Win32 instead</li>
+      <li>Application Navigator can be used to view the whole model</li>
+    </ul>
+  </li>
+  <li>
+    <p>App Model Attributes</p>
+    <ul>
+      <li><strong>Match Index</strong>: matches the Nth instance of an element</li>
+      <li><strong>AncestorCount</strong>: search of tree stops when about to descend deeper than the ancestor count</li>
+      <li><strong>Showing</strong>: element and all its parents are visible (although may be occluded)</li>
+      <li><em>The following can significantly improve performance: - descendtree - match index - match reverse - ancestorcount</em></li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="web-services">Web Services</h1>
+
+<ol>
+  <li>
+    <p>Objects and Processes can be exposed as web services using WSDL</p>
+
+    <ul>
+      <li>can be encrpyted using certificates</li>
+      <li>a proxy can route requests for you to different machines</li>
+    </ul>
+  </li>
+  <li>
+    <p>Accessible from http://[machinename]:<port>/ws/</port></p>
+  </li>
+  <li>
+    <p>BP can also consume web services through SOAP</p>
+  </li>
+</ol>
+
+<h1 id="mainframe-automation">Mainframe Automation</h1>
+
+<ol>
+  <li>
+    <p>You must specify a session identifier when starting or attaching to a mainframe session</p>
+  </li>
+  <li>
+    <p>It’s not always possible to tell how long a field is, so spy to the right of the screen and trim later</p>
+  </li>
+  <li>
+    <p>IBM keywords: [enter], [delete], [pf1]</p>
+  </li>
+  <li>
+    <p>Powerterm Attatchmate: @E, @D, @1</p>
+  </li>
+</ol>
+
+<h1 id="exception-handling">Exception Handling</h1>
+
+<ol>
+  <li>
+    <p>General:</p>
+
+    <ul>
+      <li>Types: system, business, (validation, login, system unavailable)</li>
+      <li>Use a multi-calc after recover to store ExceptionType() and ExceptionDetail() to a data item</li>
+      <li>Minimal exception handling should be in the object layer</li>
+      <li>Use Retry Limits (be careful about ending up with 3x3x3 retries if you do this on object, sub-page, and page layers – you could use an input parameter to the page to dictate number of retries)</li>
+      <li><strong>if an exception isn’t recovered before another is thrown, this next exception will be unrecoveable - always recover-resume</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Preserving details</p>
+
+    <ul>
+      <li><strong>when checked</strong>, the exception <strong>‘re-releases’</strong> the exception <em>as though it had never been recovered</em></li>
+      <li><strong>when unchecked</strong>, a new exception is generated</li>
+    </ul>
+  </li>
+  <li>
+    <p>Business Objects</p>
+
+    <ul>
+      <li>(apparently) if an attach fails it can be reasonably assumed that an application isn’t running</li>
+      <li>you could use a multi-condition wait to determine whether an exception is a system issue, data validation or privilege-based - rather than just throwing a generic exception, we could pass as an output data item</li>
+    </ul>
+  </li>
+  <li>
+    <p>Queue Items</p>
+    <ul>
+      <li>the Mark Exception action has inputs <strong>Retry</strong> and <strong>Keep Locked</strong>, which can be used to retry cases</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="work-queues">Work Queues</h1>
+
+<ol>
+  <li>
+    <p>Syntax:</p>
+
+    <ul>
+      <li>
+        <ul>
+          <li>
+            <ul>
+              <li>? * ;</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Status:</p>
+
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Update Status</em></li>
+      <li>can be retrieved as output to <em>Get Next Item</em></li>
+    </ul>
+  </li>
+  <li>
+    <p>Priority:</p>
+
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Set Priority</em></li>
+      <li>Priority <strong>1</strong> is highest</li>
+    </ul>
+  </li>
+  <li>
+    <p>Work queues are <strong>not encrypted by default</strong>, but can be encrypted</p>
+  </li>
+  <li>
+    <p>Deferring or Multiple Queues?</p>
+
+    <ul>
+      <li>Defer if separation period is just a few minutes</li>
+      <li>Use second queue if separation period is longer (days etc)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Parent/child queues</p>
+    <ul>
+      <li>you need a <strong>relationship key</strong> (parent’s ID) on each child</li>
+    </ul>
+  </li>
+</ol>
+
+<p>7 Loading from a workflow system, use env locks to either: - lock and load all cases - lock an individual item and load it</p>
+
+  </div>
+  
+  <div class="colophon">
+    <p>
+      <span id="pub-date">Published on 04 Jan 2019</span> <span class="separator"><!--&bull;--></span>
+      <!--<span id="social">Find me on <a href="http://github.com/hamishll">GitHub</a>!</span>-->
+    </p>
+  </div>
+</div>
+
+
+	<div class="content" id="home">
+  <div id="post-info">
+    <div id="cover-photo-container">
+      <img id="cover-photo" src="/images/null.png">
+    </div>
+    <div id="info-container">
+      <h1 id="title">Blue Prism Professional Dev - Exam Notes</h1>
+      <h2 id="author">Hamish Leith</h2>
+      <!--<span id="date">04 Jan 2019</span>-->
+    </div>
+  </div>
+
+  <div class="post">
+    <h1 id="best-practice">Best Practice</h1>
+
+<ol>
+  <li>
+    <p>Objects</p>
+
+    <ul>
+      <li>Naming convention: <em>{App Name} - {Screen Name}</em></li>
+      <li>You can never have too many objects, only too few. Advantages: - App Modeller is smaller and less prone to error - A running process consumes only the actions it requires - Many developers can work concurrently - Changes to object layer have less downstream risk</li>
+      <li>Stage design: - Always begin with element wait stage, tHis should always throw exception on timeout - Perform action - Wait for change; don’t use arbitrary waits - Do not call published actions within the action - Do not make business decisions in the object - Provide descriptions to inputs/outputs, this improves quality of the automatically generated documentation - Store globals on the <strong>Initialise</strong> page - App Model naming convention: *{Element Type} - {Element Name} - Delete customer confidential, and environment specific attributes</li>
+      <li>Exposure - background: multiple instances of that object can run - foreground: only one instance of that object can run, and can run at same time as other background objects - exclusive: only this instance of object can run, and no others</li>
+    </ul>
+  </li>
+  <li>
+    <p>Processes</p>
+    <ul>
+      <li>Naming convention: <em>01 - Create Queue</em> (number if called chronologically</li>
+      <li>Page Design: - use sub-pages, with retry loops - add Stop? decision between queue items - have a main page exception block - check for concurrent exceptions (++count if same as previous) - use environment variables and work queue tags - <em>use the process templates!</em></li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="java-automation">Java Automation</h1>
+
+<ol>
+  <li>
+    <p>Getting started</p>
+
+    <ul>
+      <li>JAB is required to access Java’s Accessibility API</li>
+      <li>You may need to launch java apps from command line and attach after</li>
+      <li>Restarting Java apps, and restarting the resource PC may reduce errors as this resets Java’s leaky memory issues</li>
+    </ul>
+  </li>
+  <li>
+    <p>Application Wizard parameters</p>
+
+    <ul>
+      <li><strong>descendtree</strong> makes BP search the whole application model, not just visible elements - <em>use if spied elements are causing crashes</em></li>
+      <li><strong>ignorenotshowing</strong> makes BP search only for visible elements</li>
+      <li>enter these in plain text, with a comma between <strong>descendtree,ignorenotshowing</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Interfacing</p>
+
+    <ul>
+      <li>Wait stages require the app model to be traversed which is resource-hungry. Avoid: - Overly-long waits, as they will be continually checking for element - Multiple-condition waits - Spy pop-ups in Win32 instead</li>
+      <li>Application Navigator can be used to view the whole model</li>
+    </ul>
+  </li>
+  <li>
+    <p>App Model Attributes</p>
+    <ul>
+      <li><strong>Match Index</strong>: matches the Nth instance of an element</li>
+      <li><strong>AncestorCount</strong>: search of tree stops when about to descend deeper than the ancestor count</li>
+      <li><strong>Showing</strong>: element and all its parents are visible (although may be occluded)</li>
+      <li><em>The following can significantly improve performance: - descendtree - match index - match reverse - ancestorcount</em></li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="web-services">Web Services</h1>
+
+<ol>
+  <li>
+    <p>Objects and Processes can be exposed as web services using WSDL</p>
+
+    <ul>
+      <li>can be encrpyted using certificates</li>
+      <li>a proxy can route requests for you to different machines</li>
+    </ul>
+  </li>
+  <li>
+    <p>Accessible from http://[machinename]:<port>/ws/</port></p>
+  </li>
+  <li>
+    <p>BP can also consume web services through SOAP</p>
+  </li>
+</ol>
+
+<h1 id="mainframe-automation">Mainframe Automation</h1>
+
+<ol>
+  <li>
+    <p>You must specify a session identifier when starting or attaching to a mainframe session</p>
+  </li>
+  <li>
+    <p>It’s not always possible to tell how long a field is, so spy to the right of the screen and trim later</p>
+  </li>
+  <li>
+    <p>IBM keywords: [enter], [delete], [pf1]</p>
+  </li>
+  <li>
+    <p>Powerterm Attatchmate: @E, @D, @1</p>
+  </li>
+</ol>
+
+<h1 id="exception-handling">Exception Handling</h1>
+
+<ol>
+  <li>
+    <p>General:</p>
+
+    <ul>
+      <li>Types: system, business, (validation, login, system unavailable)</li>
+      <li>Use a multi-calc after recover to store ExceptionType() and ExceptionDetail() to a data item</li>
+      <li>Minimal exception handling should be in the object layer</li>
+      <li>Use Retry Limits (be careful about ending up with 3x3x3 retries if you do this on object, sub-page, and page layers – you could use an input parameter to the page to dictate number of retries)</li>
+      <li><strong>if an exception isn’t recovered before another is thrown, this next exception will be unrecoveable - always recover-resume</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Preserving details</p>
+
+    <ul>
+      <li><strong>when checked</strong>, the exception <strong>‘re-releases’</strong> the exception <em>as though it had never been recovered</em></li>
+      <li><strong>when unchecked</strong>, a new exception is generated</li>
+    </ul>
+  </li>
+  <li>
+    <p>Business Objects</p>
+
+    <ul>
+      <li>(apparently) if an attach fails it can be reasonably assumed that an application isn’t running</li>
+      <li>you could use a multi-condition wait to determine whether an exception is a system issue, data validation or privilege-based - rather than just throwing a generic exception, we could pass as an output data item</li>
+    </ul>
+  </li>
+  <li>
+    <p>Queue Items</p>
+    <ul>
+      <li>the Mark Exception action has inputs <strong>Retry</strong> and <strong>Keep Locked</strong>, which can be used to retry cases</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="work-queues">Work Queues</h1>
+
+<ol>
+  <li>
+    <p>Syntax:</p>
+
+    <ul>
+      <li>
+        <ul>
+          <li>
+            <ul>
+              <li>? * ;</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Status:</p>
+
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Update Status</em></li>
+      <li>can be retrieved as output to <em>Get Next Item</em></li>
+    </ul>
+  </li>
+  <li>
+    <p>Priority:</p>
+
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Set Priority</em></li>
+      <li>Priority <strong>1</strong> is highest</li>
+    </ul>
+  </li>
+  <li>
+    <p>Work queues are <strong>not encrypted by default</strong>, but can be encrypted</p>
+  </li>
+  <li>
+    <p>Deferring or Multiple Queues?</p>
+
+    <ul>
+      <li>Defer if separation period is just a few minutes</li>
+      <li>Use second queue if separation period is longer (days etc)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Parent/child queues</p>
+    <ul>
+      <li>you need a <strong>relationship key</strong> (parent’s ID) on each child</li>
+    </ul>
+  </li>
+</ol>
+
+<p>7 Loading from a workflow system, use env locks to either: - lock and load all cases - lock an individual item and load it</p>
+
+  </div>
+  
+  <div class="colophon">
+    <p>
+      <span id="pub-date">Published on 04 Jan 2019</span> <span class="separator"><!--&bull;--></span>
       <!--<span id="social">Find me on <a href="http://github.com/hamishll">GitHub</a>!</span>-->
     </p>
   </div>

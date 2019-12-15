@@ -1,12 +1,12 @@
 ---
 layout: post
 title: matsci.online
-author: Hamish 
+author: Hamish
 cover: cover_matsci.png
-date:   2017-02-18 12:00:00
+date: 2017-02-18 12:00:00
 categories: posts
 topic: posts
-size: wide
+size:
 score: 0
 ---
 

@@ -4,7 +4,7 @@ layout: post
 author: Hamish Leith
 cover: null.png
 date: 2019-01-04 12:00:00
-topic: post
+topic: posts
 size:
 score: 10
 ---
