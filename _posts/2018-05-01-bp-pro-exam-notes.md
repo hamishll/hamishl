@@ -6,7 +6,7 @@ cover: null.png
 date: 2019-01-04 12:00:00
 topic: posts
 size:
-score: 0
+score: 10
 ---
 
 # Best Practice

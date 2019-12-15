@@ -90,8 +90,8 @@
     width: 100%;
     font-size: 1.25rem;
 }
-.button-group:first-child { text-align: center; }
-.button-group:last-child { text-align: center; }
+.button-group:first-child { text-align: left; }
+.button-group:last-child { text-align: left; }
 
   #cover-photo-container {
     text-align: center;
