@@ -3,7 +3,7 @@ layout: post
 title: How to Win Friends and Influence People
 author: Dale Carnegie
 cover: null.png
-date:   2017-01-01 12:00:00
+date:   2016-06-01 12:00:00
 categories: posts
 topic: people
 starred: true

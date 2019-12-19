@@ -3,10 +3,10 @@ layout: post
 title: How to Stop Worrying and Start Living
 author: Dale Carnegie
 cover: null.png
-date:   2017-01-01 12:00:00
+date:   2017-03-01 12:00:00
 categories: posts
 topic: mindset
-score: 10
+score: 9.5
 ---
 
 # In a nutshell

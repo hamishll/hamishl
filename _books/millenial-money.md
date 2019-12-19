@@ -3,7 +3,7 @@ layout: post
 title: Millenial Money
 author: O'Shaughnessy
 cover: null.png
-date:   2017-01-01 12:00:00
+date:   2018-09-22 12:00:00
 categories: posts
 topic: finance
 score: 8

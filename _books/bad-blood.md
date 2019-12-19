@@ -3,8 +3,10 @@ layout: post
 title: Bad Blood
 author: John Carreyrou
 cover: null.png
-date:   2019-02-04 12:00:00
-topic: draft
+date:   2019-04-02 12:00:00
+topic: business
 size: 
-score: 8
+score: 9
 ---
+
+I couldn't put this book down, it's a total thriller, and the best part is it all actually happened! 

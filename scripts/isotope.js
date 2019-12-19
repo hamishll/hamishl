@@ -15,12 +15,14 @@ var $grid = $('.grid').isotope({
     author: '.card-text',
     topic: '.card-topic',
     score: '.score parseInt',
+    date: ".date"
   },
   sortAscending: {
     title: true,
     author: true,
     topic: true,
     score: false,
+    date: false
   }
 });
 

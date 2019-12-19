@@ -3,7 +3,7 @@ layout: post
 title: Think and Grow Rich
 author: Napoleon Hill
 cover: null.png
-date:   2017-01-01 12:00:00
+date:   2019-01-04 12:00:00
 categories: posts
 topic: mindset
 score: 8

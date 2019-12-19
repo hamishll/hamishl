@@ -3,7 +3,7 @@ layout: post
 title: Rich Dad, Poor Dad
 author: Kiyosaki
 cover: null.png
-date:   2017-01-01 12:00:00
+date:   2018-10-01 12:00:00
 topic: finance
 starred: true
 size: 

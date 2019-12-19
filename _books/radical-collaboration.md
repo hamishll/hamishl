@@ -3,7 +3,7 @@ layout: post
 title: Radical Collaboration
 author: Luyet Tamm
 cover: null.png
-date:   2017-01-01 12:00:00
+date:   2018-09-22 12:00:00
 categories: posts
 topic: people
 score: 6

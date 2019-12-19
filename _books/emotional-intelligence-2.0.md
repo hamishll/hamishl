@@ -3,7 +3,7 @@ layout: post
 title: Emotional Intelligence 2.0
 author: Travis Bradberry, Jean Greaves
 cover: null.png
-date:   2017-07-19 12:00:00
+date:   2018-07-19 12:00:00
 topic: people
 score: 5
 ---

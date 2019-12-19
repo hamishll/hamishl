@@ -3,7 +3,7 @@ layout: post
 title: The Picture of Dorian Gray
 author: Oscar Wilde
 cover: null.png
-date:   2019-01-17 12:00:00
+date:   2012-07-17 12:00:00
 categories: posts
 topic: fiction
 size: 
