@@ -40,53 +40,9 @@
   <body>
     
       <div class="nav">
-        <!-- <a href="/"><i class="material-icons md-48">&#xE867;</i></a> -->
         <a href="/"><img width="25px" src="/images/logo2021.png"></a>
     </div>
-      <!-- Sidebar -->
-      <div class="sidebar" id="sidebar">
-        <!--<div class="header">
-          <a href="/">Home</a>
-        </div>-->
-        <div class="posts">
-          <ul class="posts-list">
-            {% assign items = site.books | sort: 'topic' | reverse %} {% for
-            item in items %}
-            <li class="post-link {{ item.starred }}">
-              <a class="post-title {{ item.topic }}" href="{{ item.url }}">
-                {{ item.title }}
-                <!--- <i>{{item.author}}</i>-->
-              </a>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="footer">
-          <span id="footer-links">
-            <a href="" target="_blank" class="footer-link">About</a>
-            <span class="separator">&bull;</span>
-            <a
-              href="http://linkedin.com/in/hamishleith"
-              target="_blank"
-              class="footer-link"
-              >LinkedIn</a
-            >
-            <span class="separator">&bull;</span>
-            <a
-              href="http://github.com/hamishll"
-              target="_blank"
-              class="footer-link"
-              >GitHub</a
-            >
-          </span>
-        </div>
-      </div>
-      <div class="navbar">
-        
-      </div>
-      <div id="sidebar-button">
-        <img width="20px" src="/images/menu.svg" />
-      </div>
+
       <div class="main">
         <!-- Main Content -->
         {{ content }}

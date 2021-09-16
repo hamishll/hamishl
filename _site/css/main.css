@@ -152,7 +152,7 @@ a:active {
   height: 50px;
   padding: 12px;
   width: 100%;
-  background: var(--LightYellow);
+  background: hsla(0,0%,100%,0);
   position: fixed;
   -webkit-backdrop-filter: blur(80px);
   backdrop-filter: blur(80px);
@@ -162,7 +162,7 @@ a:active {
 }
 
 .main {
-  max-width: 1300px;
+  max-width: 1271px;
   margin: auto auto auto auto;
   height: auto;
 }
@@ -170,7 +170,7 @@ a:active {
   text-align: left;
   margin: 2em;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
   gap: 10px;
 }
 .hero-text {
@@ -718,7 +718,7 @@ a.ind {
   /* background-color: teal; */
 }
 .button.sort.is-checked {
-  background: grey;
+  background: var(--Navy);
 }
 
 .button:active {
@@ -767,7 +767,7 @@ a.ind {
 .button-group .button:last-child { border-radius: 0 0.5em 0.5em 0; }
 */
 .all.is-checked {
-  background: grey;
+  background: var(--Navy);
   opacity: var(--CardOpacity);
 }
 .business.is-checked {

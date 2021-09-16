@@ -45,6 +45,7 @@
   #cover-photo-container {
     text-align: center;
   }
+ 
 
   #title {
     font-size: 2.5em;
@@ -83,6 +84,8 @@
   .logo {
     padding-top: 1.5em;
   }
+
+
   .navbar {
     height: 7.5em;
   }
