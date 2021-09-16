@@ -20,18 +20,23 @@ title: Home
   <br />
 </div>-->
 
-<div style="text-align:left;margin-left:2em">
-  <h1 id="heading">Book Notes</h1>
+<div class="hero">
+  <div class="hero-text">
+    <p id="heading">Notes on books, travel, coding, and automation</p>
+    <p style="font-size: 1.25em">The personal site of <b>Hamish Leith</b>, currently delivering Intelligent Automation at Ciklum. Previously IBM.</p>  
+  </div>
+  <div class="hero-img"></div>
 </div>
 
 <div class="title">
-  <div id="filters" class="button-group">
-    <button class="button is-checked" data-filter="*">All</button>
-    <button class="button" data-filter=".mindset">Mindset</button>
-    <button class="button" data-filter=".people">People</button>
-    <button class="button" data-filter=".finance">Finance</button>
-    <button class="button" data-filter=".business">Business</button>
-    <button class="button" data-filter=".fiction">Fiction</button>
+  <div id="filters" class="button-group"><b>Filters</b>
+    <button class="button all is-checked" data-filter="*">All</button>
+    <button class="button mindset" data-filter=".mindset">Mindset</button>
+    <button class="button people" data-filter=".people">People</button>
+    <button class="button finance" data-filter=".finance">Finance</button>
+    <button class="button business" data-filter=".business">Business</button>
+    <button class="button fiction" data-filter=".fiction">Fiction</button>
+    <button class="button health" data-filter=".health">Health</button>
     <!--<button class="button" data-filter=".posts">Posts</button>-->
     <!--<button class="button" data-filter="ium">name ends with &ndash;ium</button>-->
   </div>
@@ -41,11 +46,13 @@ title: Home
   </div>
 
   <div id="sorts" class="button-group">
-    <button class="button is-checked" data-sort-by="score">Score</button>
-    <button class="button" data-sort-by="title">Title</button>
-    <button class="button" data-sort-by="author">Author</button>
-    <button class="button" data-sort-by="topic">Topic</button>
-    <button class="button" data-sort-by="date">Date</button>
+    <b>Sort by</b>
+    <button class="button sort is-checked" data-sort-by="score">Score</button>
+    <button class="button sort " data-sort-by="title">Title</button>
+    <button class="button sort" data-sort-by="author">Author</button>
+    <button class="button sort" data-sort-by="topic">Topic</button>
+    <button class="button sort" data-sort-by="date">Date</button>
+    
   </div>
 </div>
 
@@ -76,7 +83,7 @@ title: Home
   <!--<span style="color:#CCC">Count = {{ book_count.size }}</span>-->
 </div>
 
-
+<!-- 
 <div class="title" style="text-align:left;margin-left:2em">
   <h1 id="heading">Posts</h1>
 </div>
@@ -85,12 +92,12 @@ title: Home
   <div class="grid-sizer"></div>
   {% assign items = site.posts | sort: 'score' | reverse %} {% for item in items
   %}
-  <div class="card {{ item.topic }} {{ item.size }}">
+  <div class="card  {{ item.size }}">
     <a class="ind" href="{{ item.url }}">
       <div class="cover cover-{{ item.topic }}">
           {% if item.cover != "null.png" %}
-        <img src="/images/{{ item.cover }}" style="width:100%" />
-        {% endif %}
+            <img src="/images/{{ item.cover }}" style="width:100%" />
+          {% endif %}
       </div>
       <div class="padding">
         <h2 class="card-title">{{ item.title }}</h2>
@@ -102,7 +109,7 @@ title: Home
   </div>
 
   {% endfor %}
-</div>
+</div> -->
 
 <style>
   #sidebar-button {
