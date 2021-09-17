@@ -328,7 +328,6 @@ h1 {
 }
 
 .post h3 {
-  font-family: "Open Sans", "Arial", sans-serif;
   font-size: 1.2em;
   background: var(--Navy);
   padding: 0.5em;
@@ -455,7 +454,7 @@ ol li ul li.star {
 }
 
 #in-a-nutshell {
-  font-family: "Open Sans", "Arial", sans-serif;
+  /* font-family: "Open Sans", "Arial", sans-serif; */
   font-size: 1.2em;
   background: var(--Navy);
   padding: 0.5em;
@@ -465,13 +464,13 @@ ol li ul li.star {
 
 ul.nutshell,
 ol.nutshell {
-  background: var(--Grey);
+  background: #EEE;
   padding: 1em;
   color: var(--Navy);
 }
 ol.nutshell li {
   font-size: 1rem;
-  background: var(--Grey);
+  background: #EEE;
   font-weight: normal;
   margin: 0;
   padding: 0;
@@ -479,7 +478,7 @@ ol.nutshell li {
 
 p.nutshell {
   line-height: 1.5em;
-  background: var(--Grey);
+  background: #EEE;
   padding: 1em;
   color: var(--Navy);
 }
@@ -563,7 +562,7 @@ table {
 }
 
 .header {
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
   font-size: 2em;
   padding: 1.75rem 0 0.5rem 1rem;
   font-weight: 700;
