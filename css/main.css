@@ -10,7 +10,7 @@
   --DarkGreen: #06d6a0;
   --Green: rgb(180, 229, 148);
   --LightGreen: rgb(236, 251, 228);
-  --Grey: rgb(224, 224, 224);
+  --Grey: rgb(32, 69, 151);
   --Red: rgb(220, 60, 130);
   --DarkYellow: rgb(242, 185, 89);
   --CardOpacity: 1;
@@ -672,7 +672,7 @@ a.post-title:hover {
 .score {
   text-align: right;
   font-size: 3em;
-  color: #eee;
+  color: lightgrey;
   font-weight: bold;
   float: right;
   position: absolute;
@@ -713,41 +713,16 @@ a.ind {
   margin: 0;
   padding: 0;
 }
-/* .card.business {
-  border: 1px solid var(--Orange);
-}
-.card.people {
-  border: 1px solid var(--Red);
-}
-.card.mindset {
-  border: 1px solid var(--Blue);
-}
-.card.finance {
-  border: 1px solid var(--DarkGreen);
-}
-.card.health {
-  border: 1px solid purple;
-}
-.card.posts {
-  border: 1px solid var(--DarkBlue);
-}
-.card.fiction {
-  border: 1px solid var(--DarkYellow);
-}
-.card.draft {
-  border: 1px dashed #aaa;
-} */
+
 .card.post.card-title {
   font-family: "Playfair Display", serif;
 }
 
 
-
-
 /* ---- button ---- */
 
 button {
-  font-size: 1rem;
+  font-size: 0.9em;
   font-family: 'Inter', sans-serif;
 }
 .title {
@@ -792,7 +767,7 @@ button {
 /* ---- button-group ---- */
 
 .button-group {
-  font-size: 1.1rem;
+  font-size: 1rem;
   /*  height: 60px;*/
   display: inline-block;
   /*margin-top: 0.5em;*/
@@ -864,10 +839,11 @@ button {
   background: var(--Yellow);
   opacity: var(--CardOpacity);
 }
-.draft.is-checked {
+.science.is-checked {
   background: var(--Grey);
   opacity: var(--CardOpacity);
 }
+
 
 
 .cover-business {
@@ -898,7 +874,7 @@ button {
   background: var(--Yellow);
   opacity: var(--CardOpacity);
 }
-.cover-draft {
+.cover-science {
   background: var(--Grey);
   opacity: var(--CardOpacity);
 }

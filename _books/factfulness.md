@@ -5,7 +5,7 @@ author: Hans Rosling
 cover: null.png
 date:   2019-01-17 12:00:00
 categories: posts
-topic: draft
+topic: science
 size: 
 score: 8
 ---
