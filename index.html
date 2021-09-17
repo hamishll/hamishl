@@ -12,8 +12,13 @@ title: Home
 </div>
 
 <div class="title">
-  <div id="filters" class="button-group"><b>Filters</b>
+  <div id="filters" class="button-group">
+    <b>Post Filters</b>
     <button class="button all is-checked" data-filter="*">All</button>
+    <button class="button health" data-filter=".travel">Travel</button>
+    <button class="button finance" data-filter=".coding">Coding</button>
+    <button class="button business" data-filter=".automation">Automation</button>
+    <b>Book Filters</b>
     <button class="button mindset" data-filter=".mindset">Mindset</button>
     <button class="button people" data-filter=".people">People</button>
     <button class="button finance" data-filter=".finance">Finance</button>
@@ -26,11 +31,11 @@ title: Home
 
   <div id="sorts" class="button-group">
     <b>Sort by</b>
-    <button class="button sort is-checked" data-sort-by="score">Score</button>
-    <button class="button sort " data-sort-by="title">Title</button>
-    <button class="button sort" data-sort-by="author">Author</button>
-    <button class="button sort" data-sort-by="topic">Topic</button>
-    <button class="button sort" data-sort-by="date">Date</button>
+    <button class="button sort is-checked" data-sort-by="date">Date</button>
+    <button class="button sort" data-sort-by="score">Score</button>
+    <!-- <button class="button sort " data-sort-by="title">Title</button> -->
+    <!-- <button class="button sort" data-sort-by="author">Author</button>
+    <button class="button sort" data-sort-by="topic">Topic</button> -->
     
   </div>
 </div>
@@ -38,13 +43,15 @@ title: Home
 <div class="grid">
   <div class="grid-sizer"></div>
   {% assign book_count = '' %}
-  {% assign items = site.books | sort: 'score' | reverse %} {% for item in items
+  {% assign items = site.books | sort: 'date' | reverse %} {% for item in items
   %}
   {% assign book_count = book_count | append: 'x' %}
   <div class="card {{ item.topic }} {{ item.size }}">
     <a class="ind" href="{{ item.url }}">
       <div class="cover cover-{{ item.topic }}">
-        <!--<img src="/images/{{ item.cover }}" />-->
+        {% if item.cover != null and item.cover != "null.png" %}
+          <img style="object-fit: cover; width: 100%; height: 100%" src="/images/{{ item.cover }}" />
+        {% endif %}
       </div>
       <div class="padding">
         <h2 class="card-title">{{ item.title }}</h2>
@@ -52,43 +59,18 @@ title: Home
         <p class="card-topic">
           <a class="{{ item.topic }}">{{ item.topic }}</a>
         </p>
+        {% if item.author != null %}
         <p class="score">{{ item.score }}</p>
+        {% endif %}
         <a class="date" style="display:none">{{ item.date }}</a>
       </div>
     </a>
   </div>
 
   {% endfor %}
-  <!--<span style="color:#CCC">Count = {{ book_count.size }}</span>-->
 </div>
 
-<!-- 
-<div class="title" style="text-align:left;margin-left:2em">
-  <h1 id="heading">Posts</h1>
-</div>
 
-<div class="grid2">
-  <div class="grid-sizer"></div>
-  {% assign items = site.posts | sort: 'score' | reverse %} {% for item in items
-  %}
-  <div class="card  {{ item.size }}">
-    <a class="ind" href="{{ item.url }}">
-      <div class="cover cover-{{ item.topic }}">
-          {% if item.cover != "null.png" %}
-            <img src="/images/{{ item.cover }}" style="width:100%" />
-          {% endif %}
-      </div>
-      <div class="padding">
-        <h2 class="card-title">{{ item.title }}</h2>
-        <p class="card-topic">
-          <a class="{{ item.topic }}">{{ item.topic }}</a>
-        </p>
-      </div>
-    </a>
-  </div>
-
-  {% endfor %}
-</div> -->
 
 <style>
   #sidebar-button {

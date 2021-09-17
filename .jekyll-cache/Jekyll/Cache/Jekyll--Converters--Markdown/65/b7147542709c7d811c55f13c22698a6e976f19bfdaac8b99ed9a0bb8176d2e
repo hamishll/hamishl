@@ -1,0 +1,212 @@
+I"f<h1 id="best-practice">Best Practice</h1>
+
+<ol>
+  <li>Objects
+    <ul>
+      <li>Naming convention: <em>{App Name} - {Screen Name}</em></li>
+      <li>You can never have too many objects, only too few.  Advantages:
+        <ul>
+          <li>App Modeller is smaller and less prone to error</li>
+          <li>A running process consumes only the actions it requires</li>
+          <li>Many developers can work concurrently</li>
+          <li>Changes to object layer have less downstream risk</li>
+        </ul>
+      </li>
+      <li>Stage design:
+        <ul>
+          <li>Always begin with element wait stage, tHis should always throw exception on timeout</li>
+          <li>Perform action</li>
+          <li>Wait for change; don’t use arbitrary waits</li>
+          <li>Do not call published actions within the action</li>
+          <li>Do not make business decisions in the object</li>
+          <li>Provide descriptions to inputs/outputs, this improves quality of the automatically generated documentation</li>
+          <li>Store globals on the <strong>Initialise</strong> page</li>
+          <li>App Model naming convention: *{Element Type} - {Element Name}</li>
+          <li>Delete customer confidential, and environment specific attributes</li>
+        </ul>
+      </li>
+      <li>Exposure
+        <ul>
+          <li>background: multiple instances of that object can run</li>
+          <li>foreground: only one instance of that object can run, and can run at same time as other background objects</li>
+          <li>exclusive: only this instance of object can run, and no others</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Processes
+    <ul>
+      <li>Naming convention: <em>01 - Create Queue</em> (number if called chronologically</li>
+      <li>Page Design:
+        <ul>
+          <li>use sub-pages, with retry loops</li>
+          <li>add Stop? decision between queue items</li>
+          <li>have a main page exception block</li>
+          <li>check for concurrent exceptions (++count if same as previous)</li>
+          <li>use environment variables and work queue tags</li>
+          <li><em>use the process templates!</em></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="java-automation">Java Automation</h1>
+
+<ol>
+  <li>Getting started
+    <ul>
+      <li>JAB is required to access Java’s Accessibility API</li>
+      <li>You may need to launch java apps from command line and attach after</li>
+      <li>Restarting Java apps, and restarting the resource PC may reduce errors as this resets Java’s leaky memory issues</li>
+    </ul>
+  </li>
+  <li>Application Wizard parameters
+    <ul>
+      <li><strong>descendtree</strong> makes BP search the whole application model, not just visible elements - <em>use if spied elements are causing crashes</em></li>
+      <li><strong>ignorenotshowing</strong> makes BP search only for visible elements</li>
+      <li>enter these in plain text, with a comma between <strong>descendtree,ignorenotshowing</strong></li>
+    </ul>
+  </li>
+  <li>Interfacing
+    <ul>
+      <li>Wait stages require the app model to be traversed which is resource-hungry. Avoid:
+        <ul>
+          <li>Overly-long waits, as they will be continually checking for element</li>
+          <li>Multiple-condition waits</li>
+          <li>Spy pop-ups in Win32 instead</li>
+        </ul>
+      </li>
+      <li>Application Navigator can be used to view the whole model</li>
+    </ul>
+  </li>
+  <li>App Model Attributes
+    <ul>
+      <li><strong>Match Index</strong>: matches the Nth instance of an element</li>
+      <li><strong>AncestorCount</strong>: search of tree stops when about to descend deeper than the ancestor count</li>
+      <li><strong>Showing</strong>: element and all its parents are visible (although may be occluded)</li>
+      <li>*The following can significantly improve performance:
+        <ul>
+          <li>descendtree</li>
+          <li>match index</li>
+          <li>match reverse</li>
+          <li>ancestorcount*</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="web-services">Web Services</h1>
+
+<ol>
+  <li>Objects and Processes can be exposed as web services using WSDL
+    <ul>
+      <li>can be encrpyted using certificates</li>
+      <li>a proxy can route requests for you to different machines</li>
+    </ul>
+  </li>
+  <li>
+    <p>Accessible from http://[machinename]:<port>/ws/</port></p>
+  </li>
+  <li>BP can also consume web services through SOAP</li>
+</ol>
+
+<h1 id="mainframe-automation">Mainframe Automation</h1>
+
+<ol>
+  <li>
+    <p>You must specify a session identifier when starting or attaching to a mainframe session</p>
+  </li>
+  <li>
+    <p>It’s not always possible to tell how long a field is, so spy to the right of the screen and trim later</p>
+  </li>
+  <li>
+    <p>IBM keywords: [enter], [delete], [pf1]</p>
+  </li>
+  <li>
+    <p>Powerterm Attatchmate: @E, @D, @1</p>
+  </li>
+</ol>
+
+<h1 id="exception-handling">Exception Handling</h1>
+
+<ol>
+  <li>General:
+    <ul>
+      <li>Types: system, business, (validation, login, system unavailable)</li>
+      <li>Use a multi-calc after recover to store ExceptionType() and ExceptionDetail() to a data item</li>
+      <li>Minimal exception handling should be in the object layer</li>
+      <li>Use Retry Limits (be careful about ending up with 3x3x3 retries if you do this on object, sub-page, and page layers – you could use an input parameter to the page to dictate number of retries)</li>
+      <li><strong>if an exception isn’t recovered before another is thrown, this next exception will be unrecoveable - always recover-resume</strong></li>
+    </ul>
+  </li>
+  <li>Preserving details
+    <ul>
+      <li><strong>when checked</strong>, the exception <strong>‘re-releases’</strong> the exception <em>as though it had never been recovered</em></li>
+      <li><strong>when unchecked</strong>, a new exception is generated</li>
+    </ul>
+  </li>
+  <li>Business Objects
+    <ul>
+      <li>(apparently) if an attach fails it can be reasonably assumed that an application isn’t running</li>
+      <li>you could use a multi-condition wait to determine whether an exception is a system issue, data validation or privilege-based - rather than just throwing a generic exception, we could pass as an output data item</li>
+    </ul>
+  </li>
+  <li>Queue Items
+    <ul>
+      <li>the Mark Exception action has inputs <strong>Retry</strong> and <strong>Keep Locked</strong>, which can be used to retry cases</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="work-queues">Work Queues</h1>
+
+<ol>
+  <li>Syntax:
+    <ul>
+      <li>
+        <ul>
+          <li>
+            <ul>
+              <li>?  *  ;</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Status:
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Update Status</em></li>
+      <li>can be retrieved as output to <em>Get Next Item</em></li>
+    </ul>
+  </li>
+  <li>Priority:
+    <ul>
+      <li>can be set when using <em>Add to Queue</em></li>
+      <li>can be updated with the action <em>Set Priority</em></li>
+      <li>Priority <strong>1</strong> is highest</li>
+    </ul>
+  </li>
+  <li>
+    <p>Work queues are <strong>not encrypted by default</strong>, but can be encrypted</p>
+  </li>
+  <li>Deferring or Multiple Queues?
+    <ul>
+      <li>Defer if separation period is just a few minutes</li>
+      <li>Use second queue if separation period is longer (days etc)</li>
+    </ul>
+  </li>
+  <li>Parent/child queues
+    <ul>
+      <li>you need a <strong>relationship key</strong> (parent’s ID) on each child</li>
+    </ul>
+  </li>
+</ol>
+
+<p>7 Loading from a workflow system, use env locks to either:
+	- lock and load all cases
+	- lock an individual item and load it</p>
+:ET

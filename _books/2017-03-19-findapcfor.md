@@ -5,9 +5,9 @@ cover: cover_findapcforme.png
 author: Hamish 
 date:   2017-03-19 12:00:00
 categories: posts
-topic: posts
+topic: coding
 size: wide
-score: 6
+score: 0
 ---
 
 ## Introduction

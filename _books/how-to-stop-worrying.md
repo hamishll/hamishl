@@ -6,7 +6,7 @@ cover: null.png
 date:   2017-03-01 12:00:00
 categories: posts
 topic: mindset
-score: 9.5
+score: 9
 ---
 
 # In a nutshell

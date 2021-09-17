@@ -189,6 +189,10 @@ a:active {
   color: #777;
   font-weight: normal;
 }
+.nav-s a:hover {
+  text-decoration: underline;
+  color: var(--Navy);
+}
 .nav-1 {
   grid-column: 2;
   grid-row: 1;

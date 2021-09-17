@@ -4,7 +4,7 @@ title: Stumbling on Happiness
 author: Daniel Gilbert
 cover: null.png
 date:   2019-11-04 12:00:00
-topic: draft
+topic: mindset
 size: 
 score: 8
 ---
@@ -20,7 +20,8 @@ Text
 -	The frontal lobe is where we conceive the future and plan things. 
 -	People with damage to the frontal lobe (perhaps from a lobotomy) are generally free from anxiety
 
-2.	Lacking a feeling of control can be a source of worry
+2. Lacking a feeling of control can be a source of worry
+-  .
 
 
 3.	Presentism

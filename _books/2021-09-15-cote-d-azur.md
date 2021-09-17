@@ -1,13 +1,13 @@
 ---
 layout: post
 title: Cote d'Azur
-cover: 
+cover: cote-d-azur.jpg
 author: 
 date:   2021-09-15 12:00:00
 categories: posts
 topic: travel
 size: 
-score: 10
+score: 0
 ---
 
 

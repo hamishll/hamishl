@@ -39,11 +39,11 @@
   </head>
   <body>
       <div class="nav">
-        <div class="nav-1 nav-s"><a href="#">Home</a></div>
-        <div class="nav-2 nav-s"><a href="#">About</a></div>
+        <div class="nav-1 nav-s"><a href="/">Home</a></div>
+        <div class="nav-2 nav-s"><a href="/">About</a></div>
         <div class="nav-3 nav-s"><a href="/"><img width="25px" src="/images/logo2021.png"></a></div>
-        <div class="nav-4 nav-s"><a href="#">GitHub</a></div>
-        <div class="nav-5 nav-s"><a href="#">Twitter</a></div>
+        <div class="nav-4 nav-s"><a href="https://github.com/hamishll">GitHub</a></div>
+        <div class="nav-5 nav-s"><a href="https://twitter.com/hamish_leith">Twitter</a></div>
       </div>
 
       <div class="main">
@@ -57,8 +57,13 @@
 </div>
 
 <div class="title">
-  <div id="filters" class="button-group"><b>Filters</b>
+  <div id="filters" class="button-group">
+    <b>Post Filters</b>
     <button class="button all is-checked" data-filter="*">All</button>
+    <button class="button health" data-filter=".travel">Travel</button>
+    <button class="button finance" data-filter=".coding">Coding</button>
+    <button class="button business" data-filter=".automation">Automation</button>
+    <b>Book Filters</b>
     <button class="button mindset" data-filter=".mindset">Mindset</button>
     <button class="button people" data-filter=".people">People</button>
     <button class="button finance" data-filter=".finance">Finance</button>
@@ -71,11 +76,11 @@
 
   <div id="sorts" class="button-group">
     <b>Sort by</b>
-    <button class="button sort is-checked" data-sort-by="score">Score</button>
-    <button class="button sort " data-sort-by="title">Title</button>
-    <button class="button sort" data-sort-by="author">Author</button>
-    <button class="button sort" data-sort-by="topic">Topic</button>
-    <button class="button sort" data-sort-by="date">Date</button>
+    <button class="button sort is-checked" data-sort-by="date">Date</button>
+    <button class="button sort" data-sort-by="score">Score</button>
+    <!-- <button class="button sort " data-sort-by="title">Title</button> -->
+    <!-- <button class="button sort" data-sort-by="author">Author</button>
+    <button class="button sort" data-sort-by="topic">Topic</button> -->
     
   </div>
 </div>
@@ -85,29 +90,12 @@
   
    
   
-  <div class="card mindset ">
-    <a class="ind" href="/books/a-guide-to-the-good-life.html">
-      <div class="cover cover-mindset">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">A Guide to the Good Life</h2>
-        <p class="card-text">William Irvine</p>
-        <p class="card-topic">
-          <a class="mindset">mindset</a>
-        </p>
-        <p class="score">10</p>
-        <a class="date" style="display:none">2017-08-01 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
   <div class="card travel ">
     <a class="ind" href="/books/2021-09-15-cote-d-azur.html">
       <div class="cover cover-travel">
-        <!--<img src="/images/" />-->
+        
+          <img style="object-fit: cover; width: 100%; height: 100%" src="/images/cote-d-azur.jpg" />
+        
       </div>
       <div class="padding">
         <h2 class="card-title">Cote d'Azur</h2>
@@ -115,7 +103,7 @@
         <p class="card-topic">
           <a class="travel">travel</a>
         </p>
-        <p class="score">10</p>
+        
         <a class="date" style="display:none">2021-09-15 13:00:00 +0100</a>
       </div>
     </a>
@@ -123,152 +111,21 @@
 
   
   
-  <div class="card mindset ">
-    <a class="ind" href="/books/how-to-stop-worrying.html">
-      <div class="cover cover-mindset">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">How to Stop Worrying and Start Living</h2>
-        <p class="card-text">Dale Carnegie</p>
-        <p class="card-topic">
-          <a class="mindset">mindset</a>
-        </p>
-        <p class="score">9.5</p>
-        <a class="date" style="display:none">2017-03-01 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card business ">
-    <a class="ind" href="/books/bad-blood.html">
-      <div class="cover cover-business">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Bad Blood</h2>
-        <p class="card-text">John Carreyrou</p>
-        <p class="card-topic">
-          <a class="business">business</a>
-        </p>
-        <p class="score">9</p>
-        <a class="date" style="display:none">2019-04-02 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card fiction ">
-    <a class="ind" href="/books/catch-22.html">
-      <div class="cover cover-fiction">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Catch 22</h2>
-        <p class="card-text">Joseph Heller</p>
-        <p class="card-topic">
-          <a class="fiction">fiction</a>
-        </p>
-        <p class="score">9</p>
-        <a class="date" style="display:none">2017-01-15 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card people ">
-    <a class="ind" href="/books/how-to-win.html">
-      <div class="cover cover-people">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">How to Win Friends and Influence People</h2>
-        <p class="card-text">Dale Carnegie</p>
-        <p class="card-topic">
-          <a class="people">people</a>
-        </p>
-        <p class="score">9</p>
-        <a class="date" style="display:none">2016-06-01 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card fiction ">
-    <a class="ind" href="/books/dune.html">
-      <div class="cover cover-fiction">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Dune</h2>
-        <p class="card-text">Frank herbert</p>
-        <p class="card-topic">
-          <a class="fiction">fiction</a>
-        </p>
-        <p class="score">9</p>
-        <a class="date" style="display:none">2019-02-17 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card health ">
-    <a class="ind" href="/books/why-we-sleep.html">
-      <div class="cover cover-health">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Why We Sleep</h2>
-        <p class="card-text">Matthew Walker</p>
-        <p class="card-topic">
-          <a class="health">health</a>
-        </p>
-        <p class="score">9</p>
-        <a class="date" style="display:none">2019-06-02 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card finance ">
-    <a class="ind" href="/books/millenial-money.html">
-      <div class="cover cover-finance">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Millenial Money</h2>
-        <p class="card-text">O'Shaughnessy</p>
-        <p class="card-topic">
-          <a class="finance">finance</a>
-        </p>
-        <p class="score">8</p>
-        <a class="date" style="display:none">2018-09-22 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
   <div class="card draft ">
-    <a class="ind" href="/books/educated.html">
+    <a class="ind" href="/books/prisoners-of-geography.html">
       <div class="cover cover-draft">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
-        <h2 class="card-title">Educated</h2>
-        <p class="card-text">Tara Westover</p>
+        <h2 class="card-title">Prisoners of Geography</h2>
+        <p class="card-text">Tim Marshall</p>
         <p class="card-topic">
           <a class="draft">draft</a>
         </p>
-        <p class="score">8</p>
-        <a class="date" style="display:none">2019-06-01 13:00:00 +0100</a>
+        
+        <p class="score">7</p>
+        
+        <a class="date" style="display:none">2019-12-30 12:00:00 +0000</a>
       </div>
     </a>
   </div>
@@ -278,7 +135,7 @@
   <div class="card fiction ">
     <a class="ind" href="/books/the-english-patient.html">
       <div class="cover cover-fiction">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
         <h2 class="card-title">The English Patient</h2>
@@ -286,7 +143,9 @@
         <p class="card-topic">
           <a class="fiction">fiction</a>
         </p>
+        
         <p class="score">8</p>
+        
         <a class="date" style="display:none">2019-12-07 12:00:00 +0000</a>
       </div>
     </a>
@@ -294,18 +153,20 @@
 
   
   
-  <div class="card draft ">
+  <div class="card mindset ">
     <a class="ind" href="/books/stumbling-on-happiness.html">
-      <div class="cover cover-draft">
-        <!--<img src="/images/null.png" />-->
+      <div class="cover cover-mindset">
+        
       </div>
       <div class="padding">
         <h2 class="card-title">Stumbling on Happiness</h2>
         <p class="card-text">Daniel Gilbert</p>
         <p class="card-topic">
-          <a class="draft">draft</a>
+          <a class="mindset">mindset</a>
         </p>
+        
         <p class="score">8</p>
+        
         <a class="date" style="display:none">2019-11-04 12:00:00 +0000</a>
       </div>
     </a>
@@ -313,19 +174,21 @@
 
   
   
-  <div class="card mindset ">
-    <a class="ind" href="/books/predictably-irrational.html">
-      <div class="cover cover-mindset">
-        <!--<img src="/images/null.png" />-->
+  <div class="card travel wide">
+    <a class="ind" href="/books/2019-12-15-india-2019.html">
+      <div class="cover cover-travel">
+        
+          <img style="object-fit: cover; width: 100%; height: 100%" src="/images/india.png" />
+        
       </div>
       <div class="padding">
-        <h2 class="card-title">Predictably Irrational</h2>
-        <p class="card-text">Dan Ariely</p>
+        <h2 class="card-title">Working in India</h2>
+        <p class="card-text"></p>
         <p class="card-topic">
-          <a class="mindset">mindset</a>
+          <a class="travel">travel</a>
         </p>
-        <p class="score">8</p>
-        <a class="date" style="display:none">2018-09-01 13:00:00 +0100</a>
+        
+        <a class="date" style="display:none">2019-10-19 13:00:00 +0100</a>
       </div>
     </a>
   </div>
@@ -333,18 +196,209 @@
   
   
   <div class="card fiction ">
-    <a class="ind" href="/books/the-picture-of-dorian-gray.html">
+    <a class="ind" href="/books/to-kill-a-mockingbird.html">
       <div class="cover cover-fiction">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
-        <h2 class="card-title">The Picture of Dorian Gray</h2>
-        <p class="card-text">Oscar Wilde</p>
+        <h2 class="card-title">To Kill a Mockingbird</h2>
+        <p class="card-text">Harper Lee</p>
         <p class="card-topic">
           <a class="fiction">fiction</a>
         </p>
+        
+        <p class="score">7</p>
+        
+        <a class="date" style="display:none">2019-07-15 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card draft ">
+    <a class="ind" href="/books/utopia-for-realists.html">
+      <div class="cover cover-draft">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Utopia for Realists</h2>
+        <p class="card-text">Rutger Bregman</p>
+        <p class="card-topic">
+          <a class="draft">draft</a>
+        </p>
+        
+        <p class="score">6</p>
+        
+        <a class="date" style="display:none">2019-06-30 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card health ">
+    <a class="ind" href="/books/why-we-sleep.html">
+      <div class="cover cover-health">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Why We Sleep</h2>
+        <p class="card-text">Matthew Walker</p>
+        <p class="card-topic">
+          <a class="health">health</a>
+        </p>
+        
+        <p class="score">9</p>
+        
+        <a class="date" style="display:none">2019-06-02 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card draft ">
+    <a class="ind" href="/books/educated.html">
+      <div class="cover cover-draft">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Educated</h2>
+        <p class="card-text">Tara Westover</p>
+        <p class="card-topic">
+          <a class="draft">draft</a>
+        </p>
+        
         <p class="score">8</p>
-        <a class="date" style="display:none">2012-07-17 13:00:00 +0100</a>
+        
+        <a class="date" style="display:none">2019-06-01 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card fiction ">
+    <a class="ind" href="/books/dune-messiah.html">
+      <div class="cover cover-fiction">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Dune Messiah</h2>
+        <p class="card-text">Frank herbert</p>
+        <p class="card-topic">
+          <a class="fiction">fiction</a>
+        </p>
+        
+        <p class="score">7</p>
+        
+        <a class="date" style="display:none">2019-04-17 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card business ">
+    <a class="ind" href="/books/bad-blood.html">
+      <div class="cover cover-business">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Bad Blood</h2>
+        <p class="card-text">John Carreyrou</p>
+        <p class="card-topic">
+          <a class="business">business</a>
+        </p>
+        
+        <p class="score">9</p>
+        
+        <a class="date" style="display:none">2019-04-02 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card fiction ">
+    <a class="ind" href="/books/dune.html">
+      <div class="cover cover-fiction">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Dune</h2>
+        <p class="card-text">Frank herbert</p>
+        <p class="card-topic">
+          <a class="fiction">fiction</a>
+        </p>
+        
+        <p class="score">9</p>
+        
+        <a class="date" style="display:none">2019-02-17 12:00:00 +0000</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card fiction ">
+    <a class="ind" href="/books/one-hundred-years-of-solitude.html">
+      <div class="cover cover-fiction">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">One Hundred Years of Solitude</h2>
+        <p class="card-text">Gabriel García Márquez</p>
+        <p class="card-topic">
+          <a class="fiction">fiction</a>
+        </p>
+        
+        <p class="score">6</p>
+        
+        <a class="date" style="display:none">2019-02-04 12:00:00 +0000</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card fiction ">
+    <a class="ind" href="/books/la-belle-sauvage.html">
+      <div class="cover cover-fiction">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">La Belle Sauvage</h2>
+        <p class="card-text">Philip Pullman</p>
+        <p class="card-topic">
+          <a class="fiction">fiction</a>
+        </p>
+        
+        <p class="score">6</p>
+        
+        <a class="date" style="display:none">2019-01-17 12:00:00 +0000</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card fiction ">
+    <a class="ind" href="/books/fahrenheit-451.html">
+      <div class="cover cover-fiction">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Fahrenheit 451</h2>
+        <p class="card-text">Ray Bradbury</p>
+        <p class="card-topic">
+          <a class="fiction">fiction</a>
+        </p>
+        
+        <p class="score">7</p>
+        
+        <a class="date" style="display:none">2019-01-17 12:00:00 +0000</a>
       </div>
     </a>
   </div>
@@ -354,7 +408,7 @@
   <div class="card draft ">
     <a class="ind" href="/books/factfulness.html">
       <div class="cover cover-draft">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
         <h2 class="card-title">Factfulness</h2>
@@ -362,8 +416,29 @@
         <p class="card-topic">
           <a class="draft">draft</a>
         </p>
+        
         <p class="score">8</p>
+        
         <a class="date" style="display:none">2019-01-17 12:00:00 +0000</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card automation ">
+    <a class="ind" href="/books/bp-pro-exam-notes.html">
+      <div class="cover cover-automation">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Blue Prism Professional Dev Exam Notes</h2>
+        <p class="card-text"></p>
+        <p class="card-topic">
+          <a class="automation">automation</a>
+        </p>
+        
+        <a class="date" style="display:none">2019-01-04 12:00:00 +0000</a>
       </div>
     </a>
   </div>
@@ -373,7 +448,7 @@
   <div class="card mindset ">
     <a class="ind" href="/books/think-and-grow-rich.html">
       <div class="cover cover-mindset">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
         <h2 class="card-title">Think and Grow Rich</h2>
@@ -381,7 +456,9 @@
         <p class="card-topic">
           <a class="mindset">mindset</a>
         </p>
+        
         <p class="score">8</p>
+        
         <a class="date" style="display:none">2019-01-04 12:00:00 +0000</a>
       </div>
     </a>
@@ -392,7 +469,7 @@
   <div class="card draft ">
     <a class="ind" href="/books/life-3.0.html">
       <div class="cover cover-draft">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
         <h2 class="card-title">Life 3.0</h2>
@@ -400,7 +477,9 @@
         <p class="card-topic">
           <a class="draft">draft</a>
         </p>
+        
         <p class="score">8</p>
+        
         <a class="date" style="display:none">2019-01-01 12:00:00 +0000</a>
       </div>
     </a>
@@ -411,7 +490,7 @@
   <div class="card fiction ">
     <a class="ind" href="/books/norwegian-wood.html">
       <div class="cover cover-fiction">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
         <h2 class="card-title">Norwegian Wood</h2>
@@ -419,217 +498,10 @@
         <p class="card-topic">
           <a class="fiction">fiction</a>
         </p>
+        
         <p class="score">8</p>
+        
         <a class="date" style="display:none">2018-12-22 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card business ">
-    <a class="ind" href="/books/grow.html">
-      <div class="cover cover-business">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Grow</h2>
-        <p class="card-text">Jim Stengel</p>
-        <p class="card-topic">
-          <a class="business">business</a>
-        </p>
-        <p class="score">7</p>
-        <a class="date" style="display:none">2017-08-08 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card draft ">
-    <a class="ind" href="/books/prisoners-of-geography.html">
-      <div class="cover cover-draft">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Prisoners of Geography</h2>
-        <p class="card-text">Tim Marshall</p>
-        <p class="card-topic">
-          <a class="draft">draft</a>
-        </p>
-        <p class="score">7</p>
-        <a class="date" style="display:none">2019-12-30 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card fiction ">
-    <a class="ind" href="/books/fahrenheit-451.html">
-      <div class="cover cover-fiction">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Fahrenheit 451</h2>
-        <p class="card-text">Ray Bradbury</p>
-        <p class="card-topic">
-          <a class="fiction">fiction</a>
-        </p>
-        <p class="score">7</p>
-        <a class="date" style="display:none">2019-01-17 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card finance ">
-    <a class="ind" href="/books/rich-dad-poor-dad.html">
-      <div class="cover cover-finance">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Rich Dad, Poor Dad</h2>
-        <p class="card-text">Kiyosaki</p>
-        <p class="card-topic">
-          <a class="finance">finance</a>
-        </p>
-        <p class="score">7</p>
-        <a class="date" style="display:none">2018-10-01 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card mindset ">
-    <a class="ind" href="/books/the-10x-rule.html">
-      <div class="cover cover-mindset">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">The 10x Rule</h2>
-        <p class="card-text">Cardone</p>
-        <p class="card-topic">
-          <a class="mindset">mindset</a>
-        </p>
-        <p class="score">7</p>
-        <a class="date" style="display:none">2018-09-22 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card finance ">
-    <a class="ind" href="/books/buffett-checklist.html">
-      <div class="cover cover-finance">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Buffett's Investment Checklist</h2>
-        <p class="card-text">Warren Buffett</p>
-        <p class="card-topic">
-          <a class="finance">finance</a>
-        </p>
-        <p class="score">7</p>
-        <a class="date" style="display:none">2017-03-01 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card fiction ">
-    <a class="ind" href="/books/dune-messiah.html">
-      <div class="cover cover-fiction">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Dune Messiah</h2>
-        <p class="card-text">Frank herbert</p>
-        <p class="card-topic">
-          <a class="fiction">fiction</a>
-        </p>
-        <p class="score">7</p>
-        <a class="date" style="display:none">2019-04-17 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card finance ">
-    <a class="ind" href="/books/7-habits-of-highly-effective-investors.html">
-      <div class="cover cover-finance">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">The 7 Habits of Highly Effective Investors</h2>
-        <p class="card-text">Bloomberg</p>
-        <p class="card-topic">
-          <a class="finance">finance</a>
-        </p>
-        <p class="score">7</p>
-        <a class="date" style="display:none">2017-07-19 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card fiction ">
-    <a class="ind" href="/books/to-kill-a-mockingbird.html">
-      <div class="cover cover-fiction">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">To Kill a Mockingbird</h2>
-        <p class="card-text">Harper Lee</p>
-        <p class="card-topic">
-          <a class="fiction">fiction</a>
-        </p>
-        <p class="score">7</p>
-        <a class="date" style="display:none">2019-07-15 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card business ">
-    <a class="ind" href="/books/hbr-10-must-reads.html">
-      <div class="cover cover-business">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">HBR's 10 Must Reads</h2>
-        <p class="card-text">HBR</p>
-        <p class="card-topic">
-          <a class="business">business</a>
-        </p>
-        <p class="score">6</p>
-        <a class="date" style="display:none">2018-11-01 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card mindset ">
-    <a class="ind" href="/books/7-habits-of-highly-effective-people.html">
-      <div class="cover cover-mindset">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">The 7 Habits of Highly Effective People</h2>
-        <p class="card-text">Stephen R. Covey</p>
-        <p class="card-topic">
-          <a class="mindset">mindset</a>
-        </p>
-        <p class="score">6</p>
-        <a class="date" style="display:none">2018-05-19 13:00:00 +0100</a>
       </div>
     </a>
   </div>
@@ -639,7 +511,7 @@
   <div class="card finance ">
     <a class="ind" href="/books/i-will-teach-you-to-be-rich.html">
       <div class="cover cover-finance">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
         <h2 class="card-title">I Will Teach You To Be Rich</h2>
@@ -647,141 +519,10 @@
         <p class="card-topic">
           <a class="finance">finance</a>
         </p>
+        
         <p class="score">6</p>
+        
         <a class="date" style="display:none">2018-11-01 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card mindset ">
-    <a class="ind" href="/books/drive.html">
-      <div class="cover cover-mindset">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Drive</h2>
-        <p class="card-text">Dan Pink</p>
-        <p class="card-topic">
-          <a class="mindset">mindset</a>
-        </p>
-        <p class="score">6</p>
-        <a class="date" style="display:none">2018-09-01 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card fiction ">
-    <a class="ind" href="/books/la-belle-sauvage.html">
-      <div class="cover cover-fiction">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">La Belle Sauvage</h2>
-        <p class="card-text">Philip Pullman</p>
-        <p class="card-topic">
-          <a class="fiction">fiction</a>
-        </p>
-        <p class="score">6</p>
-        <a class="date" style="display:none">2019-01-17 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card draft ">
-    <a class="ind" href="/books/utopia-for-realists.html">
-      <div class="cover cover-draft">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Utopia for Realists</h2>
-        <p class="card-text">Rutger Bregman</p>
-        <p class="card-topic">
-          <a class="draft">draft</a>
-        </p>
-        <p class="score">6</p>
-        <a class="date" style="display:none">2019-06-30 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card people ">
-    <a class="ind" href="/books/radical-collaboration.html">
-      <div class="cover cover-people">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Radical Collaboration</h2>
-        <p class="card-text">Luyet Tamm</p>
-        <p class="card-topic">
-          <a class="people">people</a>
-        </p>
-        <p class="score">6</p>
-        <a class="date" style="display:none">2018-09-22 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card business ">
-    <a class="ind" href="/books/back-of-the-napkin.html">
-      <div class="cover cover-business">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">The Back of The Napkin</h2>
-        <p class="card-text">Roam</p>
-        <p class="card-topic">
-          <a class="business">business</a>
-        </p>
-        <p class="score">6</p>
-        <a class="date" style="display:none">2017-06-01 13:00:00 +0100</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card posts wide">
-    <a class="ind" href="/books/2017-03-19-findapcfor.html">
-      <div class="cover cover-posts">
-        <!--<img src="/images/cover_findapcforme.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">findapcfor.me</h2>
-        <p class="card-text">Hamish</p>
-        <p class="card-topic">
-          <a class="posts">posts</a>
-        </p>
-        <p class="score">6</p>
-        <a class="date" style="display:none">2017-03-19 12:00:00 +0000</a>
-      </div>
-    </a>
-  </div>
-
-  
-  
-  <div class="card fiction ">
-    <a class="ind" href="/books/one-hundred-years-of-solitude.html">
-      <div class="cover cover-fiction">
-        <!--<img src="/images/null.png" />-->
-      </div>
-      <div class="padding">
-        <h2 class="card-title">One Hundred Years of Solitude</h2>
-        <p class="card-text">Gabriel García Márquez</p>
-        <p class="card-topic">
-          <a class="fiction">fiction</a>
-        </p>
-        <p class="score">6</p>
-        <a class="date" style="display:none">2019-02-04 12:00:00 +0000</a>
       </div>
     </a>
   </div>
@@ -791,7 +532,7 @@
   <div class="card business ">
     <a class="ind" href="/books/hbr-videos.html">
       <div class="cover cover-business">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
         <h2 class="card-title">Harvard Business Review Videos</h2>
@@ -799,8 +540,157 @@
         <p class="card-topic">
           <a class="business">business</a>
         </p>
+        
         <p class="score">5</p>
+        
         <a class="date" style="display:none">2018-11-01 12:00:00 +0000</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card business ">
+    <a class="ind" href="/books/hbr-10-must-reads.html">
+      <div class="cover cover-business">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">HBR's 10 Must Reads</h2>
+        <p class="card-text">HBR</p>
+        <p class="card-topic">
+          <a class="business">business</a>
+        </p>
+        
+        <p class="score">6</p>
+        
+        <a class="date" style="display:none">2018-11-01 12:00:00 +0000</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card finance ">
+    <a class="ind" href="/books/rich-dad-poor-dad.html">
+      <div class="cover cover-finance">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Rich Dad, Poor Dad</h2>
+        <p class="card-text">Kiyosaki</p>
+        <p class="card-topic">
+          <a class="finance">finance</a>
+        </p>
+        
+        <p class="score">7</p>
+        
+        <a class="date" style="display:none">2018-10-01 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card finance ">
+    <a class="ind" href="/books/millenial-money.html">
+      <div class="cover cover-finance">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Millenial Money</h2>
+        <p class="card-text">O'Shaughnessy</p>
+        <p class="card-topic">
+          <a class="finance">finance</a>
+        </p>
+        
+        <p class="score">8</p>
+        
+        <a class="date" style="display:none">2018-09-22 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card mindset ">
+    <a class="ind" href="/books/the-10x-rule.html">
+      <div class="cover cover-mindset">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">The 10x Rule</h2>
+        <p class="card-text">Cardone</p>
+        <p class="card-topic">
+          <a class="mindset">mindset</a>
+        </p>
+        
+        <p class="score">7</p>
+        
+        <a class="date" style="display:none">2018-09-22 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card people ">
+    <a class="ind" href="/books/radical-collaboration.html">
+      <div class="cover cover-people">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Radical Collaboration</h2>
+        <p class="card-text">Luyet Tamm</p>
+        <p class="card-topic">
+          <a class="people">people</a>
+        </p>
+        
+        <p class="score">6</p>
+        
+        <a class="date" style="display:none">2018-09-22 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card mindset ">
+    <a class="ind" href="/books/predictably-irrational.html">
+      <div class="cover cover-mindset">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Predictably Irrational</h2>
+        <p class="card-text">Dan Ariely</p>
+        <p class="card-topic">
+          <a class="mindset">mindset</a>
+        </p>
+        
+        <p class="score">8</p>
+        
+        <a class="date" style="display:none">2018-09-01 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card mindset ">
+    <a class="ind" href="/books/drive.html">
+      <div class="cover cover-mindset">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Drive</h2>
+        <p class="card-text">Dan Pink</p>
+        <p class="card-topic">
+          <a class="mindset">mindset</a>
+        </p>
+        
+        <p class="score">6</p>
+        
+        <a class="date" style="display:none">2018-09-01 13:00:00 +0100</a>
       </div>
     </a>
   </div>
@@ -810,7 +700,7 @@
   <div class="card people ">
     <a class="ind" href="/books/emotional-intelligence-2.0.html">
       <div class="cover cover-people">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
         <h2 class="card-title">Emotional Intelligence 2.0</h2>
@@ -818,8 +708,115 @@
         <p class="card-topic">
           <a class="people">people</a>
         </p>
+        
         <p class="score">5</p>
+        
         <a class="date" style="display:none">2018-07-19 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card mindset ">
+    <a class="ind" href="/books/7-habits-of-highly-effective-people.html">
+      <div class="cover cover-mindset">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">The 7 Habits of Highly Effective People</h2>
+        <p class="card-text">Stephen R. Covey</p>
+        <p class="card-topic">
+          <a class="mindset">mindset</a>
+        </p>
+        
+        <p class="score">6</p>
+        
+        <a class="date" style="display:none">2018-05-19 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card business ">
+    <a class="ind" href="/books/grow.html">
+      <div class="cover cover-business">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Grow</h2>
+        <p class="card-text">Jim Stengel</p>
+        <p class="card-topic">
+          <a class="business">business</a>
+        </p>
+        
+        <p class="score">7</p>
+        
+        <a class="date" style="display:none">2017-08-08 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card mindset ">
+    <a class="ind" href="/books/a-guide-to-the-good-life.html">
+      <div class="cover cover-mindset">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">A Guide to the Good Life</h2>
+        <p class="card-text">William Irvine</p>
+        <p class="card-topic">
+          <a class="mindset">mindset</a>
+        </p>
+        
+        <p class="score">10</p>
+        
+        <a class="date" style="display:none">2017-08-01 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card finance ">
+    <a class="ind" href="/books/7-habits-of-highly-effective-investors.html">
+      <div class="cover cover-finance">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">The 7 Habits of Highly Effective Investors</h2>
+        <p class="card-text">Bloomberg</p>
+        <p class="card-topic">
+          <a class="finance">finance</a>
+        </p>
+        
+        <p class="score">7</p>
+        
+        <a class="date" style="display:none">2017-07-19 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card business ">
+    <a class="ind" href="/books/back-of-the-napkin.html">
+      <div class="cover cover-business">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">The Back of The Napkin</h2>
+        <p class="card-text">Roam</p>
+        <p class="card-topic">
+          <a class="business">business</a>
+        </p>
+        
+        <p class="score">6</p>
+        
+        <a class="date" style="display:none">2017-06-01 13:00:00 +0100</a>
       </div>
     </a>
   </div>
@@ -829,7 +826,7 @@
   <div class="card business ">
     <a class="ind" href="/books/checklist-manifesto.html">
       <div class="cover cover-business">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
         <h2 class="card-title">The Checklist Manifesto</h2>
@@ -837,7 +834,9 @@
         <p class="card-topic">
           <a class="business">business</a>
         </p>
+        
         <p class="score">3</p>
+        
         <a class="date" style="display:none">2017-06-01 13:00:00 +0100</a>
       </div>
     </a>
@@ -845,19 +844,23 @@
 
   
   
-  <div class="card posts wide">
-    <a class="ind" href="/books/2017-02-18-matsci-online.html">
-      <div class="cover cover-posts">
-        <!--<img src="/images/cover_matsci.png" />-->
+  <div class="card coding wide">
+    <a class="ind" href="/books/2017-03-19-findapcfor.html">
+      <div class="cover cover-coding">
+        
+          <img style="object-fit: cover; width: 100%; height: 100%" src="/images/cover_findapcforme.png" />
+        
       </div>
       <div class="padding">
-        <h2 class="card-title">matsci.online</h2>
+        <h2 class="card-title">findapcfor.me</h2>
         <p class="card-text">Hamish</p>
         <p class="card-topic">
-          <a class="posts">posts</a>
+          <a class="coding">coding</a>
         </p>
+        
         <p class="score">0</p>
-        <a class="date" style="display:none">2017-02-18 12:00:00 +0000</a>
+        
+        <a class="date" style="display:none">2017-03-19 12:00:00 +0000</a>
       </div>
     </a>
   </div>
@@ -865,99 +868,133 @@
   
   
   <div class="card mindset ">
-    <a class="ind" href="/books/quotes.html">
+    <a class="ind" href="/books/how-to-stop-worrying.html">
       <div class="cover cover-mindset">
-        <!--<img src="/images/null.png" />-->
+        
       </div>
       <div class="padding">
-        <h2 class="card-title">Quotes</h2>
-        <p class="card-text">N/A</p>
+        <h2 class="card-title">How to Stop Worrying and Start Living</h2>
+        <p class="card-text">Dale Carnegie</p>
         <p class="card-topic">
           <a class="mindset">mindset</a>
         </p>
-        <p class="score"></p>
-        <a class="date" style="display:none">2017-01-01 12:00:00 +0000</a>
+        
+        <p class="score">9</p>
+        
+        <a class="date" style="display:none">2017-03-01 12:00:00 +0000</a>
       </div>
     </a>
   </div>
 
   
-  <!--<span style="color:#CCC">Count = 42</span>-->
-</div>
-
-<!-- 
-<div class="title" style="text-align:left;margin-left:2em">
-  <h1 id="heading">Posts</h1>
-</div>
-
-<div class="grid2">
-  <div class="grid-sizer"></div>
-   
-  <div class="card  ">
-    <a class="ind" href="/2019/01/04/bp-pro-exam-notes.html">
-      <div class="cover cover-posts">
-          
+  
+  <div class="card finance ">
+    <a class="ind" href="/books/buffett-checklist.html">
+      <div class="cover cover-finance">
+        
       </div>
       <div class="padding">
-        <h2 class="card-title">Blue Prism Prof. Dev</h2>
+        <h2 class="card-title">Buffett's Investment Checklist</h2>
+        <p class="card-text">Warren Buffett</p>
         <p class="card-topic">
-          <a class="posts">posts</a>
+          <a class="finance">finance</a>
         </p>
+        
+        <p class="score">7</p>
+        
+        <a class="date" style="display:none">2017-03-01 12:00:00 +0000</a>
       </div>
     </a>
   </div>
 
   
-  <div class="card  ">
-    <a class="ind" href="/2017/01/01/bp-ta.html">
-      <div class="cover cover-posts">
-          
-      </div>
-      <div class="padding">
-        <h2 class="card-title">Blue Prism Architect</h2>
-        <p class="card-topic">
-          <a class="posts">posts</a>
-        </p>
-      </div>
-    </a>
-  </div>
-
   
-  <div class="card  wide">
-    <a class="ind" href="/2017/03/19/findapcfor.html">
-      <div class="cover cover-posts">
-          
-            <img src="/images/cover_findapcforme.png" style="width:100%" />
-          
-      </div>
-      <div class="padding">
-        <h2 class="card-title">findapcfor.me</h2>
-        <p class="card-topic">
-          <a class="posts">posts</a>
-        </p>
-      </div>
-    </a>
-  </div>
-
-  
-  <div class="card  wide">
-    <a class="ind" href="/posts/2017/02/18/matsci-online.html">
-      <div class="cover cover-posts">
-          
-            <img src="/images/cover_matsci.png" style="width:100%" />
-          
+  <div class="card coding wide">
+    <a class="ind" href="/books/2017-02-18-matsci-online.html">
+      <div class="cover cover-coding">
+        
+          <img style="object-fit: cover; width: 100%; height: 100%" src="/images/cover_matsci.png" />
+        
       </div>
       <div class="padding">
         <h2 class="card-title">matsci.online</h2>
+        <p class="card-text"></p>
         <p class="card-topic">
-          <a class="posts">posts</a>
+          <a class="coding">coding</a>
         </p>
+        
+        <a class="date" style="display:none">2017-02-18 12:00:00 +0000</a>
       </div>
     </a>
   </div>
 
   
-</div> -->
+  
+  <div class="card fiction ">
+    <a class="ind" href="/books/catch-22.html">
+      <div class="cover cover-fiction">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">Catch 22</h2>
+        <p class="card-text">Joseph Heller</p>
+        <p class="card-topic">
+          <a class="fiction">fiction</a>
+        </p>
+        
+        <p class="score">9</p>
+        
+        <a class="date" style="display:none">2017-01-15 12:00:00 +0000</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card people ">
+    <a class="ind" href="/books/how-to-win.html">
+      <div class="cover cover-people">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">How to Win Friends and Influence People</h2>
+        <p class="card-text">Dale Carnegie</p>
+        <p class="card-topic">
+          <a class="people">people</a>
+        </p>
+        
+        <p class="score">9</p>
+        
+        <a class="date" style="display:none">2016-06-01 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+  
+  <div class="card fiction ">
+    <a class="ind" href="/books/the-picture-of-dorian-gray.html">
+      <div class="cover cover-fiction">
+        
+      </div>
+      <div class="padding">
+        <h2 class="card-title">The Picture of Dorian Gray</h2>
+        <p class="card-text">Oscar Wilde</p>
+        <p class="card-topic">
+          <a class="fiction">fiction</a>
+        </p>
+        
+        <p class="score">8</p>
+        
+        <a class="date" style="display:none">2012-07-17 13:00:00 +0100</a>
+      </div>
+    </a>
+  </div>
+
+  
+</div>
+
+
 
 <style>
   #sidebar-button {
