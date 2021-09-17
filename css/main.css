@@ -90,6 +90,9 @@ a {
   color: var(--Navy);
   text-decoration: none;
 }
+.hero-text p {
+  line-height: 1.5em;
+}
 .hero-text p a {
   color: var(--Navy);
   text-decoration: underline;
@@ -264,7 +267,7 @@ a:active {
 /*****************************************************************************/
 
 #date {
-  font-size: 16px;
+  font-size: 1em;
   padding-top: 0.25em;
   margin-bottom: 2em;
   text-transform: uppercase;
